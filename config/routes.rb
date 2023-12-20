@@ -26,8 +26,9 @@ Rails.application.routes.draw do
     
     
     # customers/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
-    get 'customers/information/:id' => 'customers#show', as: 'show_information'
+    
     get 'customers/mypage' => 'customers#mypage', as: 'mypage'
+    get 'customers/information/:id' => 'customers#show', as: 'show_information'
     get 'customers/mypage/edit' => 'customers#edit', as: 'edit_mypage'
     patch 'customers/mypage' => 'customers#update', as: 'update_mypage'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
