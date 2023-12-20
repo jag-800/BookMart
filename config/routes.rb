@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     get 'items/myitems' => 'items#myitem', as: 'myitems'
     
     resources :items, only: [:index, :show, :new, :edit, :create, :update]
+    resources :cart_items, only: [:index]
   end
   
 end

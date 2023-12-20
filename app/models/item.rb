@@ -2,6 +2,7 @@ class Item < ApplicationRecord
 
 
   belongs_to :customer
+  has_many :items
   has_one_attached :item_image
 
   validates :name, presence: true
