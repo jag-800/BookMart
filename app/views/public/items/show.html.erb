@@ -6,7 +6,7 @@
 
 <div class="row mt-3">
   <div class="col-md-4">
-    <%= image_tag @item.get_item_image(200,150) %>
+    <%= image_tag @item.get_item_image(250,300) %>
   </div>
 
   <table class="col-md-7">
@@ -21,7 +21,7 @@
       </tr>
       <tr>
         <td class="pb-3">ジャンル名</td>
-        <td class="pb-3"><%= @item.genre.name %></td>
+        <td class="pb-3"><%#= @item.genre.name %></td>
       </tr>
       <tr>
         <td class="pb-3">税込価格<br>(税抜価格)</td>
@@ -41,5 +41,5 @@
 </div>
 
 <div class="row mt-5">
-  <%= link_to "編集する", edit_admin_item_path(@item.id), class:"btn btn-success mx-auto" %>
+  <%= link_to "編集する", edit_item_path(@item.id), class:"btn btn-success mx-auto" %>
 </div>

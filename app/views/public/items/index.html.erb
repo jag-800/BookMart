@@ -10,7 +10,7 @@
 
 
 <% if @items.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
-	<%= render 'admin/items/index', items: @items %>
+	<%= render 'index', items: @items %>
 	<%= paginate @items %>
 <% else %>
 	<h3>対応する商品はありませんでした。</h3>

@@ -9,6 +9,15 @@ class Public::ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to item_path(@item)
+    else
+      render :new
+    end
+  end
+
   def show
   end
   
@@ -17,7 +26,7 @@ class Public::ItemsController < ApplicationController
   
   def update
     if @item.update(item_params)
-      redirect_to admin_item_path(@item)
+      redirect_to item_path(@item)
     else
       render :edit
     end
@@ -26,7 +35,7 @@ class Public::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:genre_id, :name, :introduction, :item_image, :price, :is_active)
+    params.require(:item).permit(:name, :introduction, :item_image, :price, :is_active)
   end
 
   def ensure_item

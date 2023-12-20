@@ -12,12 +12,12 @@
     <% items.each do |item| %><tr>
       <td><%= item.id %></td>
       <td>
-        <%= link_to admin_item_path(item.id) do %>
+        <%= link_to item_path(item.id) do %>
           <%= item.name %>
         <% end %>
       </td>
       <td><%= number_with_delimiter(item.price) %></td>
-      <td><%= item.genre.name %></td>
+      <td><%#= item.genre.name %></td>
       <% if item.is_active == true %>
         <td class="text-success font-weight-bold">販売中</td>
       <% else %>

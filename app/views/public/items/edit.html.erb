@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<%= form_with model: @item, url: admin_item_path(@item), method: :patch do |f| %>
+<%= form_with model: @item, url: item_path(@item), method: :patch do |f| %>
 
   <div class="form-group row">
     <label for="inputItemImage" class="col-sm-2 col-form-label">商品画像</label>
@@ -30,7 +30,7 @@
   <div class="form-group row">
     <label for="inputGenre" class="col-sm-2 col-form-label">ジャンル</label>
     <div class="col-sm-5">
-      <%= f.select :genre_id, @genres.map { |g| [g.name, g.id] }, { include_blank: '-- 選択してください --' }, class:'form-control form-control-sm' %>
+      <%#= f.select :genre_id, @genres.map { |g| [g.name, g.id] }, { include_blank: '-- 選択してください --' }, class:'form-control form-control-sm' %>
     </div>
   </div>
 
