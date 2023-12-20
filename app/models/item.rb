@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
 
+
+  belongs_to :customer
   has_one_attached :item_image
 
   validates :name, presence: true
@@ -13,8 +15,7 @@ class Item < ApplicationRecord
     end
     # item_image.variant(resize_to_limit: [width, height]).processed
     #上のコードだと元ん画像のサイズより大きくできない
-    # item_image.variant(resize: "#{width}x#{height}!").processed
-    item_image.variant(gravity: :center, resize:"#{width}x#{height}^", crop:"#{width}x#{height}+0+0").processed
+    item_image.variant(resize: "#{width}x#{height}!").processed
   end
 
   def with_tax_price

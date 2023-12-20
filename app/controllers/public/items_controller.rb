@@ -5,6 +5,10 @@ class Public::ItemsController < ApplicationController
     @items = Item.page(params[:page])
   end
 
+  def myitem
+    @items = current_customer.items
+  end
+
   def new
     @item = Item.new
   end
@@ -20,10 +24,10 @@ class Public::ItemsController < ApplicationController
 
   def show
   end
-  
+
   def edit
   end
-  
+
   def update
     if @item.update(item_params)
       redirect_to item_path(@item)
