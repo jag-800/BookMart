@@ -33,6 +33,10 @@ Rails.application.routes.draw do
     patch 'customers/mypage' => 'customers#update', as: 'update_mypage'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
+    
+    get 'items/myitems' => 'items#myitem', as: 'myitems'
+    
+    resources :items, only: [:index, :show, :new, :edit, :create, :update]
   end
   
 end

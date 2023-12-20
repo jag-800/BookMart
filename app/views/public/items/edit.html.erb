@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="offset-md-1">
+    <h5 class="px-4 table-secondary mb-4">商品編集</h5>
+  </div>
+</div>
+
+<%= form_with model: @item, url: item_path(@item), method: :patch do |f| %>
+
+  <div class="form-group row">
+    <label for="inputItemImage" class="col-sm-2 col-form-label">商品画像</label>
+    <div class="col-sm-5">
+      <%= f.file_field :item_image, accept: "image/*" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">商品名</label>
+    <div class="col-sm-5">
+      <%= f.text_field :name, autofocus: true, id:"inputName", placeholder: "商品名", class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputIntroduction" class="col-sm-2 col-form-label">商品説明文</label>
+    <div class="col-sm-5">
+      <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder: "ここに説明を記述します", class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputGenre" class="col-sm-2 col-form-label">ジャンル</label>
+    <div class="col-sm-5">
+      <%#= f.select :genre_id, @genres.map { |g| [g.name, g.id] }, { include_blank: '-- 選択してください --' }, class:'form-control form-control-sm' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">税抜価格</label>
+    <div class="col-sm-5">
+      <%= f.text_field :price, autofocus: true, id:"inputName", placeholder: "1000", class:"form-control" %>
+    </div>
+    円
+  </div>
+
+  <div class="form-group row">
+    <label for="inputStatus" class="col-sm-2 col-form-label">販売ステータス</label>
+    <div class="col-sm-5">
+      <div class="form-check form-check-inline">
+        <%= f.radio_button :is_active, true, class: 'form-check-input', checked: (@item.is_active == true) %>
+        <%= f.label :is_active, '販売中', value: true, class: 'form-check-label' %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= f.radio_button :is_active, false, class: 'form-check-input', checked: (@item.is_active == false) %>
+        <%= f.label :is_active, '販売停止中', value: false, class: 'form-check-label' %>
+      </div>
+    </div>
+  </div>
+
+
+<div class="row">
+  <%= f.submit '変更を保存', class: "btn btn-success mx-auto" %>
+</div>
+
+<% end %>
