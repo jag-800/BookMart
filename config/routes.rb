@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'items/edit'
+    get 'items/index'
+    get 'items/new'
+    get 'items/show'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
 
@@ -33,6 +39,8 @@ Rails.application.routes.draw do
     patch 'customers/mypage' => 'customers#update', as: 'update_mypage'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
+    
+    resources :items, only: [:index, :show, :new, :edit, :create, :update]
   end
   
 end
