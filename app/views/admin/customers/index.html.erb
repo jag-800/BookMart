@@ -1,2 +1,11 @@
-<h1>Admin::Customers#index</h1>
-<p>Find me in app/views/admin/customers/index.html.erb</p>
+<div class="row">
+  <div class="offset-md-1">
+    <h5 class="px-4 table-secondary">会員一覧</h5>
+  </div>
+</div>
+
+<%= render 'index', customers: @customers %>
+
+<div class="row justify-content-center">
+  <%= paginate @customers %>
+</div>
