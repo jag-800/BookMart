@@ -1,14 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :public do
-    get 'cusotmers/show'
-    get 'cusotmers/edit'
-    get 'cusotmers/confirm'
-  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
 
@@ -25,5 +15,23 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
+  namespace :admin do
+    get 'homes/top'
+    resources :customers, only: [:index, :show, :edit, :update]
+  end
+  
+  scope module: :public do
+    root to: 'homes#top'
+    get 'homes/about'
+    
+    
+    # customers/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
+    get 'customers/information/:id' => 'customers#show', as: 'show_information'
+    get 'customers/mypage' => 'customers#mypage', as: 'mypage'
+    get 'customers/mypage/edit' => 'customers#edit', as: 'edit_mypage'
+    patch 'customers/mypage' => 'customers#update', as: 'update_mypage'
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
+    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
+  end
   
 end

@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-2">
+    <table class="border border-dark">
+      <thead>
+        <th class="border border-dark py-2 px-4">ジャンル検索</th>
+      </thead>
+      <tbody>
+        <%# @genres.each do |genre| %>
+          <tr>
+            <td class="py-1 px-3"><%#= genre.name %></td>
+          </tr>
+        <%# end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-8">
+    <div class="border border-dark p-5">
+      <div class="p-4">
+        <span>
+        ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧は出来ますが、<br>
+        購入には会員登録が必要になります。
+      </span>
+      </div>
+    </div>
+    <div class="mt-3">
+      <h4>新着商品</h4>
+      <div class="row">
+      <%# @items.each do |item| %>
+        <div class="col-md-3">
+          <%##= image_tag item.get_item_image(150,100) %>
+          <%# end %>
+          <p><%#= item.name %></p>
+          <p>￥<%#= number_with_delimiter(item.price) %></p>
+        </div>
+      <%# end %>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex">
+  <%#= link_to "全ての商品を見る >", items_path, class: "ml-auto" %>
+</div>
+
+
