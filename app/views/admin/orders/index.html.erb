@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="offset-md-1">
+    <h5 class="px-4 table-secondary">注文履歴一覧</h5>
+  </div>
+</div>
+
+<table class="table col-md-12">
+  <thead class="bg-light">
+    <th>購入日時</th>
+    <th>購入者</th>
+    <th>注文個数</th>
+    <th>注文テータス</th>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %><tr>
+      <td>
+        <%= link_to admin_order_path(order.id) do %>
+          <%= order.created_at.strftime("%Y/%m/%d　%H:%M:%S") %>
+        <% end %>
+      </td>
+      <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
+      <td><%= order.order_details.sum(:amount) %></td>
+      <td><%= I18n.t("enums.order.status.#{order.status}") %></td>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="row justify-content-center">
+  <%= paginate @orders %>
+</div>
