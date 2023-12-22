@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'order_details/update'
+  end
+  namespace :admin do
+    get 'index/show'
+    get 'index/update'
+  end
+  namespace :public do
+    get 'order/new'
+    get 'order/index'
+    get 'order/create'
+    get 'order/show'
+    get 'order/confirm'
+    get 'order/thanks'
+  end
   namespace :public do
     get 'addresses/index'
     get 'addresses/edit'
@@ -22,6 +37,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'top' => 'homes#top'
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:index, :show, :update] do
+      resources :order_details, only: [:update]
+    end
   end
   
   scope module: :public do
@@ -38,6 +56,8 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/thanks' => 'orders#thanks', as: 'thanks'
 
     get 'items/myitems' => 'items#myitem', as: 'myitems'
     
@@ -46,6 +66,7 @@ Rails.application.routes.draw do
     end
     resources :cart_items, only: [:index]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :orders, only: [:new, :index, :create, :show]
   end
   
 end
