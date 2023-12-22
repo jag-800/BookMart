@@ -45,6 +45,9 @@ Rails.application.routes.draw do
     
     resources :items do
       resources :cart_items, only: [:create, :update, :destroy]
+      collection do
+        get 'search'
+      end
     end
     resources :cart_items, only: [:index]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]

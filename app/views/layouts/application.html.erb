@@ -60,28 +60,24 @@
               </li>
             <% end %>
           </ul>
-          <%# if admin_signed_in? %>
-            <form class="form-inline my-1 ml-auto">
-              <%#= form_with url: admin_items_path, method: :get do |f| %>
-                <%#= f.text_field :search, placeholder: "Search", class:"form-control" %>
-                <%#= button_tag(type: 'submit', class: 'btn btn-outline-secondary') do %>
-                  <i class="fa fa-search"></i>
-                <%# end %>
-              <%# end %>
-            </form>
-          <%# end %>
-        </div>
         </div>
       </nav>
+      <div class="px-4">
+          <%= search_form_for @q, url: search_items_path do |f| %>
+            <%= f.label :name_cont, '書籍検索' %>
+            <%= f.search_field :name_cont %>
+            <%= f.submit '検索' %>
+          <% end %>
+        </div>
     </header>
-    
+
     <main class="container-fluid flex-grow-1 border border-dark">
       <div class="mx-5 mt-5 px-5">
         <%= yield %>
       </div>
     </main>
-    
-    
+
+
     <footer class="container-fluid border border-dark p-5">
       <div></div>
     </footer>

@@ -24,5 +24,10 @@ class Item < ApplicationRecord
     (price * 1.1).ceil
     # ceilは切り上げ、floorが切り捨て、roundが四捨五入
   end
+  
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "is_active", "name", "price"]
+  end
+
 
 end
