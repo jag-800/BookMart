@@ -15,6 +15,7 @@ class Public::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.customer_id = current_customer.id
     if @item.save
       redirect_to item_path(@item)
     else
@@ -23,6 +24,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
+    @cart_item = CartItem.new
   end
 
   def edit
