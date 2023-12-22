@@ -17,7 +17,7 @@
         <% end %>
       </td>
       <td><%= number_with_delimiter(item.price) %></td>
-      <td><%#= item.genre.name %></td>
+      <td><%= render 'tag_list', tag_list: item.tag_list %></td>
       <% if item.is_active == true %>
         <td class="text-success font-weight-bold">販売中</td>
       <% else %>
