@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'addresses/index'
+    get 'addresses/edit'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
 
@@ -41,6 +45,7 @@ Rails.application.routes.draw do
       resources :cart_items, only: [:create, :update, :destroy]
     end
     resources :cart_items, only: [:index]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
   
 end
