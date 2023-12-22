@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
 
+  acts_as_taggable_on :tags
 
   belongs_to :customer
   has_many :cart_items

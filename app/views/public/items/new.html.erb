@@ -37,9 +37,9 @@
   </div>
 
   <div class="form-group row">
-    <label for="inputGenre" class="col-sm-2 col-form-label">ジャンル</label>
+    <label for="inputGenre" class="col-sm-2 col-form-label">タグ名</label>
     <div class="col-sm-5">
-      <%#= f.select :genre_id, @genres.map { |g| [g.name, g.id] }, { include_blank: '-- 選択してください --' }, class:'form-control form-control-sm' %>
+      <%= f.text_field :tag_list, value: @item.tag_list.join(','), placeholder: "「,」をつければ複数登録できます", class: 'form-control' %>
     </div>
   </div>
 
