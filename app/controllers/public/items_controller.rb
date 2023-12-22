@@ -5,8 +5,8 @@ class Public::ItemsController < ApplicationController
     @q = Item.ransack(params[:q])
     @items = Item.page(params[:page])
     if params[:tag_name]
-    @items = Item.tagged_with("#{params[:tag_name]}").page(params[:page])
-  end
+      @items = Item.tagged_with("#{params[:tag_name]}").page(params[:page])
+    end
   end
 
   def myitem
