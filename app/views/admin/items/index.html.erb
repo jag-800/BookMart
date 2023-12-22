@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="offset-1">
+    <h5 class="px-4 table-secondary mb-4">商品一覧</h5>
+  </div>
+  <div class="offset-7"></div>
+  <div class="col-md-1">
+    <%= link_to '+', new_admin_item_path, class: 'btn btn-light border shadow rounded-circle d-flex justify-content-center align-items-center', style: 'width: 50px; height: 50px; font-size: 30px; color: gray;' %>
+  </div>
+</div>
+
+
+<% if @items.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
+	<%= render 'admin/items/index', items: @items %>
+	<%= paginate @items %>
+<% else %>
+	<h3>対応する商品はありませんでした。</h3>
+<% end %>
+
+<div class="row justify-content-center">
+  <%= paginate @items %>
+</div>
