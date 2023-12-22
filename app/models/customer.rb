@@ -6,6 +6,7 @@ class Customer < ApplicationRecord
 
   has_many :items
   has_many :cart_items
+  has_many :addresses
 
   validates :last_name, presence: true
   validates :first_name, presence: true
@@ -23,7 +24,7 @@ class Customer < ApplicationRecord
   def full_name_kana
     last_name_kana + " " + first_name_kana
   end
-  
+
   def has_in_cart(item)
     cart_items.find_by(item_id: item.id)
   end
