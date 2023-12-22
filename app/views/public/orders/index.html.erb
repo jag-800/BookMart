@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="offset-md-1">
+    <h5 class="px-4 table-secondary">注文履歴確認</h5>
+  </div>
+</div>
+
+<div class="row">
+
+  <table class="table table-bordered border-dark">
+    <thead>
+        <tr>
+          <td class="table-secondary border-dark">注文日</td>
+          <td class="table-secondary border-dark">配送先</td>
+          <td class="table-secondary border-dark">注文商品</td>
+          <td class="table-secondary border-dark">支払金額</td>
+          <td class="table-secondary border-dark">ステータス</td>
+          <td class="table-secondary border-dark">注文詳細</td>
+        </tr>
+      </thead>
+    <tbody>
+      <% @orders.each do |order| %><tr>
+        <td class="border-dark">
+          <%= order.created_at.strftime("%Y/%m/%d") %>
+        </td>
+        <td class="border-dark">
+          〒<%= order.post_code %>
+          <%= order.address %>
+          <br>
+          <%= order.name %>
+        </td>
+        <td class="border-dark">
+          <% order.order_details.each do |detail| %>
+            <%= detail.item.name %><br>
+          <% end %>
+        </td>
+        <td class="border-dark"><%= number_with_delimiter(order.total_payment) %>円</td>
+        <td class="border-dark"><%= I18n.t("enums.order.status.#{order.status}") %></td>
+        <td class="border-dark"><%= link_to "表示する", order_path(order.id), class:"btn btn-primary" %></td>
+      </tr><% end %>
+    </tbody>
+  </table>
+</div>

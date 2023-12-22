@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
 
@@ -22,6 +18,10 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'top' => 'homes#top'
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :items, except: [:destroy]
+    resources :orders, only: [:index, :show, :update] do
+      resources :order_details, only: [:update]
+    end
   end
   
   scope module: :public do
@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/thanks' => 'orders#thanks', as: 'thanks'
 
     get 'items/myitems' => 'items#myitem', as: 'myitems'
     
@@ -46,6 +48,7 @@ Rails.application.routes.draw do
     end
     resources :cart_items, only: [:index]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :orders, only: [:new, :index, :create, :show]
   end
   
 end

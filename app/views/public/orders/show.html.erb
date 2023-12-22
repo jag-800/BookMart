@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="offset-md-1 mb-4">
+    <h5 class="px-4 table-secondary">注文履歴詳細</h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <p>注文情報</p>
+      <table class="table table-bordered border-dark">
+        <tbody>
+          <tr>
+            <td class="table-secondary border-dark">注文日</td>
+            <td class="border-dark">
+              <%= @order.created_at.strftime("%Y/%m/%d") %>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-secondary border-dark">配送先</td>
+            <td class="border-dark">
+              〒<%= @order.post_code %>
+              <br>
+              <%= @order.address %>
+              <br>
+              <%= @order.name %>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-secondary border-dark">注文商品</td>
+            <td class="border-dark">
+              <% @order.order_details.each do |detail| %>
+                <%= detail.item.name %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-secondary border-dark">支払方法</td>
+            <td class="border-dark"><%= I18n.t("enums.order.payment_method.#{@order.payment_method}") %></td>
+          </tr>
+          <tr>
+            <td class="table-secondary border-dark">ステータス</td>
+            <td class="border-dark"><%= I18n.t("enums.order.status.#{@order.status}") %></td>
+        </tbody>
+      </table>
+  </div>
+
+  <div class="col-md-3">
+    <p>請求情報</p>
+    <table class="table table-bordered border-dark">
+    <tbody>
+      <tr>
+        <td class="table-secondary border-dark">商品合計</td>
+        <td class="border-dark">
+          <%=  number_with_delimiter(@order.total_payment - @order.shipping_cost) %>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-secondary border-dark">配送料</td>
+        <td class="border-dark"><%= @order.shipping_cost %></td>
+      </tr>
+      <tr>
+        <td class="table-secondary border-dark">ご請求額</td>
+        <td class="border-dark"><%= number_with_delimiter(@order.total_payment) %></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+
+
+  <div class="col-md-7">
+    <p>注文内容</p>
+    <table class="table table-bordered border-dark">
+      <thead>
+          <tr>
+            <td class="table-secondary border-dark">商品</td>
+            <td class="table-secondary border-dark">単価（税込）</td>
+            <td class="table-secondary border-dark">個数</td>
+            <td class="table-secondary border-dark">小計</td>
+          </tr>
+        </thead>
+      <tbody>
+        <% @order.order_details.each do |detail| %><tr>
+          <td class="border-dark"><%= image_tag detail.item.get_item_image(30, 30) %><%= detail.item.name %></td>
+          <td class="border-dark"><%= number_with_delimiter((detail.item.price * 1.1).to_i) %></td>
+          <td class="border-dark"><%= detail.amount %></td>
+          <td class="border-dark"><%= number_with_delimiter(detail.item.price)  %></td>
+        </tr><% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
