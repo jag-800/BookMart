@@ -1,23 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'order_details/update'
-  end
-  namespace :admin do
-    get 'index/show'
-    get 'index/update'
-  end
-  namespace :public do
-    get 'order/new'
-    get 'order/index'
-    get 'order/create'
-    get 'order/show'
-    get 'order/confirm'
-    get 'order/thanks'
-  end
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
 

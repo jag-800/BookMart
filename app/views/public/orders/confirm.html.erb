@@ -1,0 +1,114 @@
+<div class="row">
+  <div class="offset-md-1">
+    <h5 class="px-4 table-secondary">注文情報確認</h5>
+  </div>
+</div>
+
+<p id="notice">
+  <%= flash.now[:notice] %>
+</p>
+<% if @order.errors.any? %>
+  <h3><%= @order.errors.count %> error prohibited this obj from being saved:</h3>
+  <ul>
+    <% @order.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="row">
+  <div class="col-md-8">
+    <table class="table table-bordered border-dark">
+      <thead>
+        <tr>
+          <td class="table-secondary border-dark">商品名</td>
+          <td class="table-secondary border-dark">単価(税込)</td>
+          <td class="table-secondary border-dark">数量</td>
+          <td class="table-secondary border-dark">小計</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %><tr>
+          <td class="border-dark">
+            <%= image_tag cart_item.item.get_item_image(40,30), class:"mr-2" %><%= cart_item.item.name %>
+          </td>
+          <td class="border-dark">
+             <%=  number_with_delimiter(cart_item.item.price) %>
+          </td>
+          <td class="border-dark">
+              <%= cart_item.amount %>
+          </td>
+          <td class="border-dark">
+             <%=  number_with_delimiter(cart_item.item.price * cart_item.amount) %><!--これで小計の数値が取れる-->
+          </td>
+        </tr><% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-3">
+    <table>
+      <tbody class="table table-bordered border-dark">
+        <tr>
+          <td class="table-secondary border-dark">送料</td>
+          <td class="border-dark"><%= 800 %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary border-dark">商品合計</td>
+          <td class="border-dark"><%=  number_with_delimiter(@cart_items.sum(&:subtotal)) %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary border-dark">請求金額</td>
+          <td class="border-dark"><%= number_with_delimiter(800 + @cart_items.sum(&:subtotal)) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+
+<div class="row">
+
+  <table class="">
+    <tbody>
+      <tr>
+        <td><b>支払方法</b></td>
+        <td class="">
+          <% if @order.payment_method == "credit_card" %>
+            クレジットカード
+          <% elsif @order.payment_method == "transfer" %>
+            銀行振込
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td class=""><b>お届け先</b></td>
+        <td class="ml-5">
+          〒<%= @order.post_code %>
+          <%= @order.address %>
+          <br>
+          <%= @order.name %>
+
+        </td>
+      </div>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+</div>
+
+<div class="d-flex align-items-center my-3 mt-4">
+  <%= form_with model: @order, url: orders_path do |f| %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :post_code %>
+    <%= f.hidden_field :address %>
+    <%= f.hidden_field :payment_method %>
+    <%= f.hidden_field :shipping_cost, value: 800 %>
+    <%= f.hidden_field :total_payment, value: (800 + @cart_items.sum(&:subtotal)) %>
+    <%= f.submit "注文を確定する", "data-confirm" => "注文を確定しますか", class:"btn btn-success mx-auto" %>
+  <% end %>
+</div>
