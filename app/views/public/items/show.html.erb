@@ -42,7 +42,7 @@
 
 <div class="row mt-5">
   <div>
-    <% if @item.customer_id == current_customer.id %>
+    <% if current_customer && @item.customer_id == current_customer.id %>
       <%= link_to "編集する", edit_item_path(@item.id), class:"btn btn-success mx-auto" %>
     <% end %>
   </div>

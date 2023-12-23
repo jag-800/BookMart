@@ -1,7 +1,7 @@
 <table class="table mt-3">
   <thead>
     <tr>
-      <th>商品ID</th>
+      <th>商品</th>
       <th>商品名</th>
       <th><%= sort_link(@q, :price, "税抜価格") %></th>
       <th>ジャンル</th>
@@ -10,7 +10,11 @@
   </thead>
   <tbody>
     <% items.each do |item| %><tr>
-      <td><%= item.id %></td>
+      <td>
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_item_image(100,100) %>
+        <% end %>
+      </td>
       <td>
         <%= link_to item_path(item.id) do %>
           <%= item.name %>
