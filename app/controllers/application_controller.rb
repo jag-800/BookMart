@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :search, unless: :devise_controller?
+  before_action :search
   
   def search
     @q = Item.ransack(params[:q])
