@@ -46,31 +46,34 @@
       <%= link_to "編集する", edit_item_path(@item.id), class:"btn btn-success mx-auto" %>
       <%= link_to "削除する", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？",  class:"btn btn-danger mx-auto" %>
     </div>
-  <% end %>
-  
-  <div class="row mt-5 ml-auto align-items-center">
-    
+
     <h4>ご自身の登録商品です</h4>
     <h4>購入できません。</h4>
-    
-    <% unless current_customer && @item.customer_id == current_customer.id %>
-     <%= form_with model: [@item, @cart_item], class:"mt-2" do |f| %>
-      <table>
-        <p>数量を選択して下さい。</p>
-        <td>
-          <%= f.hidden_field :item_id, value: @item.id %>
-          <%= f.select :amount, (1..10), {selected: 1}, class: 'form-control form-control-sm' %>
-        </td>
-        <td>
-          <% if customer_signed_in? %>
-            <%= f.submit "カートに入れる", class:"btn btn-success" %>
-          <% else %>
-            <%= link_to "カートに入れる", new_customer_session_path, class:"btn btn-success" %>
-          <% end %>
-        </td>
-      </table>
-      <% end %>
+  <% end %>
 
+  <div class="row mt-5 ml-auto align-items-center">
+
+    <% if @item.is_active == false %>
+      <h4>この商品は販売停止中です、購入できません。</h4>
+    <% else %>
+      <% unless current_customer && @item.customer_id == current_customer.id %>
+       <%= form_with model: [@item, @cart_item], class:"mt-2" do |f| %>
+        <table>
+          <p>数量を選択して下さい。</p>
+          <td>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.select :amount, (1..10), {selected: 1}, class: 'form-control form-control-sm' %>
+          </td>
+          <td>
+            <% if customer_signed_in? %>
+              <%= f.submit "カートに入れる", class:"btn btn-success" %>
+            <% else %>
+              <%= link_to "カートに入れる", new_customer_session_path, class:"btn btn-success" %>
+            <% end %>
+          </td>
+        </table>
+        <% end %>
+    <% end %>
     </div>
   <% end %>
 </div>
