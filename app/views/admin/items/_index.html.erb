@@ -10,6 +10,7 @@
   </thead>
   <tbody>
     <% items.each do |item| %><tr>
+      <td><%= image_tag item.get_item_image(100,100) %></td>
       <td><%= item.id %></td>
       <td>
         <%= link_to admin_item_path(item.id) do %>

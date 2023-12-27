@@ -41,6 +41,12 @@ class Public::ItemsController < ApplicationController
       render :edit
     end
   end
+  
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to customer_path(current_customer)
+  end
 
   private
 
