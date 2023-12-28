@@ -14,6 +14,8 @@ class Public::OrdersController < ApplicationController
   def create
     @order = current_customer.orders.new(order_params)
     if @order.save
+      item = @order.item # または適切な方法でItemオブジェクトを取得
+      item.update(is_active: false) # 商品のis_activeをfalseに更新
       redirect_to thanks_path
     else
       flash[:error] = @order.errors.full_messages

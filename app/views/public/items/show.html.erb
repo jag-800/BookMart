@@ -32,7 +32,7 @@
         <% if @item.is_active == true %>
           <td class="text-success font-weight-bold">販売中</td>
         <% else %>
-          <td class="text-secondary font-weight-bold">販売停止中</td>
+          <td class="text-secondary font-weight-bold">購入済み</td>
         <% end %>
       </tr>
     </tbody>
@@ -54,7 +54,7 @@
   <div class="row mt-5 ml-auto align-items-center">
 
     <% if @item.is_active == false %>
-      <h4>この商品は販売停止中です、購入できません。</h4>
+      <h4>この商品は既に購入されました。</h4>
     <% else %>
       <% unless current_customer && @item.customer_id == current_customer.id %>
        <%= form_with model: @order, url: orders_confirm_path, class:"mt-2" do |f| %>
