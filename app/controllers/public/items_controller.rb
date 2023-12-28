@@ -23,12 +23,12 @@ class Public::ItemsController < ApplicationController
     if @item.save
       redirect_to item_path(@item)
     else
-      render :new
+      render :show
     end
   end
 
   def show
-    @cart_item = CartItem.new
+    @order = Order.new
   end
 
   def edit
