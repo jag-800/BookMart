@@ -57,12 +57,12 @@
       <h4>この商品は販売停止中です、購入できません。</h4>
     <% else %>
       <% unless current_customer && @item.customer_id == current_customer.id %>
-       <%= form_with model: [@item, @cart_item], class:"mt-2" do |f| %>
+       <%= form_with model: @order, url: orders_confirm_path, class:"mt-2" do |f| %>
         <table>
-          <p>数量を選択して下さい。</p>
+          <!--<p>数量を選択して下さい。</p>-->
           <td>
             <%= f.hidden_field :item_id, value: @item.id %>
-            <%= f.select :amount, (1..10), {selected: 1}, class: 'form-control form-control-sm' %>
+            <%#= f.select :amount, (1..10), {selected: 1}, class: 'form-control form-control-sm' %>
           </td>
           <td>
             <% if customer_signed_in? %>

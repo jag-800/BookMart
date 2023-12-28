@@ -51,7 +51,7 @@ Rails.application.routes.draw do
       end
     end
     resources :cart_items, only: [:index]
-    resources :orders, only: [:new, :index, :create, :show]
+    resources :orders, only: [:index, :create, :show]
   end
   
 end

@@ -23,18 +23,10 @@
           <%= order.created_at.strftime("%Y/%m/%d") %>
         </td>
         <td class="border-dark">
-          〒<%= order.post_code %>
-          <%= order.address %>
-          <br>
-          <%= order.name %>
+          <%= order.item.name %>
         </td>
-        <td class="border-dark">
-          <% order.order_details.each do |detail| %>
-            <%= detail.item.name %><br>
-          <% end %>
-        </td>
-        <td class="border-dark"><%= number_with_delimiter(order.total_payment) %>円</td>
-        <td class="border-dark"><%= I18n.t("enums.order.status.#{order.status}") %></td>
+        <td class="border-dark"><%#= number_with_delimiter(order.total_payment) %>円</td>
+        <td class="border-dark"><%#= I18n.t("enums.order.status.#{order.status}") %></td>
         <td class="border-dark"><%= link_to "表示する", order_path(order.id), class:"btn btn-primary" %></td>
       </tr><% end %>
     </tbody>

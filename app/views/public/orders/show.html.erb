@@ -16,26 +16,10 @@
             </td>
           </tr>
           <tr>
-            <td class="table-secondary border-dark">配送先</td>
-            <td class="border-dark">
-              〒<%= @order.post_code %>
-              <br>
-              <%= @order.address %>
-              <br>
-              <%= @order.name %>
-            </td>
-          </tr>
-          <tr>
             <td class="table-secondary border-dark">注文商品</td>
             <td class="border-dark">
-              <% @order.order_details.each do |detail| %>
-                <%= detail.item.name %>
-              <% end %>
+                <%= @order.item.name %>
             </td>
-          </tr>
-          <tr>
-            <td class="table-secondary border-dark">支払方法</td>
-            <td class="border-dark"><%= I18n.t("enums.order.payment_method.#{@order.payment_method}") %></td>
           </tr>
           <tr>
             <td class="table-secondary border-dark">ステータス</td>
@@ -49,18 +33,8 @@
     <table class="table table-bordered border-dark">
     <tbody>
       <tr>
-        <td class="table-secondary border-dark">商品合計</td>
-        <td class="border-dark">
-          <%=  number_with_delimiter(@order.total_payment - @order.shipping_cost) %>
-        </td>
-      </tr>
-      <tr>
-        <td class="table-secondary border-dark">配送料</td>
-        <td class="border-dark"><%= @order.shipping_cost %></td>
-      </tr>
-      <tr>
         <td class="table-secondary border-dark">ご請求額</td>
-        <td class="border-dark"><%= number_with_delimiter(@order.total_payment) %></td>
+        <td class="border-dark"><%= number_with_delimiter(@order.item.price) %>円</td>
       </tr>
     </tbody>
     </table>
@@ -74,17 +48,15 @@
           <tr>
             <td class="table-secondary border-dark">商品</td>
             <td class="table-secondary border-dark">単価（税込）</td>
-            <td class="table-secondary border-dark">個数</td>
             <td class="table-secondary border-dark">小計</td>
           </tr>
         </thead>
       <tbody>
-        <% @order.order_details.each do |detail| %><tr>
-          <td class="border-dark"><%= image_tag detail.item.get_item_image(30, 30) %><%= detail.item.name %></td>
-          <td class="border-dark"><%= number_with_delimiter((detail.item.price * 1.1).to_i) %></td>
-          <td class="border-dark"><%= detail.amount %></td>
-          <td class="border-dark"><%= number_with_delimiter(detail.item.price)  %></td>
-        </tr><% end %>
+        <tr>
+          <td class="border-dark"><%= image_tag @order.item.get_item_image(30, 30) %><%= @order.item.name %></td>
+          <td class="border-dark"><%= number_with_delimiter((@order.item.price * 1.1).to_i) %>円</td>
+          <td class="border-dark"><%= number_with_delimiter(@order.item.price) %>円</td>
+        </tr>
       </tbody>
     </table>
   </div>
