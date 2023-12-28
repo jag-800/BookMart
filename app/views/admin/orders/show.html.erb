@@ -17,17 +17,6 @@
         <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
       </tr>
       <tr>
-        <th>配送先</th>
-        <td>
-          〒<%= @order.post_code %><%= @order.address %>
-          <br><%= @order.name %>
-        </td>
-      </tr>
-      <tr>
-        <th>支払方法</th>
-        <td><%= I18n.t("enums.order.payment_method.#{@order.payment_method}") %></td>
-      </tr>
-      <tr>
         <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
           <th>注文ステータス</th>
           <td>
@@ -43,27 +32,21 @@
     <thead>
         <tr>
           <td class="table-secondary border-dark">商品名</td>
-          <td class="table-secondary border-dark">単価(税込）</td>
-          <td class="table-secondary border-dark">数量</td>
-          <td class="table-secondary border-dark">小計</td>
+          <td class="table-secondary border-dark">商品価格</td>
           <td class="table-secondary border-dark">制作ステータス</td>
         </tr>
       </thead>
     <tbody>
-      <% @order_details.each do |detail| %>
         <tr>
-          <td class="border-dark"><%= detail.item.name %></td>
-          <td class="border-dark"><%= number_with_delimiter((detail.item.price * 1.1).to_i) %></td>
-          <td class="border-dark"><%= detail.amount %></td>
-          <td class="border-dark"><%= number_with_delimiter(detail.item.price * detail.amount) %></td>
+          <td class="border-dark"><%= @order.item.name %></td>
+          <td class="border-dark"><%= number_with_delimiter(@order.item.price) %></td>
           <td class="border-dark">
-            <%= form_with model: detail, url: admin_order_order_detail_path(order_id: @order.id, id: detail.id), method: :patch do |f| %>
-              <%= f.select :making_status, OrderDetail.making_statuses.keys.map { |s| [I18n.t("enums.order_detail.making_status.#{s}"), s] }, selected: detail.making_status %>
-              <%= f.submit "更新", class:"btn btn-sm btn-success" %>
-            <% end %>
+            <%#= form_with model: detail, url: admin_order_order_detail_path(order_id: @order.id, id: detail.id), method: :patch do |f| %>
+              <%#= f.select :making_status, OrderDetail.making_statuses.keys.map { |s| [I18n.t("enums.order_detail.making_status.#{s}"), s] }, selected: detail.making_status %>
+              <%#= f.submit "更新", class:"btn btn-sm btn-success" %>
+            <%# end %>
           </td>
         </tr>
-      <% end %>
     </tbody>
   </table>
 
@@ -71,15 +54,7 @@
     <tbody>
       <tr>
         <th>商品合計</th>
-        <td><%= number_with_delimiter(@order.total_payment - @order.shipping_cost) %></td>
-      </tr>
-      <tr>
-        <th>送料</th>
-        <td><%= @order.shipping_cost %></td>
-      </tr>
-      <tr>
-        <th>請求金額合計</th>
-        <td><%= number_with_delimiter(@order.total_payment) %></td>
+        <td><%= number_with_delimiter(@order.item.price) %></td>
       </tr>
     </tbody>
   </table>

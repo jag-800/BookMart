@@ -24,8 +24,8 @@
         <td class="pb-3"><%= render 'tag_list', tag_list: @item.tag_list %></td>
       </tr>
       <tr>
-        <td class="pb-3">税込価格<br>(税抜価格)</td>
-        <td class="pb-3"><%= number_with_delimiter((@item.price * 1.1).to_i) %>(<%= number_with_delimiter(@item.price) %>)円</td>
+        <td class="pb-3">商品価格</td>
+        <td class="pb-3"><%= number_with_delimiter(@item.price) %>円</td>
       </tr>
       <tr>
         <td>販売ステータス</td>
@@ -43,7 +43,9 @@
 <div class="row mt-5">
   <% if current_customer && @item.customer_id == current_customer.id %>
     <div>
+      <% if @item.is_active == true %>
       <%= link_to "編集する", edit_item_path(@item.id), class:"btn btn-success mx-auto" %>
+      <% end %>
       <%= link_to "削除する", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？",  class:"btn btn-danger mx-auto" %>
     </div>
 
@@ -59,10 +61,8 @@
       <% unless current_customer && @item.customer_id == current_customer.id %>
        <%= form_with model: @order, url: orders_confirm_path, class:"mt-2" do |f| %>
         <table>
-          <!--<p>数量を選択して下さい。</p>-->
           <td>
             <%= f.hidden_field :item_id, value: @item.id %>
-            <%#= f.select :amount, (1..10), {selected: 1}, class: 'form-control form-control-sm' %>
           </td>
           <td>
             <% if customer_signed_in? %>
