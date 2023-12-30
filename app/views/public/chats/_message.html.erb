@@ -3,18 +3,18 @@
     <div class="<%= 'd-flex flex-column' if chat.customer_id == current_customer.id %>">
       <% if chat.customer_id == current_customer.id %>
         <div>
-          <%= image_tag @customer.get_customer_image(50,50) %>
+          <%= image_tag current_customer.get_customer_image(50,50) %>
           <%= my_name %>
         </div>
       <% else %>
         <div>
-          <%= image_tag @customer.get_customer_image(50,50) %>
-          <%= chat.customer.name %>さん
+          <%= image_tag chat.customer.get_customer_image(50,50) %>
+          <%= chat.customer.full_name %>さん
         </div>
       <% end %>
 
       <div class="p-2">
-        <div class="<%= chat.customer_id == current_customer.id ? 'rounded-lg table-secondary p-2' : 'rounded-lg bg-light h4' %>">
+        <div class="rounded-lg table-secondary p-2 rounded-lg">
           <%= chat.message %><br>
           <div class="pt-2">
             <%= chat.created_at.strftime('%Y年%m月%d日 %H:%M') %>
