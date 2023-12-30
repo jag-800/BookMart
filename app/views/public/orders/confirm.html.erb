@@ -34,7 +34,7 @@
         <tr>
           <td class="table-secondary border-dark">出品者のページ</td>
           <td class="border-dark">
-            <%= link_to @item.customer.full_name, show_information_path(@item.customer), class: "btn btn-info" %>
+            <%= link_to @item.customer.full_name + "さんのページ", show_information_path(@item.customer), class: "btn btn-info" %>
           </td>
         </tr>
         <tr>

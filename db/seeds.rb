@@ -15,10 +15,10 @@ Admin.create!(email: 'a@a', password: 'aaaaaa')
 Customer.create!(
   [
     {
-      first_name: "令和",
-      last_name: "道子",
-      first_name_kana: "レイワ",
-      last_name_kana: "ミチコ",
+      first_name: "道子",
+      last_name: "令和",
+      first_name_kana: "ミチコ",
+      last_name_kana: "レイワ",
       email: "sample@example.com",
       post_code: "9995555",
       address: "東京都渋谷区神園町0-0",
