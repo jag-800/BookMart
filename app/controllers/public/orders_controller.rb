@@ -24,6 +24,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def thanks
+    order = current_customer.orders.last
+    @customer = order.item.customer
   end
 
   def index
