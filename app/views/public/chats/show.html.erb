@@ -1,7 +1,7 @@
 <div class="container">
   <h2><%= @customer.full_name %> さんとのチャット</h2>
   <div class="message">
-    <%= render "public/chats/message", chats: @chats, user: @customer, my_name: @my_name %>
+    <%= render "public/chats/message", chats: @chats, customer: @customer, my_name: @my_name %>
   </div>
   
   <%= form_with model: @chat, data: {remote: true} do |f| %>

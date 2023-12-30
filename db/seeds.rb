@@ -15,10 +15,10 @@ Admin.create!(email: 'a@a', password: 'aaaaaa')
 Customer.create!(
   [
     {
-      first_name: "令和",
-      last_name: "道子",
-      first_name_kana: "レイワ",
-      last_name_kana: "ミチコ",
+      first_name: "道子",
+      last_name: "令和",
+      first_name_kana: "ミチコ",
+      last_name_kana: "レイワ",
       email: "sample@example.com",
       post_code: "9995555",
       address: "東京都渋谷区神園町0-0",
@@ -53,7 +53,7 @@ Customer.create!(
   ]
 )
 
-Item.create!(
+items = Item.create!(
   [
     {
       customer_id: "1",
@@ -113,8 +113,8 @@ item_images = [
 item_tags = [
   ["Ruby", "プログラミング", "入門"],
   ["Python", "プログラミング", "入門"],
-  ["ジャンプ","漫画", "ワンピース"],
-  ["ジャンプ", "漫画","妹系","抜き"],
+  ["ジャンプ","漫画","妹系","抜き"],
+  ["ジャンプ", "漫画", "ワンピース"],
   ["HTML","CSS", "プログラミング", "入門"],
   ["Ruby","情報", "プログラミング", "入門"],
 ]
@@ -125,7 +125,7 @@ items.each_with_index do |item, index|
   image_path = item_images[index]
 
   if File.exist?(image_path)
-    item.image.attach(io: File.open(image_path), filename: File.basename(image_path), content_type: 'image/jpeg')
+    item.item_image.attach(io: File.open(image_path), filename: File.basename(image_path), content_type: 'image/jpeg')
   else
     Rails.logger.warn "画像ファイルが見つかりません: #{image_path}"
   end
