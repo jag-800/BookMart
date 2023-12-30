@@ -1,0 +1,3 @@
+<% if current_customer != customer && current_customer.following?(customer) && customer.following?(current_customer) %>
+  <%= link_to 'チャットを始める', chat_path(customer.id), class: "ml-3" %>
+<% end %>

@@ -1,0 +1,17 @@
+<div class="container">
+  <h2><%= @customer.full_name %> さんとのチャット</h2>
+  <div class="message">
+    <%= render "public/chats/message", chats: @chats, user: @customer, my_name: @my_name %>
+  </div>
+  
+  <%= form_with model: @chat, data: {remote: true} do |f| %>
+    <div class="errors">
+      <%#= render "layouts/errors", obj: f.object %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :message, placeholder: "メッセージを入力してください", autocomplete: "off", class: 'form-control' %>
+    　<%= f.hidden_field :room_id, value: @room.id %>
+    </div>
+    <%= f.submit "送信", class:"mb-3 btn btn-success" %>
+  <% end %>
+</div>

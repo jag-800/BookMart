@@ -8,6 +8,9 @@ class Customer < ApplicationRecord
   has_many :cart_items
   has_many :addresses
   has_many :orders
+  has_many :customer_rooms
+  has_many :chats
+  has_many :rooms, through: :customer_rooms
 
   validates :last_name, presence: true
   validates :first_name, presence: true
