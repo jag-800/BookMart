@@ -35,7 +35,7 @@
       <% @items.each do |item| %>
         <div class="col-md-3">
           <%= link_to item_path(item.id) do %>
-            <%= image_tag item.get_item_image(150,100) %>
+            <%= image_tag item.get_item_image(150,180) %>
           <% end %>
           <p><%= item.name %></p>
           <p>￥<%= number_with_delimiter(item.price) %></p>
