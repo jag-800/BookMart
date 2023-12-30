@@ -1,18 +1,26 @@
-<div class="chat-messages">
+<div class="bd-highlight mt-4 mb-3">
   <% chats.each do |chat| %>
-    <% if chat.customer_id == current_customer.id %>
-      <div class="message self">
-        <div class="message-body">
-          <%= chat.message %>
+    <div class="<%= 'd-flex' if chat.customer_id == current_customer.id %>">
+      <% if chat.customer_id == current_customer.id %>
+        <div class="d-flex">
+          <div>
+            <%= my_name %>
+            <%#= image_tag current_customer.get_profile_image(50,50) %>
+          </div>
+        </div>
+      <% else %>
+        <%= image_tag customer.get_profile_image(50,50) %>
+        <%= chat.customer.name %>さん
+      <% end %>
+
+      <div class="p-2 d-flex">
+        <div class="<%= chat.customer_id == current_customer.id ? 'rounded-lg table-secondary p-2' : 'rounded-lg bg-light h4' %>">
+          <%= chat.message %><br>
+          <div class="pt-2">
+            <%= chat.created_at.strftime('%Y年%m月%d日 %H:%M') %>
+          </div>
         </div>
       </div>
-    <% else %>
-      <div class="message other">
-        <div class="message-sender"><%= chat.customer.name %></div>
-        <div class="message-body">
-          <%= chat.message %>
-        </div>
-      </div>
-    <% end %>
+    </div>
   <% end %>
 </div>
