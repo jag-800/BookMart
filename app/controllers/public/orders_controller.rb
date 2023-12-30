@@ -14,6 +14,8 @@ class Public::OrdersController < ApplicationController
   def create
     @order = current_customer.orders.new(order_params)
     if @order.save
+      item = @order.item # または適切な方法でItemオブジェクトを取得
+      item.update(is_active: false) # 商品のis_activeをfalseに更新
       redirect_to thanks_path
     else
       flash[:error] = @order.errors.full_messages
@@ -33,7 +35,7 @@ class Public::OrdersController < ApplicationController
     # confirmでリロードした際の処理
     unless @order
       flash[:alert] = "注文に失敗しました。再度操作を行ってください。"
-      redirect_to cart_items_path and return
+      redirect_to request.referer and return
     end
     @order_details = @order.order_details.includes(:item)
   end

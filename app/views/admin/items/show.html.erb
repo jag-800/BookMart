@@ -20,19 +20,19 @@
         <td class="pb-3"><%= @item.introduction %></td>
       </tr>
       <tr>
-        <td class="pb-3">ジャンル名</td>
-        <td class="pb-3"><%#= @item.genre.name %></td>
+        <td class="pb-3">タグ名</td>
+        <td class="pb-3"><%= render 'tag_list', tag_list: @item.tag_list %></td>
       </tr>
       <tr>
-        <td class="pb-3">税込価格<br>(税抜価格)</td>
-        <td class="pb-3"><%= number_with_delimiter((@item.price * 1.1).to_i) %>(<%= number_with_delimiter(@item.price) %>)円</td>
+        <td class="pb-3">商品価格</td>
+        <td class="pb-3"><%= number_with_delimiter(@item.price) %>円</td>
       </tr>
       <tr>
         <td>販売ステータス</td>
         <% if @item.is_active == true %>
           <td class="text-success font-weight-bold">販売中</td>
         <% else %>
-          <td class="text-secondary font-weight-bold">販売停止中</td>
+          <td class="text-secondary font-weight-bold">購入済み</td>
         <% end %>
       </tr>
     </tbody>
