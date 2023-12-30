@@ -45,12 +45,10 @@ Rails.application.routes.draw do
     get 'items/myitems' => 'items#myitem', as: 'myitems'
     
     resources :items do
-      resources :cart_items, only: [:create, :update, :destroy]
       collection do
         get 'search'
       end
     end
-    resources :cart_items, only: [:index]
     resources :orders, only: [:index, :create, :show]
   end
   

@@ -35,7 +35,7 @@ class Public::OrdersController < ApplicationController
     # confirmでリロードした際の処理
     unless @order
       flash[:alert] = "注文に失敗しました。再度操作を行ってください。"
-      redirect_to cart_items_path and return
+      redirect_to request.referer and return
     end
     @order_details = @order.order_details.includes(:item)
   end
