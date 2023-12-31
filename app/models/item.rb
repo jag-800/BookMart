@@ -10,6 +10,11 @@ class Item < ApplicationRecord
   validates :introduction, presence: true
   validates :price, presence: true, :numericality => { :greater_than_or_equal_to => 0 }
 
+  # chat機能
+  has_one :customer_room
+  belongs_to :seller, class_name: 'Customer', foreign_key: 'customer_id'
+  belongs_to :buyer, class_name: 'Customer', foreign_key: 'buyer_id', optional: true
+  
   def get_item_image(width, height)
     unless item_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')

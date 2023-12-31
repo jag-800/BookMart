@@ -16,6 +16,11 @@ class Public::OrdersController < ApplicationController
     if @order.save
       item = @order.item # または適切な方法でItemオブジェクトを取得
       item.update(is_active: false) # 商品のis_activeをfalseに更新
+      item.update(buyer_id: current_customer.id)
+      
+      # CustomerRoom を作成
+      create_customer_room_for_order(@order)
+    
       redirect_to thanks_path
     else
       flash[:error] = @order.errors.full_messages
@@ -24,8 +29,16 @@ class Public::OrdersController < ApplicationController
   end
 
   def thanks
-    order = current_customer.orders.last
-    @customer = order.item.customer
+    latest_order = current_customer.orders.order(created_at: :desc).first
+
+    if latest_order
+      item = latest_order.item
+      if item
+        # 商品がある場合、その商品に関連する customer_room を取得
+        @customer_room = item.customer_room
+      end
+    end
+    # @customer_room = current_customer.customer_rooms.order(created_at: :desc).first
   end
 
   def index
@@ -48,8 +61,23 @@ class Public::OrdersController < ApplicationController
     params.require(:order).permit(:item_id,:name)
   end
 
-  def ensure_cart_items
-    @cart_items = current_customer.cart_items.includes(:item, :name)
-    redirect_to items_path unless @cart_items.first
+  
+  def create_customer_room_for_order(order)
+    return if order.nil? || order.item.nil?
+  
+    existing_room = CustomerRoom.find_by(item_id: order.item.id)
+  
+    if existing_room.nil?
+      # 新しい Room インスタンスを作成
+      room = Room.new
+      if room.save
+        # Room が正常に保存された場合、CustomerRoom を作成
+        customer_room = CustomerRoom.create!(
+          customer_id: order.item.customer_id,
+          item_id: order.item.id,
+          room_id: room.id
+        )
+      end
+    end
   end
 end

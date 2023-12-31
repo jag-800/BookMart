@@ -1,20 +1,20 @@
 <div class="bd-highlight mt-4 mb-3">
   <% chats.each do |chat| %>
-    <div class="<%= 'd-flex' if chat.customer_id == current_customer.id %>">
+    <div class="<%= 'd-flex flex-column' if chat.customer_id == current_customer.id %>">
       <% if chat.customer_id == current_customer.id %>
-        <div class="d-flex">
-          <div>
-            <%= my_name %>
-            <%#= image_tag current_customer.get_profile_image(50,50) %>
-          </div>
+        <div>
+          <%= image_tag current_customer.get_customer_image(50,50) %>
+          自分
         </div>
       <% else %>
-        <%= image_tag customer.get_profile_image(50,50) %>
-        <%= chat.customer.name %>さん
+        <div>
+          <%= image_tag chat.customer.get_customer_image(50,50) %>
+          <%= chat.customer.full_name %>さん
+        </div>
       <% end %>
 
-      <div class="p-2 d-flex">
-        <div class="<%= chat.customer_id == current_customer.id ? 'rounded-lg table-secondary p-2' : 'rounded-lg bg-light h4' %>">
+      <div class="p-2">
+        <div class="rounded-lg table-secondary p-2 rounded-lg">
           <%= chat.message %><br>
           <div class="pt-2">
             <%= chat.created_at.strftime('%Y年%m月%d日 %H:%M') %>

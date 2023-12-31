@@ -9,6 +9,9 @@
   <%= link_to "編集する", edit_mypage_path, class:"btn btn-success ml-5" %>
 </div>
 
+<div class="d-flex align-items-center my-3 mt-4">
+  <%= image_tag @customer.get_customer_image(50,50) %>
+</div>
 
 <table class="table table-bordered border-dark col-md-6">
   <tr>
