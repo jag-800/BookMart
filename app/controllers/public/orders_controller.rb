@@ -38,11 +38,10 @@ class Public::OrdersController < ApplicationController
         @customer = @item.customer
       end
     end
-    # @customer_room = current_customer.customer_rooms.order(created_at: :desc).first
   end
 
   def index
-    @orders = current_customer.orders.includes(:order_details, :items).page(params[:page]).reverse_order
+    @orders = current_customer.orders.includes(:item).page(params[:page]).reverse_order
   end
 
   def show
@@ -52,7 +51,7 @@ class Public::OrdersController < ApplicationController
       flash[:alert] = "注文に失敗しました。再度操作を行ってください。"
       redirect_to request.referer and return
     end
-    @order_details = @order.order_details.includes(:item)
+    @item = @order.item # OrderDetailsがないので、直接Itemを取得
   end
 
   private
@@ -60,7 +59,6 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:item_id,:name)
   end
-
 
   def create_customer_room_for_order(order)
     return if order.nil? || order.item.nil?
@@ -72,7 +70,7 @@ class Public::OrdersController < ApplicationController
       room = Room.new
       if room.save
         # Room が正常に保存された場合、CustomerRoom を作成
-        customer_room = CustomerRoom.create!(
+        CustomerRoom.create!(
           customer_id: order.item.customer_id,
           item_id: order.item.id,
           room_id: room.id
