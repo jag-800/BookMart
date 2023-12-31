@@ -8,7 +8,7 @@
       
       <%= image_tag @item.get_item_image(200,250) %>
       
-      <table class="">
+      <table class="mb-3">
         <tbody>
           <tr>
             <td class="pb-3">名前</td>
@@ -39,7 +39,11 @@
     </div>
 
     <div class="offset-md-1 col-md-8">
-      <h2><%= @customer.full_name %> さんとのチャット</h2>
+      <% if current_customer != @item.buyer %>
+        <h2><%= @item.buyer.full_name %> さんとのチャット</h2>
+      <% else %>
+        <h2><%= @item.customer.full_name %> さんとのチャット</h2>
+      <% end %>
       <div class="message">
         <%= render "public/chats/message", chats: @chats, customer: @customer, my_name: @my_name %>
       </div>
