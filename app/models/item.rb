@@ -10,6 +10,10 @@ class Item < ApplicationRecord
   validates :introduction, presence: true
   validates :price, presence: true, :numericality => { :greater_than_or_equal_to => 0 }
 
+
+  # belongs_to :seller, class_name: "Customer"
+  # belongs_to :buyer, class_name: "Customer", optional: true
+  
   def get_item_image(width, height)
     unless item_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')

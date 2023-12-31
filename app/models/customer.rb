@@ -22,7 +22,6 @@ class Customer < ApplicationRecord
   validates :address, presence: true
   validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/ }
   
-  
   def get_customer_image(width, height)
     unless customer_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')
