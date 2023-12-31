@@ -6,17 +6,17 @@
 
 <div class="row">
   <div class="col-md-6">
-    <p>注文情報</p>
+    <p>購入情報</p>
       <table class="table table-bordered border-dark">
         <tbody>
           <tr>
-            <td class="table-secondary border-dark">注文日</td>
+            <td class="table-secondary border-dark">購入日</td>
             <td class="border-dark">
               <%= @order.created_at.strftime("%Y/%m/%d") %>
             </td>
           </tr>
           <tr>
-            <td class="table-secondary border-dark">注文商品</td>
+            <td class="table-secondary border-dark">購入購入商品</td>
             <td class="border-dark">
                 <%= @order.item.name %>
             </td>
@@ -29,11 +29,11 @@
   </div>
 
   <div class="col-md-3">
-    <p>請求情報</p>
+    <p>支払情報</p>
     <table class="table table-bordered border-dark">
     <tbody>
       <tr>
-        <td class="table-secondary border-dark">ご請求額</td>
+        <td class="table-secondary border-dark">支払額</td>
         <td class="border-dark"><%= number_with_delimiter(@order.item.price) %>円</td>
       </tr>
     </tbody>
@@ -41,21 +41,23 @@
   </div>
 
 
-  <div class="col-md-7">
-    <p>注文内容</p>
+  <div class="">
+    <p>購入内容</p>
     <table class="table table-bordered border-dark">
       <thead>
           <tr>
-            <td class="table-secondary border-dark">商品</td>
-            <td class="table-secondary border-dark">単価（税込）</td>
-            <td class="table-secondary border-dark">小計</td>
+            <td class="table-secondary border-dark">商品名</td>
+            <td class="table-secondary border-dark">取引場所</td>
+            <td class="table-secondary border-dark">商品詳細</td>
+            <td class="table-secondary border-dark">出品者</td>
           </tr>
         </thead>
       <tbody>
         <tr>
           <td class="border-dark"><%= image_tag @order.item.get_item_image(30, 30) %><%= @order.item.name %></td>
-          <td class="border-dark"><%= number_with_delimiter((@order.item.price * 1.1).to_i) %>円</td>
-          <td class="border-dark"><%= number_with_delimiter(@order.item.price) %>円</td>
+          <td class="border-dark">近畿大学 - 図書館</td>
+          <td class="border-dark"><%= link_to "商品ページ", item_path(@item), class: "btn btn-info" %></td>
+          <td class="border-dark"><%= link_to @item.customer.full_name + "さん", show_information_path(@item.customer), class: "btn btn-info" %></td>
         </tr>
       </tbody>
     </table>
