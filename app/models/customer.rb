@@ -22,6 +22,10 @@ class Customer < ApplicationRecord
   validates :address, presence: true
   validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/ }
   
+  # chat機能
+  has_many :selling_items, class_name: 'Item', foreign_key: 'customer_id'
+  has_many :purchased_items, class_name: 'Item', foreign_key: 'buyer_id'
+  
   def get_customer_image(width, height)
     unless customer_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')

@@ -19,23 +19,23 @@
   <table class="col-md-7">
     <tbody>
       <tr>
-        <td class="pb-3">商品名</td>
+        <td class="pb-3">名前</td>
         <td class="pb-3"><%= @item.name %></td>
       </tr>
       <tr>
-        <td class="pb-3">商品説明文</td>
+        <td class="pb-3">説明文</td>
         <td class="pb-3"><%= @item.introduction %></td>
       </tr>
       <tr>
-        <td class="pb-3">タグ名</td>
+        <td class="pb-3">タグ</td>
         <td class="pb-3"><%= render 'tag_list', tag_list: @item.tag_list %></td>
       </tr>
       <tr>
-        <td class="pb-3">商品価格</td>
+        <td class="pb-3">価格</td>
         <td class="pb-3"><%= number_with_delimiter(@item.price) %>円</td>
       </tr>
       <tr>
-        <td>販売ステータス</td>
+        <td>販売状況</td>
         <% if @item.is_active == true %>
           <td class="text-success font-weight-bold">販売中</td>
         <% else %>
