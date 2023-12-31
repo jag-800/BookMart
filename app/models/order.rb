@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   belongs_to :customer
   belongs_to :item
   has_many :order_details
-  has_one :items, through: :order_details
+
   
   # validates :post_code, presence: true, format: { with: /\A\d{7}\z/ }
   # validates :address, presence: true

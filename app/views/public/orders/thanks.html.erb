@@ -1,6 +1,58 @@
 <div class="text-center my-auto">
-  <p>ご注文ありがとうございました！</p>
+  <p class="alert alert-success">ご注文ありがとうございました！</p>
 </div>
 
-<p>出品者とのDMで受け取り日時を決めてください。</p>
-<%= link_to "連絡をとる", chat_path(@customer_room) %>
+<div class="row">
+  <div class="offset-md-1">
+    <h5 class="px-4 table-secondary mb-4">購入商品</h5>
+  </div>
+  <div class="ml-3">
+    <%= link_to @item.customer.full_name + "さんのページ", show_information_path(@item.customer), class: "btn btn-info ml-3" %>
+  </div>
+</div>
+
+<% if flash[:alert] %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+<div class="row mt-3">
+  <div class="col-md-4">
+    <%= image_tag @item.get_item_image(250,300) %>
+  </div>
+
+  <table class="offset-md-1 col-md-7">
+    <tbody>
+      <tr>
+        <td class="pb-3">名前</td>
+        <td class="pb-3"><%= @item.name %></td>
+      </tr>
+      <tr>
+        <td class="pb-3">説明文</td>
+        <td class="pb-3"><%= @item.introduction %></td>
+      </tr>
+      <tr>
+        <td class="pb-3">タグ</td>
+        <td class="pb-3"><%= render 'public/items/tag_list', tag_list: @item.tag_list %></td>
+      </tr>
+      <tr>
+        <td class="pb-3">価格</td>
+        <td class="pb-3"><%= number_with_delimiter(@item.price) %>円</td>
+      </tr>
+      <tr>
+        <td>販売状況</td>
+        <% if @item.is_active == true %>
+          <td class="text-success font-weight-bold">販売中</td>
+        <% else %>
+          <td class="text-secondary font-weight-bold">購入済み</td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<p class="mt-5">以下のチャットから出品者と、受け取り日時を決めてください。</p>
+<div class="d-flex justify-content-center">
+  <%= link_to "チャットへ", chat_path(@customer_room), class:"btn btn-info mx-auto" %>
+</div>
