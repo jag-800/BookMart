@@ -3,8 +3,10 @@ class Public::HomesController < ApplicationController
     @items = Item.all.order(created_at: :desc).limit(4) 
     @tags = @items.flat_map(&:tag_list).uniq
     @tag_counts = Item.joins(:tags).group('tags.name').count
+    
   end
 
   def about
+    @boards = Item.all
   end
 end
