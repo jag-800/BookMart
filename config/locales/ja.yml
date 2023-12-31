@@ -1,21 +1,10 @@
 ja:
   enums:
     order:
-      payment_method:
-        credit_card: 'クレジットカード'
-        transfer: '銀行振込'
       status:
-        waiting_deposit: '入金待ち'
-        confirm_deposit: '入金確認'
-        in_production: '製作中'
-        preparing_shipment: '発送準備中'
-        shipped: '発送済み'
-    order_detail:
-      making_status:
-        cannot_start: '着手不可'
-        waiting_start: '製作待ち'
-        in_production: '製作中'
-        completed: '製作完了'
+        duaring_trading: '取引中'
+        traded: '取引済み'
+        suspended_trading: '取引中止'
   activerecord:
     errors:
       messages:

@@ -49,6 +49,7 @@
             <td class="table-secondary border-dark">商品名</td>
             <td class="table-secondary border-dark">取引場所</td>
             <td class="table-secondary border-dark">商品詳細</td>
+            <td class="table-secondary border-dark">チャット</td>
             <td class="table-secondary border-dark">出品者</td>
           </tr>
         </thead>
@@ -57,6 +58,7 @@
           <td class="border-dark"><%= image_tag @order.item.get_item_image(30, 30) %><%= @order.item.name %></td>
           <td class="border-dark">近畿大学 - 図書館</td>
           <td class="border-dark"><%= link_to "商品ページ", item_path(@item), class: "btn btn-info" %></td>
+          <td class="border-dark"><%= link_to "チャットへ", chat_path(@item.customer_room), class: "btn btn-success" %></td>
           <td class="border-dark"><%= link_to @item.customer.full_name + "さん", show_information_path(@item.customer), class: "btn btn-info" %></td>
         </tr>
       </tbody>

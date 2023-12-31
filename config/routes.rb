@@ -50,7 +50,7 @@ Rails.application.routes.draw do
       end
     end
     resources :orders, only: [:index, :create, :show]
-    resources :chats, only: [:show, :create]
+    resources :chats, only: [:index, :show, :create]
   end
   
 end

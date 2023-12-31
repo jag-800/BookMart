@@ -1,6 +1,5 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
-  # before_action :ensure_cart_items, only: [:new, :confirm, :create]
 
   def new
     @order = Order.new
@@ -14,17 +13,10 @@ class Public::OrdersController < ApplicationController
   def create
     @order = current_customer.orders.new(order_params)
     if @order.save
-      item = @order.item # または適切な方法でItemオブジェクトを取得
-      item.update(is_active: false) # 商品のis_activeをfalseに更新
-      item.update(buyer_id: current_customer.id)
-
-      # CustomerRoom を作成
-      create_customer_room_for_order(@order)
-
       redirect_to thanks_path
     else
       flash[:error] = @order.errors.full_messages
-      # render :new
+      render :new
     end
   end
 
@@ -60,22 +52,4 @@ class Public::OrdersController < ApplicationController
     params.require(:order).permit(:item_id,:name)
   end
 
-  def create_customer_room_for_order(order)
-    return if order.nil? || order.item.nil?
-
-    existing_room = CustomerRoom.find_by(item_id: order.item.id)
-
-    if existing_room.nil?
-      # 新しい Room インスタンスを作成
-      room = Room.new
-      if room.save
-        # Room が正常に保存された場合、CustomerRoom を作成
-        CustomerRoom.create!(
-          customer_id: order.item.customer_id,
-          item_id: order.item.id,
-          room_id: room.id
-        )
-      end
-    end
-  end
 end
