@@ -11,6 +11,8 @@ class Customer < ApplicationRecord
   has_many :customer_rooms
   has_many :chats
   has_many :rooms, through: :customer_rooms
+  has_many :active_notices, class_name: 'Notice', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notices, class_name: 'Notice', foreign_key: 'visited_id', dependent: :destory
   has_one_attached :customer_image
 
   validates :last_name, presence: true

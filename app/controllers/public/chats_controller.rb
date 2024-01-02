@@ -22,6 +22,9 @@ class Public::ChatsController < ApplicationController
     @room = @chat.room
     @chats = @room.chats
     render :validater unless @chat.save
+    
+    chat = Chat.find(params[:chat_id])
+    chat.create_notification_like!(current_customer)
   end
 
   private
