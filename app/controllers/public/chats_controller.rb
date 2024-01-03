@@ -16,30 +16,32 @@ class Public::ChatsController < ApplicationController
 
     @item = @chat_room.item
   end
-
+  
   def create
     @chat = current_customer.chats.new(chat_params)
     @room = @chat.room
-
-    other_customer = @chat.room.other_customer(current_customer)
-
+    @chats = @room.chats
+  
     if @chat.save
-      # チャットの受信者を取得。Roomモデルにother_customerメソッドがある前提。
-      other_customer = @chat.room.other_customer(current_customer)
-
-      if other_customer
-        # 通知を作成
-        @chat.create_notification_chat!(current_customer, @chat.id, other_customer.id)
-
-        # チャットを取得
-        @chats = @room.chats
+      # 関連するItemのIDを取得
+      related_item = @room.related_item
+      if related_item
+        # 関連する CustomerRoom を取得
+        customer_room = CustomerRoom.find_by(room: @room, item_id: related_item.id)
+        other_customer = customer_room.other_customer(current_customer) if customer_room
+        if other_customer
+          # 通知を作成
+          @chat.create_notification_chat!(current_customer, @chat.id, other_customer.id)
+        else
+          # 他の顧客が見つからない場合のエラーログ
+          Rails.logger.error("Other customer not found in Room ID: #{@room.id}")
+        end
       else
-        # チャットを取得
-        @chats = @room.chats
-        print "-----------------------------------------------------------"
+        # 関連するItemが見つからない場合のエラーログ
+        Rails.logger.error("Item not found for Room ID: #{@room.id}")
       end
     else
-      # 保存に失敗した場合の処理
+      # チャットの保存に失敗した場合の処理
       render :validater
     end
   end

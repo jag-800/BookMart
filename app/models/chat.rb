@@ -11,7 +11,7 @@ class Chat < ApplicationRecord
     save_notification_chat!(current_customer, chat_id, visited_id)
   end
 
-  def create_notification_chat!(current_customer, chat_id, visited_id)
+  def save_notification_chat!(current_customer, chat_id, visited_id)
     # チャット通知を作成
     notification = current_customer.active_notices.new(
       chat_id: chat_id,
@@ -27,7 +27,7 @@ class Chat < ApplicationRecord
       notification.save
     else
       # バリデーションエラーがある場合は、ログに記録する
-      Rails.logger.info("Notification failed to save: #{notification.errors.full_messages.join(", ")}")
+      Rails.logger.error("Failed to save notification: #{notification.errors.full_messages.join(", ")}")
     end
   end
 

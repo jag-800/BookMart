@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/7654f8b8fe.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -42,7 +43,15 @@
                 <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
               </li>
               <li class="mr-5">
-                <%= link_to "通知", notices_path, class:"btn btn-outline-secondary" %>
+                <%= link_to notices_path, class:"btn btn-outline-secondary" do %>
+                  通知
+                  <% if @unchecked_notices.any? %>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
+                      <%= @unchecked_notices.count %>
+                      <span class="visually-hidden">件の通知</span>
+                    </span>
+                  <% end %>
+                <% end %>
               </li>
               <li class="">
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"btn btn-outline-secondary" %>
