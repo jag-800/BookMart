@@ -20,8 +20,28 @@ class Public::ChatsController < ApplicationController
   def create
     @chat = current_customer.chats.new(chat_params)
     @room = @chat.room
-    @chats = @room.chats
-    render :validater unless @chat.save
+  
+    other_customer = @chat.room.other_customer(current_customer)
+
+    if @chat.save
+      # チャットの受信者を取得。Roomモデルにother_customerメソッドがある前提。
+      other_customer = @chat.room.other_customer(current_customer)
+  
+      if other_customer
+        # 通知を作成
+        @chat.create_notification_chat!(current_customer, @chat.id, other_customer.id)
+  
+        # チャットを取得
+        @chats = @room.chats
+      else
+        # チャットを取得
+        @chats = @room.chats
+        print "-----------------------------------------------------------"
+      end
+    else
+      # 保存に失敗した場合の処理
+      render :validater
+    end
   end
 
   private

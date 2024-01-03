@@ -1,0 +1,7 @@
+<% notices = @notices.where.not(visitor_id: current_customer.id) %>
+<% if notices.exists? %>
+  <%= render notices %>
+  <%= paginate notices %>
+<% else %>
+  <p>通知はありません</p>
+<% end %>

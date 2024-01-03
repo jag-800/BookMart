@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_30_080259) do
+ActiveRecord::Schema.define(version: 2024_01_02_042758) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -98,6 +98,21 @@ ActiveRecord::Schema.define(version: 2023_12_30_080259) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "chat_id"
+    t.integer "comment_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index "\"chat\"", name: "index_notices_on_chat"
+    t.index ["comment_id"], name: "index_notices_on_comment_id"
+    t.index ["visited_id"], name: "index_notices_on_visited_id"
+    t.index ["visitor_id"], name: "index_notices_on_visitor_id"
   end
 
   create_table "orders", force: :cascade do |t|
