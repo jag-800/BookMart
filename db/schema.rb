@@ -104,13 +104,13 @@ ActiveRecord::Schema.define(version: 2024_01_02_042758) do
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
     t.integer "chat_id"
-    t.integer "comment_id"
+    t.integer "order_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"chat\"", name: "index_notices_on_chat"
-    t.index ["comment_id"], name: "index_notices_on_comment_id"
+    t.index ["chat_id"], name: "index_notices_on_chat_id"
+    t.index ["order_id"], name: "index_notices_on_order_id"
     t.index ["visited_id"], name: "index_notices_on_visited_id"
     t.index ["visitor_id"], name: "index_notices_on_visitor_id"
   end

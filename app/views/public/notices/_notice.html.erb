@@ -8,10 +8,21 @@
         <strong><%= visitor.full_name %></strong>
       <% end %>
       さんから
-      <%= link_to 'チャットメッセージ', chat_path(notice.chat.room), style: "font-weight: bold;" if notice.chat.present? %>
-      が届きました
+      <% if notice.chat.present? %>
+        <%= link_to 'チャットメッセージ', chat_path(notice.chat.room), style: "font-weight: bold;" %>
+        が届きました
+      <% elsif notice.action == 'order' %>
+        <% if current_customer == visited %>
+         商品を購入しました!(
+          <%= link_to '注文詳細', order_path(notice.order), style: "font-weight: bold;" %>
+          )
+        <% elsif current_customer == visitor %>
+          商品を購入されました!(
+          <%= link_to '注文詳細', order_path(notice.order), style: "font-weight: bold;" %>
+          )
+        <% end %>
+      <% end %>
     </span>
-    
   </div>
   <div class="text-muted mb-0 ml-5">
     <%= notice.chat.message if notice.chat.present? %>

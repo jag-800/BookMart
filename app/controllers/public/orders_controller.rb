@@ -13,6 +13,7 @@ class Public::OrdersController < ApplicationController
   def create
     @order = current_customer.orders.new(order_params)
     if @order.save
+      create_order_notification(@order)
       redirect_to thanks_path
     else
       flash[:error] = @order.errors.full_messages
@@ -50,6 +51,24 @@ class Public::OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:item_id,:name)
+  end
+  
+  def create_order_notification(order)
+    # 購入者に通知（購入者は `order.customer`）
+    Notice.create!(
+      order_id: order.id,
+      visited_id: order.customer.id, # 購入者のID
+      visitor_id: order.item.customer.id, # 出品者のID
+      action: 'order'
+    )
+  
+    # 出品者に通知（出品者は `order.item.customer`）
+    Notice.create!(
+      order_id: order.id,
+      visited_id: order.item.customer.id, # 出品者のID
+      visitor_id: order.customer.id, # 購入者のID
+      action: 'order'
+    )
   end
 
 end
