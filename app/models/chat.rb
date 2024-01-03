@@ -23,7 +23,12 @@ class Chat < ApplicationRecord
     notification.checked = true if current_customer.id == visited_id
   
     # 通知の保存
-    notification.save if notification.valid?
+    if notification.valid?
+      notification.save
+    else
+      # バリデーションエラーがある場合は、ログに記録する
+      Rails.logger.info("Notification failed to save: #{notification.errors.full_messages.join(", ")}")
+    end
   end
 
 
