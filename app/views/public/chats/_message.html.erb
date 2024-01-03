@@ -5,6 +5,7 @@
         <div>
           <%= image_tag current_customer.get_customer_image(50,50) %>
           <%= current_customer.full_name %>(自分)
+          <%= link_to "削除", chat_path(chat), data: {remote: true}, method: :delete, "data-confirm" => "このメッセージを削除しますか？", class:"btn btn-danger" %>
         </div>
       <% else %>
         <div>
@@ -13,7 +14,9 @@
         </div>
       <% end %>
 
+
       <div class="p-2">
+
         <div class="rounded-lg table-secondary p-2 rounded-lg">
           <%= chat.message %><br>
           <div class="pt-2">
