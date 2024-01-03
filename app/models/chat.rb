@@ -6,30 +6,5 @@ class Chat < ApplicationRecord
 
   validates :message, length: { in: 1..140 }
 
-  def create_notification_chat!(current_customer, chat_id, visited_id)
-    # チャットの受信者に通知を送る
-    save_notification_chat!(current_customer, chat_id, visited_id)
-  end
-
-  def save_notification_chat!(current_customer, chat_id, visited_id)
-    # チャット通知を作成
-    notification = current_customer.active_notices.new(
-      chat_id: chat_id,
-      visited_id: visited_id,
-      action: 'chat'
-    )
-  
-    # 自分自身へのチャットの場合は、通知済みとする
-    notification.checked = true if current_customer.id == visited_id
-  
-    # 通知の保存
-    if notification.valid?
-      notification.save
-    else
-      # バリデーションエラーがある場合は、ログに記録する
-      Rails.logger.error("Failed to save notification: #{notification.errors.full_messages.join(", ")}")
-    end
-  end
-
 
 end

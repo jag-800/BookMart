@@ -7,8 +7,6 @@ class Order < ApplicationRecord
   
   after_create :deactivate_item, :create_customer_room
   
-  
-  
   private
 
   def deactivate_item

@@ -23,22 +23,19 @@ class Public::ChatsController < ApplicationController
     @chats = @room.chats
   
     if @chat.save
-      # 関連するItemのIDを取得
-      related_item = @room.related_item
-      if related_item
-        # 関連する CustomerRoom を取得
-        customer_room = CustomerRoom.find_by(room: @room, item_id: related_item.id)
-        other_customer = customer_room.other_customer(current_customer) if customer_room
-        if other_customer
+      # 関連する CustomerRoom を取得
+      customer_room = CustomerRoom.find_by(room_id: @room.id)
+      # チャットの受信者（other_customer）を特定
+      if customer_room
+        other_customer_id = @room.customer_rooms.where.not(customer_id: current_customer.id).pluck(:customer_id).first
+        if other_customer_id
           # 通知を作成
-          @chat.create_notification_chat!(current_customer, @chat.id, other_customer.id)
+          save_notification_chat!(current_customer, @chat.id, other_customer_id)
         else
-          # 他の顧客が見つからない場合のエラーログ
           Rails.logger.error("Other customer not found in Room ID: #{@room.id}")
         end
       else
-        # 関連するItemが見つからない場合のエラーログ
-        Rails.logger.error("Item not found for Room ID: #{@room.id}")
+        Rails.logger.error("CustomerRoom not found for Room ID: #{@room.id}")
       end
     else
       # チャットの保存に失敗した場合の処理
@@ -64,5 +61,26 @@ class Public::ChatsController < ApplicationController
 
   def set_chat_room
     @chat_room = CustomerRoom.find(params[:id])
+  end
+  
+  def save_notification_chat!(current_customer, chat_id, other_customer_id)
+    # チャット通知を作成
+    notification = current_customer.active_notices.new(
+      chat_id: chat_id,
+      visitor_id: current_customer.id,
+      visited_id: other_customer_id,
+      action: 'chat'
+    )
+  
+    # 自分自身へのチャットの場合は、通知済みとする
+    notification.checked = true if current_customer.id == other_customer_id
+  
+    # 通知の保存
+    if notification.valid?
+      notification.save
+    else
+      # バリデーションエラーがある場合は、ログに記録する
+      Rails.logger.error("Failed to save notification: #{notification.errors.full_messages.join(", ")}")
+    end
   end
 end
