@@ -1,6 +1,6 @@
 <div class="row">
   <div class="offset-md-1">
-    <h5 class="px-4 table-secondary">注文履歴一覧</h5>
+    <h5 class="px-4 table-secondary">履歴一覧</h5>
   </div>
 </div>
 
@@ -8,8 +8,7 @@
   <thead class="bg-light">
     <th>購入日時</th>
     <th>購入者</th>
-    <th>注文個数</th>
-    <th>注文テータス</th>
+    <th>取引テータス</th>
   </thead>
 
   <tbody>
@@ -20,7 +19,6 @@
         <% end %>
       </td>
       <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
-      <td><%= order.order_details.sum(:amount) %></td>
       <td><%= I18n.t("enums.order.status.#{order.status}") %></td>
     <% end %>
   </tbody>

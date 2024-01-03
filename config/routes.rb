@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/thanks' => 'orders#thanks', as: 'thanks'
+    get 'orders/buyer' => 'orders#buyer', as: 'buyer'
     get 'orders/details/:id' => 'orders#details', as: 'order_details'
 
     get 'items/myitems' => 'items#myitem', as: 'myitems'
@@ -49,7 +50,7 @@ Rails.application.routes.draw do
         get 'search'
       end
     end
-    resources :orders, only: [:index, :create, :show]
+    resources :orders, only: [:index, :create, :show, :update]
     resources :chats, only: [:index, :show, :create, :destroy]
     resources :notices, only: :index
   end

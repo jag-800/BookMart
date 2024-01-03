@@ -1,3 +1,8 @@
+
+<% if flash[:alert] %>
+  <p class="alert alert-success"><%= alert %></p>
+<% end %>
+  
 <div class="row">
   <div class="offset-md-1 mb-4">
     <h5 class="px-4 table-secondary">注文履歴詳細</h5>
@@ -6,34 +11,40 @@
 
 <div class="row">
   <div class="col-md-6">
-    <p>購入情報</p>
+    <p>売却情報</p>
       <table class="table table-bordered border-dark">
         <tbody>
           <tr>
-            <td class="table-secondary border-dark">購入日</td>
+            <td class="table-secondary border-dark">売却日</td>
             <td class="border-dark">
               <%= @order.created_at.strftime("%Y/%m/%d") %>
             </td>
           </tr>
           <tr>
-            <td class="table-secondary border-dark">購入購入商品</td>
+            <td class="table-secondary border-dark">売却商品</td>
             <td class="border-dark">
                 <%= @order.item.name %>
             </td>
           </tr>
           <tr>
             <td class="table-secondary border-dark">ステータス</td>
-            <td class="border-dark"><%= I18n.t("enums.order.status.#{@order.status}") %></td>
+            <td class="border-dark">
+              <%= form_with model: @order, url: order_path(@order.id), method: :patch do |f| %>
+                <%= f.select :status, Order.statuses.keys.map { |s| [I18n.t("enums.order.status.#{s}"), s] }, selected: @order.status %>
+                <%= f.submit "更新", class:"btn btn-sm btn-success" %>
+              <% end %>
+            </td>
+
         </tbody>
       </table>
   </div>
 
   <div class="col-md-3">
-    <p>支払情報</p>
+    <p>金額情報</p>
     <table class="table table-bordered border-dark">
     <tbody>
       <tr>
-        <td class="table-secondary border-dark">支払額</td>
+        <td class="table-secondary border-dark">受取金額</td>
         <td class="border-dark"><%= number_with_delimiter(@order.item.price) %>円</td>
       </tr>
     </tbody>
@@ -42,7 +53,7 @@
 
 
   <div class="">
-    <p>購入内容</p>
+    <p>売却内容</p>
     <table class="table table-bordered border-dark">
       <thead>
           <tr>

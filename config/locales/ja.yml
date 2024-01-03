@@ -2,9 +2,9 @@ ja:
   enums:
     order:
       status:
-        duaring_trading: '取引中'
-        traded: '取引済み'
-        suspended_trading: '取引中止'
+        duaring_trading: "取引中"
+        traded: "取引済み"
+        suspended_trading: "取引中止"
   activerecord:
     errors:
       messages:

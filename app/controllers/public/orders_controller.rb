@@ -36,6 +36,11 @@ class Public::OrdersController < ApplicationController
   def index
     @orders = current_customer.orders.includes(:item).page(params[:page]).reverse_order
   end
+  
+  def buyer
+    # 現在のユーザーが出品者である注文を取得
+    @orders = Order.joins(:item).where(items: { customer_id: current_customer.id }).includes(:item).page(params[:page]).reverse_order
+  end
 
   def show
     @order = current_customer.orders.find_by(id: params[:id])
@@ -46,17 +51,28 @@ class Public::OrdersController < ApplicationController
     end
     @item = @order.item # OrderDetailsがないので、直接Itemを取得
   end
-  
+
   def details
     @order = Order.find(params[:id])
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    @order.update(order_detail_params)
+    flash[:alert] = "取引ステータスが変更されました。"
+    redirect_to request.referer and return
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:item_id,:name)
+    params.require(:order).permit(:item_id, :name, :status)
   end
   
+  def order_detail_params
+    params.require(:order).permit(:status)
+  end
+
   def create_order_notification(order)
     # 購入者に通知（購入者は `order.customer`）
     Notice.create!(
@@ -65,7 +81,7 @@ class Public::OrdersController < ApplicationController
       visitor_id: order.item.customer.id, # 出品者のID
       action: 'order'
     )
-  
+
     # 出品者に通知（出品者は `order.item.customer`）
     Notice.create!(
       order_id: order.id,
