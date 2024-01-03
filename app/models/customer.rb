@@ -11,6 +11,8 @@ class Customer < ApplicationRecord
   has_many :customer_rooms
   has_many :chats
   has_many :rooms, through: :customer_rooms
+  has_many :active_notices, class_name: 'Notice', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notices, class_name: 'Notice', foreign_key: 'visited_id', dependent: :destroy
   has_one_attached :customer_image
 
   validates :last_name, presence: true
@@ -25,7 +27,7 @@ class Customer < ApplicationRecord
   # chat機能
   has_many :selling_items, class_name: 'Item', foreign_key: 'customer_id'
   has_many :purchased_items, class_name: 'Item', foreign_key: 'buyer_id'
-  
+
   def get_customer_image(width, height)
     unless customer_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')

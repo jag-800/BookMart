@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     end
     resources :orders, only: [:index, :create, :show]
     resources :chats, only: [:index, :show, :create]
+    resources :notices, only: :index
   end
   
 end
