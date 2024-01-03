@@ -25,12 +25,10 @@ class Public::ChatsController < ApplicationController
     if @chat.save
       # 関連するItemのIDを取得
       related_item = @room.related_item
-  
       if related_item
         # 関連する CustomerRoom を取得
         customer_room = CustomerRoom.find_by(room: @room, item_id: related_item.id)
         other_customer = customer_room.other_customer(current_customer) if customer_room
-  
         if other_customer
           # 通知を作成
           @chat.create_notification_chat!(current_customer, @chat.id, other_customer.id)
