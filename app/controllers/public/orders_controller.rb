@@ -58,9 +58,15 @@ class Public::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.update(order_detail_params)
-    flash[:alert] = "取引ステータスが変更されました。"
-    redirect_to request.referer and return
+    if @order.update(order_detail_params)
+      # 注文ステータスが更新された場合、通知を作成
+      create_order_status_update_notification(@order)
+      flash[:alert] = "取引ステータスが変更されました。"
+      redirect_to request.referer
+    else
+      # 更新が失敗した場合、エディットフォームを再表示
+      render :show, alert: '注文状態の更新に失敗しました。'
+    end
   end
 
   private
@@ -88,6 +94,24 @@ class Public::OrdersController < ApplicationController
       visited_id: order.item.customer.id, # 出品者のID
       visitor_id: order.customer.id, # 購入者のID
       action: 'order'
+    )
+  end
+  
+  def create_order_status_update_notification(order)
+    # 注文ステータスが更新されたことを購入者に通知
+    Notice.create!(
+      order_id: order.id,
+      visited_id: order.customer.id, # 購入者のID
+      visitor_id: order.item.customer.id, # 出品者のID
+      action: 'order_status_update'
+    )
+  
+    # 注文ステータスが更新されたことを出品者に通知
+    Notice.create!(
+      order_id: order.id,
+      visited_id: order.item.customer.id, # 出品者のID
+      visitor_id: order.customer.id, # 購入者のID
+      action: 'order_status_update'
     )
   end
 
