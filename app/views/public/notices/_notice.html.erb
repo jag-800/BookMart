@@ -7,17 +7,18 @@
         <%= image_tag visitor.get_customer_image(50, 50), class: "icon_mini" %>
         <strong><%= visitor.full_name %></strong>
       <% end %>
-      さんから
+      さん
       <% if notice.chat.present? %>
+        から
         <%= link_to 'チャットメッセージ', chat_path(notice.chat.room), style: "font-weight: bold;" %>
         が届きました
-      <% elsif notice.action == 'order' %>
-        <% if current_customer == visited %>
-         商品を購入しました!(
+      <% elsif notice.action == 'order' && notice.order.present? && notice.order.item.present? %>
+        <% if current_customer.id == notice.order.item.buyer_id %>
+          から商品を購入しました!(
           <%= link_to '注文詳細', order_path(notice.order), style: "font-weight: bold;" %>
           )
-        <% elsif current_customer == visitor %>
-          商品を購入されました!(
+        <% elsif current_customer.id == notice.order.item.customer_id %>
+          に商品を購入されました!(
           <%= link_to '注文詳細', order_path(notice.order), style: "font-weight: bold;" %>
           )
         <% end %>
