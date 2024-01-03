@@ -11,15 +11,18 @@ class Chat < ApplicationRecord
     save_notification_chat!(current_customer, chat_id, visited_id)
   end
 
-  def save_notification_chat!(current_customer, chat_id, visited_id)
+  def create_notification_chat!(current_customer, chat_id, visited_id)
     # チャット通知を作成
-    notification = current_customer.active_notifications.new(
+    notification = current_customer.active_notices.new(
       chat_id: chat_id,
       visited_id: visited_id,
       action: 'chat'
     )
+  
     # 自分自身へのチャットの場合は、通知済みとする
-    notification.checked = true if notification.visitor_id == notification.visited_id
+    notification.checked = true if current_customer.id == visited_id
+  
+    # 通知の保存
     notification.save if notification.valid?
   end
 
