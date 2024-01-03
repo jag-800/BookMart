@@ -8,4 +8,8 @@ class Notice < ApplicationRecord
   belongs_to :visitor, class_name: 'Customer', foreign_key: 'visitor_id', optional: true
   # 通知の受信者 - Customer モデルに関連付ける
   belongs_to :visited, class_name: 'Customer', foreign_key: 'visited_id', optional: true
+  
+  def unchecked_notifications
+    @notices = current_customer.passive_notifications.where(checked: false)
+  end
 end
