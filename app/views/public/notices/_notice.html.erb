@@ -19,7 +19,7 @@
           )
         <% elsif current_customer.id == notice.order.item.customer_id %>
           に商品を購入されました!(
-          <%= link_to '注文詳細', order_path(notice.order), style: "font-weight: bold;" %>
+          <%= link_to '注文詳細', order_details_path(notice.order), style: "font-weight: bold;" %>
           )
         <% end %>
       <% end %>

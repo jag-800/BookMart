@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/thanks' => 'orders#thanks', as: 'thanks'
+    get 'orders/details/:id' => 'orders#details', as: 'order_details'
 
     get 'items/myitems' => 'items#myitem', as: 'myitems'
     

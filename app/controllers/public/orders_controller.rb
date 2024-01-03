@@ -46,6 +46,10 @@ class Public::OrdersController < ApplicationController
     end
     @item = @order.item # OrderDetailsがないので、直接Itemを取得
   end
+  
+  def details
+    @order = Order.find(params[:id])
+  end
 
   private
 
