@@ -16,6 +16,7 @@ class Item < ApplicationRecord
   belongs_to :seller, class_name: 'Customer', foreign_key: 'customer_id'
   belongs_to :buyer, class_name: 'Customer', foreign_key: 'buyer_id', optional: true
   
+  
   def get_item_image(width, height)
     unless item_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')

@@ -1,19 +1,20 @@
-<% sender = notice.sender %>
-<% recipient = notice.recipient %>
+<% visitor = notice.visitor %>
+<% visited = notice.visited %>
 <div class="col-md-6 mx-auto">
   <div class="form-inline">
     <span>
-      <%= link_to user_path(sender) do %>
-        <%= image_tag avatar_url(sender).to_s, class: "icon_mini" %>
-        <strong><%= sender.name %></strong>
+      <%= link_to show_information_path(visitor) do %>
+        <%= image_tag visitor.get_customer_image(50, 50), class: "icon_mini" %>
+        <strong><%= visitor.full_name %></strong>
       <% end %>
       さんから
-      <%= link_to 'チャットメッセージ', chat_path(notice.chat), style: "font-weight: bold;" %>
+      <%= link_to 'チャットメッセージ', chat_path(notice.chat.room), style: "font-weight: bold;" if notice.chat.present? %>
       が届きました
     </span>
-    <p class="text-muted mb-0">
-      <%= notice.message %>
-    </p>
+    
+  </div>
+  <div class="text-muted mb-0 ml-5">
+    <%= notice.chat.message if notice.chat.present? %>
   </div>
   <div class="small text-muted text-right">
     <%= time_ago_in_words(notice.created_at).upcase %>
