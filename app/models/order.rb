@@ -1,11 +1,14 @@
 class Order < ApplicationRecord
   belongs_to :customer
   belongs_to :item
+  has_many :notices, dependent: :destroy
 
   enum status: { duaring_trading: 0, traded: 1, suspended_trading: 2 }
   
   after_create :deactivate_item, :create_customer_room
-
+  
+  
+  
   private
 
   def deactivate_item
@@ -21,5 +24,7 @@ class Order < ApplicationRecord
     room = Room.create
     CustomerRoom.create(customer_id: item.customer_id, item_id: item.id, room_id: room.id)
   end
+  
+  
   
 end
