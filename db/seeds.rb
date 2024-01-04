@@ -71,13 +71,6 @@ items = Item.create!(
     },
     {
       customer_id: "2",
-      name: "	To LOVEる -とらぶる- (3)",
-      introduction: "めちゃくちゃえろです",
-      price: "4545",
-      is_active: "true",
-    },
-    {
-      customer_id: "2",
       name: "ONE PIECE モノクロ版 1",
       introduction: "時は大海賊時代。いまや伝説の海賊王G・ロジャーの遺した『ひとつなぎの大秘宝』を巡って、幾人もの海賊達が戦っていた",
       price: "460",
@@ -104,7 +97,6 @@ items = Item.create!(
 item_images = [
   Rails.root.join("app/assets/images/ruby_.jpg"),
   Rails.root.join("app/assets/images/python_.jpg"),
-  Rails.root.join("app/assets/images/tloveる_.jpg"),
   Rails.root.join("app/assets/images/onepiece_.jpg"),
   Rails.root.join("app/assets/images/hml_css_.jpg"),
   Rails.root.join("app/assets/images/0ruby.jpg"),
@@ -113,7 +105,6 @@ item_images = [
 item_tags = [
   ["Ruby", "プログラミング", "入門"],
   ["Python", "プログラミング", "入門"],
-  ["ジャンプ","漫画","妹系","抜き"],
   ["ジャンプ", "漫画", "ワンピース"],
   ["HTML","CSS", "プログラミング", "入門"],
   ["Ruby","情報", "プログラミング", "入門"],
