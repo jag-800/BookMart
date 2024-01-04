@@ -1,3 +1,7 @@
+<% if flash[:alert] %>
+  <p class="alert alert-success"><%= alert %></p>
+<% end %>
+
 <div class="row">
   <div class="offset-md-1">
     <h5 class="px-4 table-secondary"><%= @customer.full_name %>のページ</h5>
@@ -17,6 +21,16 @@
   <tr>
       <td class="table-secondary border-dark">カナ</td>
       <td class="border-dark"><%= @customer.full_name_kana %></td>
+  </tr>
+  <tr>
+      <td class="table-secondary border-dark">会員ステータス</td>
+      <td class="border-dark">
+        <% if @customer.is_active == true %>
+          <h6 class="text-success font-weight-bold">有効</h6>
+        <% else %>
+          <h6 class="text-secondary font-weight-bold">退会済み</h6>
+        <% end %>
+      </td>
   </tr>
 </table>
 
