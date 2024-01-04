@@ -51,6 +51,7 @@
             <td class="table-secondary border-dark">商品詳細</td>
             <td class="table-secondary border-dark">チャット</td>
             <td class="table-secondary border-dark">出品者</td>
+            <td class="table-secondary border-dark">購入者</td>
           </tr>
         </thead>
       <tbody>
@@ -60,6 +61,7 @@
           <td class="border-dark"><%= link_to "商品ページ", item_path(@item), class: "btn btn-info" %></td>
           <td class="border-dark"><%= link_to "チャットへ", chat_path(@item.customer_room), class: "btn btn-success" %></td>
           <td class="border-dark"><%= link_to @item.customer.full_name + "さん", show_information_path(@item.customer), class: "btn btn-info" %></td>
+          <td class="border-dark"><%= link_to @order.customer.full_name + "さん", show_information_path(@order.customer), class: "btn btn-info" %></td>
         </tr>
       </tbody>
     </table>
