@@ -20,9 +20,8 @@ Rails.application.routes.draw do
     get 'tags' => 'items#tag'
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, except: [:destroy]
-    resources :orders, only: [:index, :show, :update] do
-      resources :order_details, only: [:update]
-    end
+    resources :orders, only: [:index, :show, :update]
+    resources :notices, only: :index
   end
   
   scope module: :public do
