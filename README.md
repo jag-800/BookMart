@@ -1,24 +1,41 @@
-# README
+# 大学内中古参考書取引アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+このアプリは大学生向けの中古参考書取引プラットフォームです。大学内での手軽な清算と受け渡しを実現し、学生同士で効率的に参考書を売買できます。
 
-Things you may want to cover:
+## 特徴
+- **安心の取引**: 大学内での直接受け渡しにより、クレジットカードを登録する必要なく、安心して取引が可能です。
+- **簡単な操作**: 購入から受け渡しまで、直感的な操作で簡単に取引が行えます。
+- **コミュニティ重視**: 同じ大学の学生同士での取引に特化し、コミュニティを形成します。
 
-* Ruby version
+## ブランチの紹介
+- `main`: メインブランチ。アプリケーションの最終的な安定版がここに配置されます。
+- `develop`: 開発ブランチ。新機能の統合や開発が進行中のコードがここに配置されます。
+- `feature_fix`: 機能の修正やバグフィックスを行うためのブランチ。
+- `feature_remove_actions`: 不要なアクションやコードを削除するブランチ。
+- `12_feature_notices`: ユーザーへの通知機能を追加するブランチ。
+- `11_feature_slick`: スライダー機能や視覚的な要素の強化を目指すブランチ。
+- `10_feature_chats`: ユーザー間のチャット機能の実装を行うブランチ。
+- `9_feature_tag`: タグ機能の追加や改善を行うブランチ。
+- `8_feature_search`: 検索機能の強化や改善を行うブランチ。
+- `7_feature_orders`: 注文処理機能の追加や改善を行うブランチ。
+- `6_feature_carts`: ショッピングカート機能の追加や改善を行うブランチ。
+- `5_delivery_target`: 配送先管理機能機能の追加や改善を行うブランチ。
+- `3_feature_add_items`: 商品登録機能の追加や改善を行うブランチ。
+- `2_feature_account_manage`: 顧客の周辺機能の追加や改善を行うブランチ。
+- `1_feature_login`: deviseによる、アカウント認証機能の追加や改善を行うブランチ。
 
-* System dependencies
+## 開発環境 (変更予定)
+- Ruby on Rails
+- PostgreSQL (予定）
+- AWS（デプロイ環境）
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## インストール方法
+```bash
+git clone https://github.com/jag-800/BookMart.git
+cd BookMart
+bundle install
+yarn install
+rails db:migrate
+rails db:seed
+```
