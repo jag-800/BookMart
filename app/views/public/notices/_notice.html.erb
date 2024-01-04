@@ -1,0 +1,39 @@
+<% visitor = notice.visitor %>
+<% visited = notice.visited %>
+<div class="col-md-6 mx-auto">
+  <div class="form-inline">
+    <span>
+      <%= link_to show_information_path(visitor) do %>
+        <%= image_tag visitor.get_customer_image(50, 50), class: "icon_mini" %>
+        <strong><%= visitor.full_name %></strong>
+      <% end %>
+      さん
+      <% if notice.chat.present? %>
+        から
+        <%= link_to 'チャットメッセージ', chat_path(notice.chat.room), style: "font-weight: bold;" %>
+        が届きました
+      <% elsif notice.action == 'order' && notice.order.present? && notice.order.item.present? %>
+        <% if current_customer.id == notice.order.item.buyer_id %>
+          から商品を購入しました!(
+          <%= link_to '注文詳細', order_path(notice.order), style: "font-weight: bold;" %>
+          )
+        <% elsif current_customer.id == notice.order.item.customer_id %>
+          に商品を購入されました!(
+          <%= link_to '注文詳細', order_details_path(notice.order), style: "font-weight: bold;" %>
+          )
+        <% end %>
+      <% elsif notice.action == 'order_status_update' %>
+        との取引状況が更新されました!(
+        <%= link_to '注文詳細', order_details_path(notice.order), style: "font-weight: bold;" %>
+        )
+      <% end %>
+    </span>
+  </div>
+  <div class="text-muted mb-0 ml-5">
+    <%= notice.chat.message if notice.chat.present? %>
+  </div>
+  <div class="small text-muted text-right">
+    <%= time_ago_in_words(notice.created_at).upcase %>
+  </div>
+  <hr>
+</div>

@@ -1,0 +1,32 @@
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th>商品</th>
+      <th>名前</th>
+      <th><%= sort_link(@q, :price, "価格") %></th>
+      <th>タグ</th>
+      <th>販売状況</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% items.each do |item| %><tr>
+      <td>
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_item_image(100,100) %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to item_path(item.id) do %>
+          <%= item.name %>
+        <% end %>
+      </td>
+      <td><%= number_with_delimiter(item.price) %></td>
+      <td><%= render 'tag_list', tag_list: item.tag_list %></td>
+      <% if item.is_active == true %>
+        <td class="text-success font-weight-bold">販売中</td>
+      <% else %>
+        <td class="text-secondary font-weight-bold">購入済み</td>
+      <% end %>
+    </tr><% end %>
+  </tbody>
+</table>

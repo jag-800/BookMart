@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="offset-md-1">
+    <h5 class="px-4 table-secondary">購入履歴確認</h5>
+  </div>
+</div>
+
+<div class="row">
+
+  <table class="table table-bordered border-dark">
+    <thead>
+        <tr>
+          <td class="table-secondary border-dark">購入日</td>
+          <td class="table-secondary border-dark">購入商品</td>
+          <td class="table-secondary border-dark">支払金額</td>
+          <td class="table-secondary border-dark">ステータス</td>
+          <td class="table-secondary border-dark">詳細</td>
+        </tr>
+      </thead>
+    <tbody>
+      <% @orders.each do |order| %><tr>
+        <td class="border-dark">
+          <%= order.created_at.strftime("%Y/%m/%d") %>
+        </td>
+        <td class="border-dark">
+          <%= order.item.name %>
+        </td>
+        <td class="border-dark"><%= number_with_delimiter(order.item.price) %>円</td>
+        <td class="border-dark"><%= I18n.t("enums.order.status.#{order.status}") %></td>
+        <td class="border-dark"><%= link_to "表示する", order_path(order.id), class:"btn btn-primary" %></td>
+      </tr><% end %>
+    </tbody>
+  </table>
+</div>

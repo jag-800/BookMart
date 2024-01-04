@@ -1,0 +1,14 @@
+<div class="text-center my-auto">
+  <p><b>本当に退会しますか？</b>？</p>
+  <span>
+    退会すると、会員登録情報や<br>
+    これまでの購入履歴が閲覧できなくなります。<br>
+    退会する場合は、「退会する」をクリックしてください。<br>
+  </span>
+
+  <div class="row justify-content-center mt-5">
+    <%= link_to "退会しない", mypage_path, class:"btn btn-primary mr-3" %>
+    <%= link_to "退会する", withdraw_customer_path, "data-confirm" => "本当に退会しますか？", method: :patch, class:"btn btn-danger" %>
+  </div>
+
+</div>
