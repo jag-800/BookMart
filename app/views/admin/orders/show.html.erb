@@ -1,62 +1,76 @@
+
+<% if flash[:alert] %>
+  <p class="alert alert-success"><%= alert %></p>
+<% end %>
+  
 <div class="row">
-  <div class="offset-md-1">
+  <div class="offset-md-1 mb-4">
     <h5 class="px-4 table-secondary">注文履歴詳細</h5>
   </div>
 </div>
 
 <div class="row">
+  <div class="col-md-6">
+    <p>売却情報</p>
+      <table class="table table-bordered border-dark">
+        <tbody>
+          <tr>
+            <td class="table-secondary border-dark">売却日</td>
+            <td class="border-dark">
+              <%= @order.created_at.strftime("%Y/%m/%d") %>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-secondary border-dark">売却商品</td>
+            <td class="border-dark">
+                <%= @order.item.name %>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-secondary border-dark">ステータス</td>
+            <td class="border-dark"><%= I18n.t("enums.order.status.#{@order.status}") %></td>
 
-  <table class="col-md-6 mb-3">
+        </tbody>
+      </table>
+  </div>
+
+  <div class="col-md-3">
+    <p>金額情報</p>
+    <table class="table table-bordered border-dark">
     <tbody>
       <tr>
-        <th>購入者</th>
-        <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
-      </tr>
-      <tr>
-        <th>注文日</th>
-        <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
-      </tr>
-      <tr>
-        <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
-          <th>注文ステータス</th>
-          <td>
-            <%= f.select :status, Order.statuses.keys.map { |s| [I18n.t("enums.order.status.#{s}"), s] }, selected: @order.status %>
-            <%= f.submit "更新", class:"btn btn-sm btn-success" %>
-          </td>
-        <% end %>
+        <td class="table-secondary border-dark">受取金額</td>
+        <td class="border-dark"><%= number_with_delimiter(@order.item.price) %>円</td>
       </tr>
     </tbody>
-  </table>
+    </table>
+  </div>
 
-  <table class="table table-bordered border-dark">
-    <thead>
+
+  <div class="">
+    <p>売却内容</p>
+    <table class="table table-bordered border-dark">
+      <thead>
         <tr>
           <td class="table-secondary border-dark">商品名</td>
-          <td class="table-secondary border-dark">商品価格</td>
-          <td class="table-secondary border-dark">制作ステータス</td>
+          <td class="table-secondary border-dark">取引場所</td>
+          <td class="table-secondary border-dark">商品詳細</td>
+          <!--<td class="table-secondary border-dark">チャット</td>-->
+          <td class="table-secondary border-dark">出品者</td>
+          <td class="table-secondary border-dark">購入者</td>
         </tr>
       </thead>
-    <tbody>
+      <tbody>
         <tr>
-          <td class="border-dark"><%= @order.item.name %></td>
-          <td class="border-dark"><%= number_with_delimiter(@order.item.price) %></td>
-          <td class="border-dark">
-            <%#= form_with model: detail, url: admin_order_order_detail_path(order_id: @order.id, id: detail.id), method: :patch do |f| %>
-              <%#= f.select :making_status, OrderDetail.making_statuses.keys.map { |s| [I18n.t("enums.order_detail.making_status.#{s}"), s] }, selected: detail.making_status %>
-              <%#= f.submit "更新", class:"btn btn-sm btn-success" %>
-            <%# end %>
-          </td>
+          <td class="border-dark"><%= image_tag @order.item.get_item_image(30, 30) %><%= @order.item.name %></td>
+          <td class="border-dark">近畿大学 - 図書館</td>
+          <td class="border-dark"><%= link_to "商品ページ", item_path(@order.item), class: "btn btn-info" %></td>
+          <!--<td class="border-dark"><%#= link_to "チャットへ", chat_path(@order.item.customer_room), class: "btn btn-success" %></td>-->
+          <td class="border-dark"><%= link_to @order.item.customer.full_name + "さん", show_information_path(@order.item.customer), class: "btn btn-info" %></td>
+          <td class="border-dark"><%= link_to @order.customer.full_name + "さん", show_information_path(@order.customer), class: "btn btn-info" %></td>
         </tr>
-    </tbody>
-  </table>
-
-  <table>
-    <tbody>
-      <tr>
-        <th>商品合計</th>
-        <td><%= number_with_delimiter(@order.item.price) %></td>
-      </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>
 

@@ -1,2 +1,28 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="row">
+  <div class="offset-md-1">
+    <h5 class="px-4 table-secondary mb-4">会員編集</h5>
+  </div>
+</div>
+
+<%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
+
+  <div class="form-group row">
+    <label for="inputStatus" class="col-sm-2 col-form-label">会員ステータス</label>
+    <div class="col-sm-5">
+      <div class="form-check form-check-inline">
+        <%= f.radio_button :is_active, true, class: 'form-check-input', checked: @customer.is_active %>
+        <%= f.label :is_active, '有効', value: true, class: 'form-check-label' %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= f.radio_button :is_active, false, class: 'form-check-input', checked: !@customer.is_active %>
+        <%= f.label :is_active, '退会済み', value: false, class: 'form-check-label' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row ml-5 mb-3">
+    <div class="actions ml-5">
+      <%= f.submit "変更内容を保存", class:"btn btn-success ml-5 mr-5" %>
+    </div>
+  </div>
+<% end %>
