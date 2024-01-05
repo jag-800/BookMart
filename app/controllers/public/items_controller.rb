@@ -19,7 +19,7 @@ class Public::ItemsController < ApplicationController
     if @item.save
       redirect_to item_path(@item)
     else
-      render :show
+      render :new
     end
   end
 
