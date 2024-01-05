@@ -1,14 +1,14 @@
 class Public::ItemsController < ApplicationController
   before_action :ensure_item, only: [:show, :edit, :update]
-  
+
   def index
     @q = Item.ransack(params[:q])
-    @items = @q.resul.page(params[:page])
+    @items = @q.result.page(params[:page])
     if params[:tag_name]
       @items = Item.tagged_with("#{params[:tag_name]}").page(params[:page])
     end
   end
-  
+
   def new
     @item = Item.new
   end
