@@ -6,5 +6,4 @@ class Chat < ApplicationRecord
 
   validates :message, length: { in: 1..140 }
 
-
 end

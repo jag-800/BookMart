@@ -1,4 +1,10 @@
 ja:
+  item:
+    name: "商品名"
+    introduction: "商品説明文"
+    price: "商品価格"
+  chat:
+    message: "メッセージ"
   enums:
     order:
       status:

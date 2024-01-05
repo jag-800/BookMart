@@ -4,6 +4,7 @@ class Notice < ApplicationRecord
   belongs_to :item, optional: true
   belongs_to :chat, optional: true
   belongs_to :order, optional: true
+  belongs_to :admin, optional: true
   
   # 通知の送信者 (訪問者) - Customer モデルに関連付ける
   belongs_to :visitor, class_name: 'Customer', foreign_key: 'visitor_id', optional: true

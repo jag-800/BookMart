@@ -1,11 +1,11 @@
-<table class="table mt-3">
+<table class="table mt-3 content">
   <thead>
     <tr>
       <th>商品</th>
       <th>名前</th>
       <th><%= sort_link(@q, :price, "価格") %></th>
       <th>タグ</th>
-      <th>販売状況</th>
+      <th><%= sort_link(@q, :is_active, "販売状況") %></th>
     </tr>
   </thead>
   <tbody>

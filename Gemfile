@@ -61,3 +61,6 @@ gem 'enum_help'
 
 gem 'acts-as-taggable-on', '~> 9.0'
 gem 'ransack'
+
+gem 'rails-i18n'
+gem 'devise-i18n'
