@@ -49,6 +49,18 @@ Customer.create!(
       phone_number: "09177772222",
       is_active: false,
       password: "111111",
+    },
+    {
+      first_name: "尾形",
+      last_name: "隆弘",
+      first_name_kana: "オガタ",
+      last_name_kana: "タカヒロ",
+      email: "2@2",
+      post_code: "1066223",
+      address: "東京都港区六本木3-2-1 住友不動産六本木グランドタワー 24F",
+      phone_number: "09177772222",
+      is_active: true,
+      password: "222222",
     }
   ]
 )

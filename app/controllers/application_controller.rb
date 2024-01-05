@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
     if current_customer
       @unchecked_notices = current_customer.passive_notices.where(checked: false)
     else
-      @unchecked_notices = []
+      admin = Admin.find(1)
+      @unchecked_admin_notices = admin.passive_notices.where(checked: false)
     end
   end
   

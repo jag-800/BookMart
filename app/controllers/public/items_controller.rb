@@ -1,5 +1,7 @@
 class Public::ItemsController < ApplicationController
+  before_action :authenticate_customer!, only: [:new, :create]
   before_action :ensure_item, only: [:show, :edit, :update]
+  include Notifiable
 
   def index
     @q = Item.ransack(params[:q])
@@ -17,6 +19,8 @@ class Public::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
     if @item.save
+      admin = Admin.find(1) # 特定の管理者を取得
+      create_admin_notification(current_customer, admin, 'item', @item)
       redirect_to item_path(@item)
     else
       render :new

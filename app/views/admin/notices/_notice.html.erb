@@ -7,17 +7,19 @@
         <%= image_tag visitor.get_customer_image(50, 50), class: "icon_mini" %>
         <strong><%= visitor.full_name %></strong>
       <% end %>
-      さん
-      <% if notice.action == 'order' && notice.order.present? && notice.order.item.present? %>
+      <% if notice.action == 'item' %>
+        さんが新しい商品を追加されました！
+        <%= link_to '商品詳細', item_path(notice.item) %>
+      <% elsif notice.action == 'customer' %>
+        さんが新しく登録されました！
+      <% elsif notice.action == 'order' && notice.order.present? && notice.order.item.present? %>
         <% if notice.order.item.buyer_id %>
-          が商品を取引しました!(
-          <%= link_to '注文詳細', admin_order_path(notice.order), style: "font-weight: bold;" %>
-          )
+          さんが商品を取引しました!
+          (<%= link_to '注文詳細', admin_order_path(notice.order), style: "font-weight: bold;" %>)
         <% end %>
       <% elsif notice.action == 'order_status_update' %>
-        の取引状況が更新されました!(
-        <%= link_to '注文詳細', admin_order_path(notice.order), style: "font-weight: bold;" %>
-        )
+        さんと<%= visited.full_name %>さんの取引状況が更新されました!
+        (<%= link_to '注文詳細', admin_order_path(notice.order), style: "font-weight: bold;" %>)
       <% end %>
     </span>
   </div>

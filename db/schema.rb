@@ -102,7 +102,9 @@ ActiveRecord::Schema.define(version: 2024_01_02_042758) do
 
   create_table "notices", force: :cascade do |t|
     t.integer "visitor_id", null: false
-    t.integer "visited_id", null: false
+    t.integer "visited_id"
+    t.integer "admin_id"
+    t.integer "item_id"
     t.integer "chat_id"
     t.integer "order_id"
     t.string "action", default: "", null: false
@@ -110,6 +112,7 @@ ActiveRecord::Schema.define(version: 2024_01_02_042758) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["chat_id"], name: "index_notices_on_chat_id"
+    t.index ["item_id"], name: "index_notices_on_item_id"
     t.index ["order_id"], name: "index_notices_on_order_id"
     t.index ["visited_id"], name: "index_notices_on_visited_id"
     t.index ["visitor_id"], name: "index_notices_on_visitor_id"

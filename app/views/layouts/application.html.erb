@@ -33,7 +33,15 @@
                 <%= link_to "取引履歴一覧", admin_orders_path, class:"btn btn-outline-secondary" %>
               </li>
               <li class="mr-5 content">
-                <%= link_to "通知", admin_notices_path, class:"btn btn-outline-secondary" %>
+                <%= link_to admin_notices_path, class:"btn btn-outline-secondary" do %>
+                  通知
+                  <% if @unchecked_admin_notices.any? %>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
+                      <%= @unchecked_admin_notices.count %>
+                      <span class="visually-hidden">件の通知</span>
+                    </span>
+                  <% end %>
+                <% end %>
               </li>
               <li class="content">
                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-outline-secondary" %>
