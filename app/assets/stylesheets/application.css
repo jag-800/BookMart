@@ -15,11 +15,8 @@
  */
 
 .background-wrapper {
-  background-image: url('/assets/wood.jpeg');
-}
-
-.background-wrapper-hf {
-  background-image: url('/assets/wood_w.jpeg');
+  /*background-image: url('/assets/wood.jpeg');*/
+  background-color: whitesmoke;
 }
 
 .content {

@@ -15,37 +15,37 @@
   </head>
 
   <body class="d-flex flex-column min-vh-100">
-    <header class="border border-dark background-wrapper-hf">
+    <header class="border border-dark">
       <nav class="navbar navbar-expand-lg navbar-light px-4">
         <div class="content">
           <%= link_to "LOGO", root_path, class:"btn btn-lg btn-outline-secondary px-5" %>
         </div>
         <div class="d-flex flex-column mt-3 ml-auto">
-          <ul class="row list-unstyled mr-auto content">
+          <ul class="row list-unstyled mr-auto">
             <% if admin_signed_in? %>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "商品一覧", admin_items_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "会員一覧", admin_customers_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "注文履歴一覧", admin_orders_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "通知", admin_notices_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="">
+              <li class="content">
                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-outline-secondary" %>
               </li>
             <% elsif customer_signed_in? %>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "マイページ", mypage_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to notices_path, class:"btn btn-outline-secondary" do %>
                   通知
                   <% if @unchecked_notices.any? %>
@@ -56,20 +56,20 @@
                   <% end %>
                 <% end %>
               </li>
-              <li class="">
+              <li class="content">
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"btn btn-outline-secondary" %>
               </li>
             <% else %>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "About", homes_about_path, class:"btn btn-outline-secondary", 'data-turbolinks': false %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="">
+              <li class="content">
                 <%= link_to "ログイン", new_customer_session_path, class:"btn btn-outline-secondary" %>
               </li>
             <% end %>
@@ -96,7 +96,7 @@
     </main>
 
 
-    <footer class="container-fluid border border-dark p-5 background-wrapper-hf">
+    <footer class="container-fluid border border-dark p-5">
       <div></div>
     </footer>
   </body>
