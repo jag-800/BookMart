@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :search, :notice
+  before_action :check_guest_customer, only: [:create, :update, :edit, :destroy, :new]
   
   def search
     @q = Item.ransack(params[:q])
@@ -12,6 +13,15 @@ class ApplicationController < ActionController::Base
     else
       admin = Admin.find(1)
       @unchecked_admin_notices = admin.passive_notices.where(checked: false)
+    end
+  end
+  
+  private
+
+  # ゲストユーザーかどうかを確認
+  def check_guest_customer
+    if current_customer.try(:guest?)
+      redirect_to root_path, alert: "ゲストユーザーはこの操作を実行できません。"
     end
   end
   

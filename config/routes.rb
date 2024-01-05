@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
-    # ゲストログイン用のパス
-    post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
   }
 
   # 管理者用
@@ -16,6 +14,11 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
+  # ゲストログイン用のパス
+  devise_scope :customer do
+    post '/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, except: [:destroy] do
@@ -30,7 +33,6 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about'
-    
     
     # customers/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
     

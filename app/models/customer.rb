@@ -46,11 +46,23 @@ class Customer < ApplicationRecord
     last_name_kana + " " + first_name_kana
   end
 
+  def guest?
+    email == 'guest@example.com'
+  end
+  
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64
       customer.password_confirmation = customer.password
-      customer.name = "ゲストユーザー"
+      customer.last_name = "顧客"
+      customer.first_name = "仮"
+      # 他の必要な属性に適当な値を設定
+      customer.last_name_kana = "ゲスト"
+      customer.first_name_kana = "ユーザー"
+      customer.post_code = "1234567" # ダミーの郵便番号
+      customer.address = "東京都ゲスト市ゲスト区1-1-1" # ダミーの住所
+      customer.phone_number = "09012345678" # ダミーの電話番号
+      customer.is_active = true
     end
   end
   

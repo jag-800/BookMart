@@ -84,15 +84,26 @@
           </ul>
         </div>
       </nav>
-      <div class="px-4">
-        <%= search_form_for @q, url: search_items_path do |f| %>
-          <%= f.label :name_cont, '書籍検索' %>
-          <%= f.search_field :name_cont %>
-          <%= f.submit '検索' %>
-          <%= f.label :created_at_gteq, '作成日時' %>
-          <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, checked: true %> 今週
-          <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month %> 今月
-          <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year %> 今年
+      <div class="row">
+        <div class="col">
+          <div class="px-4">
+            <%= search_form_for @q, url: search_items_path do |f| %>
+              <%= f.label :name_cont, '書籍検索' %>
+              <%= f.search_field :name_cont %>
+              <%= f.submit '検索' %>
+              <%= f.label :created_at_gteq, '作成日時' %>
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, checked: true %> 今週
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month %> 今月
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year %> 今年
+            <% end %>
+          </div>
+        </div>
+        <% unless customer_signed_in? || admin_signed_in? %>
+          <div class="col">
+            <div>
+              <%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, method: :post %>
+            </div>
+          </div>
         <% end %>
       </div>
     </header>
