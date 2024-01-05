@@ -46,7 +46,12 @@ class Customer < ApplicationRecord
     last_name_kana + " " + first_name_kana
   end
 
-  def has_in_cart(item)
-    cart_items.find_by(item_id: item.id)
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+      customer.password_confirmation = customer.password
+      customer.name = "ゲストユーザー"
+    end
   end
+  
 end
