@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+main {
+  background-image: url('/assets/wood.jpeg');
+}
+
+body {
+  background-image: url('/assets/wood_w.jpeg');
+}
