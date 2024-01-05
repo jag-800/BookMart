@@ -1,16 +1,14 @@
 class Public::ItemsController < ApplicationController
+  before_action :authenticate_customer!, only: [:new, :create]
   before_action :ensure_item, only: [:show, :edit, :update]
+  include Notifiable
 
   def index
     @q = Item.ransack(params[:q])
-    @items = Item.page(params[:page])
+    @items = @q.result.page(params[:page])
     if params[:tag_name]
       @items = Item.tagged_with("#{params[:tag_name]}").page(params[:page])
     end
-  end
-
-  def myitem
-    @items = current_customer.items
   end
 
   def new
@@ -21,9 +19,11 @@ class Public::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
     if @item.save
+      admin = Admin.find(1) # 特定の管理者を取得
+      create_admin_notification(current_customer, admin, 'item', @item)
       redirect_to item_path(@item)
     else
-      render :show
+      render :new
     end
   end
 

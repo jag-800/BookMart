@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.background-wrapper {
+  /*background-image: url('/assets/wood.jpeg');*/
+  background-color: whitesmoke;
+}
+
+.content {
+  background-color: #fff;
+}

@@ -1,6 +1,10 @@
+<% if flash[:alert] %>
+  <p class=""><%= alert %></p>
+<% end %>
+  
 <div class="row">
-  <div class="col-md-2">
-    <table class="border border-dark">
+  <div class="col-md-2 mb-3">
+    <table class="border border-dark content">
       <thead>
         <th class="border border-dark py-2 px-4">タグ検索</th>
       </thead>
@@ -18,7 +22,7 @@
   </div>
 
   <div class="col-md-8">
-    <div class="border border-dark p-2">
+    <div class="border border-dark p-2 content">
       <div class="p-4">
         <span>
         BookMartは大学での参考書・資格本を取り扱います。<br>

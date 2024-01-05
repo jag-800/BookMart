@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
 
   # 顧客用
   # URL /customers/sign_in ...
@@ -15,11 +14,18 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
+  # ゲストログイン用のパス
+  devise_scope :customer do
+    post '/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   namespace :admin do
-    get 'top' => 'homes#top'
-    get 'tags' => 'items#tag'
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :items, except: [:destroy]
+    resources :items, except: [:destroy] do
+      collection do
+        get 'search'
+      end
+    end
     resources :orders, only: [:index, :show, :update]
     resources :notices, only: :index
   end
@@ -27,7 +33,6 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about'
-    
     
     # customers/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
     
@@ -42,7 +47,6 @@ Rails.application.routes.draw do
     get 'orders/buyer' => 'orders#buyer', as: 'buyer'
     get 'orders/details/:id' => 'orders#details', as: 'order_details'
 
-    get 'items/myitems' => 'items#myitem', as: 'myitems'
     
     resources :items do
       collection do
@@ -50,7 +54,7 @@ Rails.application.routes.draw do
       end
     end
     resources :orders, only: [:index, :create, :show, :update]
-    resources :chats, only: [:index, :show, :create, :destroy]
+    resources :chats, only: [:show, :create, :destroy]
     resources :notices, only: :index
   end
   

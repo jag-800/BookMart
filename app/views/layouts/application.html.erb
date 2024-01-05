@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/7654f8b8fe.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
@@ -16,33 +17,43 @@
   <body class="d-flex flex-column min-vh-100">
     <header class="border border-dark">
       <nav class="navbar navbar-expand-lg navbar-light px-4">
-        <%= link_to "LOGO", root_path, class:"btn btn-lg btn-outline-secondary px-5" %>
+        <div class="content">
+          <%= link_to "LOGO", root_path, class:"btn btn-lg btn-outline-secondary px-5" %>
+        </div>
         <div class="d-flex flex-column mt-3 ml-auto">
           <ul class="row list-unstyled mr-auto">
             <% if admin_signed_in? %>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "商品一覧", admin_items_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "会員一覧", admin_customers_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
-                <%= link_to "注文履歴一覧", admin_orders_path, class:"btn btn-outline-secondary" %>
+              <li class="mr-5 content">
+                <%= link_to "取引履歴一覧", admin_orders_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
-                <%= link_to "通知", admin_notices_path, class:"btn btn-outline-secondary" %>
+              <li class="mr-5 content">
+                <%= link_to admin_notices_path, class:"btn btn-outline-secondary" do %>
+                  通知
+                  <% if @unchecked_admin_notices.any? %>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
+                      <%= @unchecked_admin_notices.count %>
+                      <span class="visually-hidden">件の通知</span>
+                    </span>
+                  <% end %>
+                <% end %>
               </li>
-              <li class="">
+              <li class="content">
                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-outline-secondary" %>
               </li>
             <% elsif customer_signed_in? %>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "マイページ", mypage_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to notices_path, class:"btn btn-outline-secondary" do %>
                   通知
                   <% if @unchecked_notices.any? %>
@@ -53,41 +64,52 @@
                   <% end %>
                 <% end %>
               </li>
-              <li class="">
+              <li class="content">
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"btn btn-outline-secondary" %>
               </li>
             <% else %>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "About", homes_about_path, class:"btn btn-outline-secondary", 'data-turbolinks': false %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="mr-5">
+              <li class="mr-5 content">
                 <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-outline-secondary" %>
               </li>
-              <li class="">
+              <li class="content">
                 <%= link_to "ログイン", new_customer_session_path, class:"btn btn-outline-secondary" %>
               </li>
             <% end %>
           </ul>
         </div>
       </nav>
-      <div class="px-4">
-        <%= search_form_for @q, url: search_items_path do |f| %>
-          <%= f.label :name_cont, '書籍検索' %>
-          <%= f.search_field :name_cont %>
-          <%= f.submit '検索' %>
-          <%= f.label :created_at_gteq, '作成日時' %>
-          <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, checked: true %> 今週
-          <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month %> 今月
-          <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year %> 今年
+      <div class="row">
+        <div class="col">
+          <div class="px-4">
+            <%= search_form_for @q, url: search_items_path do |f| %>
+              <%= f.label :name_cont, '書籍検索' %>
+              <%= f.search_field :name_cont %>
+              <%= f.submit '検索' %>
+              <%= f.label :created_at_gteq, '作成日時' %>
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, checked: true %> 今週
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month %> 今月
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year %> 今年
+            <% end %>
+          </div>
+        </div>
+        <% unless customer_signed_in? || admin_signed_in? %>
+          <div class="col">
+            <div>
+              <%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, method: :post %>
+            </div>
+          </div>
         <% end %>
       </div>
     </header>
 
-    <main class="container-fluid flex-grow-1 border border-dark">
-      <div class="mx-5 mt-5 px-5">
+    <main class="container-fluid flex-grow-1 border border-dark background-wrapper">
+      <div class="mx-5 mt-5">
         <%= yield %>
       </div>
     </main>

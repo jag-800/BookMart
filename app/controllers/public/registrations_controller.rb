@@ -2,6 +2,7 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
+  include Notifiable
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -10,9 +11,14 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    
+    if customer_signed_in?
+      admin = Admin.find(1)
+      create_admin_notification(current_customer, admin, 'customer', @customer)
+    end
+  end
 
   # GET /resource/edit
   # def edit

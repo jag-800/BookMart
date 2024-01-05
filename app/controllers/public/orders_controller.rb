@@ -1,5 +1,7 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
+  include Notifiable
+  
   def new
     @order = Order.new
   end
@@ -12,7 +14,9 @@ class Public::OrdersController < ApplicationController
   def create
     @order = current_customer.orders.new(order_params)
     if @order.save
-      create_order_notification(@order)
+      @order.create_order_notification(@order)
+      admin = Admin.find(1)
+      create_admin_notification(current_customer, admin, 'order', @order)
       redirect_to thanks_path
     else
       flash[:error] = @order.errors.full_messages
@@ -76,42 +80,6 @@ class Public::OrdersController < ApplicationController
   
   def order_detail_params
     params.require(:order).permit(:status)
-  end
-
-  def create_order_notification(order)
-    # 購入者に通知（購入者は `order.customer`）
-    Notice.create!(
-      order_id: order.id,
-      visited_id: order.customer.id, # 購入者のID
-      visitor_id: order.item.customer.id, # 出品者のID
-      action: 'order'
-    )
-
-    # 出品者に通知（出品者は `order.item.customer`）
-    Notice.create!(
-      order_id: order.id,
-      visited_id: order.item.customer.id, # 出品者のID
-      visitor_id: order.customer.id, # 購入者のID
-      action: 'order'
-    )
-  end
-  
-  def create_order_status_update_notification(order)
-    # 注文ステータスが更新されたことを購入者に通知
-    Notice.create!(
-      order_id: order.id,
-      visited_id: order.customer.id, # 購入者のID
-      visitor_id: order.item.customer.id, # 出品者のID
-      action: 'order_status_update'
-    )
-  
-    # 注文ステータスが更新されたことを出品者に通知
-    Notice.create!(
-      order_id: order.id,
-      visited_id: order.item.customer.id, # 出品者のID
-      visitor_id: order.customer.id, # 購入者のID
-      action: 'order_status_update'
-    )
   end
 
 end

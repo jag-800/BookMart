@@ -1,7 +1,9 @@
-<% notices = @notices.where.not(visitor_id: current_customer.id) %>
+<div class="mb-3">
+  <% notices = @notices %>
 <% if notices.exists? %>
   <%= render notices %>
   <%= paginate notices %>
 <% else %>
   <p>通知はありません</p>
 <% end %>
+</div>

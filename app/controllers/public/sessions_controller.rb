@@ -4,6 +4,13 @@ class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   before_action :reject_inactive_customer, only: [:create]
 
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    flash[:error] = 'ゲストユーザーとしてログインしました。'
+    redirect_to root_path
+  end
+  
   # GET /resource/sign_in
   # def new
   #   super
