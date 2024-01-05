@@ -15,11 +15,13 @@
   </head>
 
   <body class="d-flex flex-column min-vh-100">
-    <header class="border border-dark">
+    <header class="border border-dark background-wrapper-hf">
       <nav class="navbar navbar-expand-lg navbar-light px-4">
-        <%= link_to "LOGO", root_path, class:"btn btn-lg btn-outline-secondary px-5" %>
+        <div class="content">
+          <%= link_to "LOGO", root_path, class:"btn btn-lg btn-outline-secondary px-5" %>
+        </div>
         <div class="d-flex flex-column mt-3 ml-auto">
-          <ul class="row list-unstyled mr-auto">
+          <ul class="row list-unstyled mr-auto content">
             <% if admin_signed_in? %>
               <li class="mr-5">
                 <%= link_to "商品一覧", admin_items_path, class:"btn btn-outline-secondary" %>
@@ -87,14 +89,14 @@
       </div>
     </header>
 
-    <main class="container-fluid flex-grow-1 border border-dark">
+    <main class="container-fluid flex-grow-1 border border-dark background-wrapper">
       <div class="mx-5 mt-5">
         <%= yield %>
       </div>
     </main>
 
 
-    <footer class="container-fluid border border-dark p-5">
+    <footer class="container-fluid border border-dark p-5 background-wrapper-hf">
       <div></div>
     </footer>
   </body>

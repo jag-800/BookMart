@@ -14,10 +14,14 @@
  *= require_self
  */
 
-main {
+.background-wrapper {
   background-image: url('/assets/wood.jpeg');
 }
 
-body {
+.background-wrapper-hf {
   background-image: url('/assets/wood_w.jpeg');
+}
+
+.content {
+  background-color: #fff;
 }
