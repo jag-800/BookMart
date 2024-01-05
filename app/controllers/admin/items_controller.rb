@@ -4,8 +4,12 @@ class Admin::ItemsController < ApplicationController
 
 
   def index
-    @items = Item.page(params[:page])
+    @q = Item.ransack(params[:q])
+    @items = @q.result.page(params[:page])
     @all_items_count = @items.count
+    if params[:tag_name]
+      @items = Item.tagged_with("#{params[:tag_name]}").page(params[:page])
+    end
   end
 
   def show

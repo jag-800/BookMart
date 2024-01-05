@@ -4,14 +4,13 @@
   </div>
 </div>
 
-<% if @items.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
-	<%= render 'index', items: @items %>
-	<%= paginate @items %>
+<% if @results.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
+	<%= render 'index', items: @results %>
+	<%= paginate @results %>
 <% else %>
 	<h3>対応する商品はありませんでした。</h3>
 <% end %>
 
 <div class="row justify-content-center">
-  <%= paginate @items %>
+  <%= paginate @results %>
 </div>
-

@@ -1,17 +1,20 @@
 <table class="table mt-3">
-  <thead>
+  <thead class="table-secondary">
     <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>商品価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
+      <th>商品</th>
+      <th>名前</th>
+      <th><%= sort_link(@q, :price, "価格") %></th>
+      <th>タグ</th>
+      <th>販売状況</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="content">
     <% items.each do |item| %><tr>
-      <td><%= image_tag item.get_item_image(100,100) %></td>
-      <td><%= item.id %></td>
+      <td>
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_item_image(100,100) %>
+        <% end %>
+      </td>
       <td>
         <%= link_to admin_item_path(item.id) do %>
           <%= item.name %>
