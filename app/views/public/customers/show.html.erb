@@ -23,13 +23,13 @@
   <div class="col-md-2">
     <table class="border border-dark content">
       <thead>
-        <th class="border border-dark py-2 px-4">ジャンル検索</th>
+        <th class="table-secondary border border-dark py-2 px-4">タグ検索</th>
       </thead>
       <tbody>
         <% @tag_counts.each do |tag_name, count| %>
           <tr>
             <td class="py-1 px-3">
-              <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-primary text-white" %>
+              <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm btn-primary text-white" %>
               (<%= count %>)
             </td>
           </tr>

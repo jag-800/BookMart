@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    get 'tags' => 'items#tag'
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, except: [:destroy] do
       collection do
