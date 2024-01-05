@@ -16,33 +16,33 @@
 <table class="table table-bordered border-dark col-md-6">
   <tr>
       <td class="table-secondary border-dark">氏名</td>
-      <td class="border-dark"><%= @customer.full_name %></td>
+      <td class="border-dark content"><%= @customer.full_name %></td>
   </tr>
   <tr>
       <td class="table-secondary border-dark">カナ</td>
-      <td class="border-dark"><%= @customer.full_name_kana %></td>
+      <td class="border-dark content"><%= @customer.full_name_kana %></td>
   </tr>
   <tr>
       <td class="table-secondary border-dark">郵便番号</td>
-      <td class="border-dark"><%= @customer.post_code %></td>
+      <td class="border-dark content"><%= @customer.post_code %></td>
   </tr>
   <tr>
       <td class="table-secondary border-dark">住所</td>
-      <td class="border-dark"><%= @customer.address %></td>
+      <td class="border-dark content"><%= @customer.address %></td>
   </tr>
   <tr>
       <td class="table-secondary border-dark">電話番号</td>
-      <td class="border-dark"><%= @customer.phone_number %></td>
+      <td class="border-dark content"><%= @customer.phone_number %></td>
   </tr>
   <tr>
       <td class="table-secondary border-dark">メールアドレス</td>
-      <td class="border-dark"><%= @customer.email %></td>
+      <td class="border-dark content"><%= @customer.email %></td>
   </tr>
 </table>
 
 <div class="d-flex align-items-center my-3 mt-4">
   <h5 class="">自分の登録商品</h6>
-  <%= link_to "一覧を見る", myitems_path, class:"btn btn-primary ml-3" %>
+  <%= link_to "一覧を見る", show_information_path(@customer), class:"btn btn-primary ml-3" %>
 </div>
 
 

@@ -44,6 +44,7 @@
       <% else %>
         <h2><%= @item.customer.full_name %> さんとのチャット</h2>
       <% end %>
+      <p>基本的には近畿大学中央図書館での、本人同士の清算・受け渡しになります。</p>
       <div class="message">
         <%= render "public/chats/message", chats: @chats, customer: @customer, my_name: @my_name %>
       </div>

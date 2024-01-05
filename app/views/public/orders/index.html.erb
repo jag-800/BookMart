@@ -18,15 +18,11 @@
       </thead>
     <tbody>
       <% @orders.each do |order| %><tr>
-        <td class="border-dark">
-          <%= order.created_at.strftime("%Y/%m/%d") %>
-        </td>
-        <td class="border-dark">
-          <%= order.item.name %>
-        </td>
-        <td class="border-dark"><%= number_with_delimiter(order.item.price) %>円</td>
-        <td class="border-dark"><%= I18n.t("enums.order.status.#{order.status}") %></td>
-        <td class="border-dark"><%= link_to "表示する", order_path(order.id), class:"btn btn-primary" %></td>
+        <td class="border-dark content"><%= order.created_at.strftime("%Y/%m/%d") %></td>
+        <td class="border-dark content"><%= order.item.name %></td>
+        <td class="border-dark content"><%= number_with_delimiter(order.item.price) %>円</td>
+        <td class="border-dark content"><%= I18n.t("enums.order.status.#{order.status}") %></td>
+        <td class="border-dark content"><%= link_to "表示する", order_path(order.id), class:"btn btn-primary" %></td>
       </tr><% end %>
     </tbody>
   </table>

@@ -8,11 +8,7 @@ class Public::ItemsController < ApplicationController
       @items = Item.tagged_with("#{params[:tag_name]}").page(params[:page])
     end
   end
-
-  def myitem
-    @items = current_customer.items
-  end
-
+  
   def new
     @item = Item.new
   end

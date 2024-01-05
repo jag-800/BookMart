@@ -42,7 +42,6 @@ Rails.application.routes.draw do
     get 'orders/buyer' => 'orders#buyer', as: 'buyer'
     get 'orders/details/:id' => 'orders#details', as: 'order_details'
 
-    get 'items/myitems' => 'items#myitem', as: 'myitems'
     
     resources :items do
       collection do
@@ -50,7 +49,7 @@ Rails.application.routes.draw do
       end
     end
     resources :orders, only: [:index, :create, :show, :update]
-    resources :chats, only: [:index, :show, :create, :destroy]
+    resources :chats, only: [:show, :create, :destroy]
     resources :notices, only: :index
   end
   
