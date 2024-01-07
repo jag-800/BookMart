@@ -3,6 +3,7 @@
   <head>
     <title>BookMart</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="<%= image_path("favicon.ico") %>" rel="shortcut icon" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,7 +16,7 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     
     <%# favicon.icoをassets/imagesからのリンクで出力する %>
-    <%= favicon_link_tag 'favicon.ico' %>
+    <%#= favicon_link_tag 'favicon.ico' %>
   </head>
 
   <body class="d-flex flex-column min-vh-100">
