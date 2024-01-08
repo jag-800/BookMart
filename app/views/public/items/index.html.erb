@@ -11,6 +11,10 @@
   </div>
 </div>
 
+<div>
+  <h4>(全 <%= @items.count %>件)</h4>
+</div>
+
 <% if @items.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
 	<%= render 'index', items: @items %>
 	<%= paginate @items %>

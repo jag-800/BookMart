@@ -2,12 +2,17 @@
   <p class="alert alert-success">ご注文ありがとうございました！</p>
 </div>
 
+<p class="text-center">以下のチャットから出品者と、受け取り日時を決めてください。</p>
+<div class="d-flex justify-content-center">
+  <%= link_to "チャットへ", chat_path(@customer_room), class:"btn btn-success mx-auto mb-5" %>
+</div>
+
 <div class="row">
   <div class="offset-md-1">
     <h5 class="px-4 table-secondary mb-4">購入商品</h5>
   </div>
   <div class="ml-3">
-    <%= link_to @item.customer.full_name + "さんのページ", show_information_path(@item.customer), class: "btn btn-info ml-3" %>
+    <%= link_to @item.customer.full_name + "さん", show_information_path(@item.customer), class: "btn btn-sm btn-info ml-3" %>
   </div>
 </div>
 
@@ -15,7 +20,7 @@
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
-<div class="row mt-3">
+<div class="row mb-5 mt-2">
   <div class="col-md-4">
     <%= image_tag @item.get_item_image(250,300) %>
   </div>
@@ -52,7 +57,4 @@
 </div>
 
 
-<p class="mt-5">以下のチャットから出品者と、受け取り日時を決めてください。</p>
-<div class="d-flex justify-content-center">
-  <%= link_to "チャットへ", chat_path(@customer_room), class:"btn btn-info mx-auto" %>
-</div>
+

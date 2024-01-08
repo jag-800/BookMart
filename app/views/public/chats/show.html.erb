@@ -3,7 +3,7 @@
     <div class="col-md-3">
       <div>
         <h5 class="px-4 table-secondary mb-3">商品詳細</h5>
-        <%= link_to @item.customer.full_name + "さんのページ", show_information_path(@item.customer), class: "btn btn-info ml-3 mb-2" %>
+        <%= link_to @item.customer.full_name + "さん", show_information_path(@item.customer), class: "btn btn-info ml-3 mb-2" %>
       </div>
       
       <%= image_tag @item.get_item_image(200,250) %>

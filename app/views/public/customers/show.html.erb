@@ -41,13 +41,13 @@
   <div class="col-md-8">
     <div class="mt-3">
       <h4>自分の登録商品</h4>
-      <div class="row">
+      <div class="row flex-container">
       <% @items.each do |item| %>
-        <div class="col-md-3 mr-3">
+        <div class="item-wi">
           <%= link_to item_path(item.id) do %>
-            <%= image_tag item.get_item_image(200,250) %>
+            <%= image_tag item.get_item_image(200,250), class: 'item-image' %>
           <% end %>
-          <p><%= item.name %></p>
+          <p class="small-text"><%= item.name %></p>
           <p>￥<%= number_with_delimiter(item.price) %></p>
         </div>
       <% end %>
