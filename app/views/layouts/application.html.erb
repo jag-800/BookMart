@@ -25,7 +25,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav  mt-3 ml-auto">
+          <ul class="navbar-nav mt-3 ml-auto">
             <% if admin_signed_in? %>
               <%= render 'layouts/admin_nav_links' %>
             <% elsif customer_signed_in? %>
@@ -34,10 +34,7 @@
               <%= render 'layouts/guest_nav_links' %>
             <% end %>
           </ul>
-
         </div>
-
-
       </nav>
       <div class="row">
         <div class="col">

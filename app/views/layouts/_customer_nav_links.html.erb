@@ -7,8 +7,7 @@
 <li class="mr-5 content">
   <%= link_to notices_path, class:"btn btn-outline-secondary" do %>
     通知
-    notice
-    <% if @unchecked_notices.any? %>
+    <% if current_customer && @unchecked_notices.present? && @unchecked_notices.any? %>
       <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
         <%= @unchecked_notices.count %>
         <span class="visually-hidden">件の通知</span>

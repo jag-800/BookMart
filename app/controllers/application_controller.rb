@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
+  helper_method :notice
   before_action :search
-  before_action :check_guest_customer, only: [:create, :update, :edit, :destroy, :new]
+  before_action :check_guest_customer, only: [:create, :update, :edit, :new]
 
   def search
     @q = Item.ransack(params[:q])
@@ -9,7 +10,9 @@ class ApplicationController < ActionController::Base
 
   def notice
     if current_customer
-      @unchecked_notices = current_customer.passive_notices.where(checked: false)
+      @unchecked_notices = current_customer ? current_customer.passive_notices.where(checked: false) : []
+    else
+      # @unchecked_notices = []
     end
   end
 
