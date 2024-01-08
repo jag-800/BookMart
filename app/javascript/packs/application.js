@@ -14,6 +14,9 @@ import "bootstrap";
 import "../stylesheets/application";
 import '../stylesheets/public/homes';
 import '../stylesheets/public/items';
+import '../stylesheets/public/customers';
+import '../stylesheets/public/chats';
+import '../stylesheets/public/orders';
 require("./slick")
 
 Rails.start()

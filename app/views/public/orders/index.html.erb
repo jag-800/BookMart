@@ -4,6 +4,10 @@
   </div>
 </div>
 
+<% unless @orders.present? %>
+  <h4 class="mt-2">購入履歴はありません</h4>
+<% end %>
+
 <div class="row">
 
   <table class="table table-bordered border-dark">

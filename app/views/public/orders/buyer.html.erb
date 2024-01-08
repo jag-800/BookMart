@@ -4,6 +4,11 @@
   </div>
 </div>
 
+<% unless @orders.present? %>
+  <h4 class="mt-2">売却履歴はありません</h4>
+<% end %>
+
+
 <div class="row">
 
   <table class="table table-bordered border-dark">
