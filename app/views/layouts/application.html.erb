@@ -53,7 +53,7 @@
           </div>
         </div>
         <% unless customer_signed_in? || admin_signed_in? %>
-          <div class="col">
+          <div class="col-md-3">
             <div>
               <%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, method: :post %>
             </div>
@@ -63,13 +63,13 @@
     </header>
 
     <main class="container-fluid flex-grow-1 border border-dark background-wrapper">
-      <div class="mx-5 mt-5">
+      <div class="mt-5 xside">
         <%= yield %>
       </div>
     </main>
 
 
-    <footer class="container-fluid border border-dark p-5">
+    <footer class="container-fluid border border-dark p-4">
       <div class="text-center">
         <p>© 2024 jag-800</p>
       </div>

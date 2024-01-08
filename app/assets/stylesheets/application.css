@@ -12,12 +12,18 @@
  *
  *= require_tree .
  *= require_self
- *= require public/homes
  */
+ 
+body {
+  overflow-x: hidden;
+}
 
+.xside {
+  margin-left: 30px;
+  margin-right: 30px;
+}
 
 .background-wrapper {
-  /*background-image: url('/assets/wood.jpeg');*/
   background-color: whitesmoke;
 }
 
@@ -26,14 +32,19 @@
 }
 
 @media (max-width: 768px) {
-    .navbar ul {
-        flex-direction: column;
-        width: 100%;
-        margin-top: 30px;
-    }
+  .xside {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+  }
 
-    .navbar li {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
+  .navbar li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 }
+

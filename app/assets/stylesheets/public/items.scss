@@ -2,4 +2,59 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.balloon2-right {
+    position: relative;
+    display: inline-block;
+    /*margin: 1.5em 15px 1.5em 0;*/
+    padding: 7px 10px;
+    min-width: 120px;
+    max-width: 100%;
+    color: #555;
+    font-size: 16px;
+    background: #FFF;
+    border: solid 3px #555;
+    box-sizing: border-box;
+}
 
+.balloon2-right:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -24px;
+    margin-top: -12px;
+    border: 12px solid transparent;
+    border-left: 12px solid #FFF;
+    z-index: 2;
+}
+
+.balloon2-right:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    margin-top: -14px;
+    border: 14px solid transparent;
+    border-left: 14px solid #555;
+    z-index: 1;
+}
+
+.balloon2-right p {
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 425px) {
+  .small-text {
+    font-size: 12px; /* または希望する小さいサイズに設定 */
+  }
+  .item-price, .item-tags, .item-status {
+    font-size: 12px; /* 同様に希望するサイズに設定 */
+  }
+  .item-introduction {
+    margin-top: 10px;
+  }
+  .balloon2-right {
+    max-width: 70px;
+    margin-left: 130px;
+  }
+}

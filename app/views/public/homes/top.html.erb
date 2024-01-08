@@ -1,10 +1,10 @@
 <% if flash[:alert] %>
   <p class=""><%= alert %></p>
 <% end %>
-
+  
 <div class="row">
-  <div class="col-md-2 mb-3">
-    <table class="border border-dark content responsive-table">
+  <div class="col-md-3 mb-3">
+    <table class="border border-dark content tag-table">
       <thead>
         <th class="border border-dark py-2 px-4">タグ検索</th>
       </thead>
@@ -12,7 +12,7 @@
         <% @tag_counts.each do |tag_name, count| %>
         <tr>
           <td class="py-1 px-3">
-            <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-primary text-white" %>
+            <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-primary text-white" %>
             (<%= count %>)
           </td>
         </tr>
@@ -37,12 +37,12 @@
       <h4>新着商品</h4>
       <div class="row">
       <% @items.each do |item| %>
-        <div class="col-md-3">
+        <div class="col-md-3 item-image">
           <%= link_to item_path(item.id) do %>
-            <%= image_tag item.get_item_image(150,180), class: "item-image" %>
+            <%= image_tag item.get_item_image(150,180) %>
           <% end %>
-          <p class="item-name"><%= item.name %></p>
-          <p class="item-price">￥<%= number_with_delimiter(item.price) %></p>
+          <p class="small-text"><%= item.name %></p>
+          <p>￥<%= number_with_delimiter(item.price) %></p>
         </div>
       <% end %>
     </div>

@@ -2,22 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+@media (max-width: 768px) {
+  .small-text {
+    font-size: 12px; /* または希望する小さいサイズに設定 */
+  }
+  .item-image {
+    margin: 25px;
+  }
+}
+
 @media (max-width: 425px) {
-  .responsive-table .item-image img {
-    width: 50px; /* 画像の幅を小さくする */
-    height: auto; /* 縦横比を保持 */
+  .col-md-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
-  .responsive-table .item-name,
-  .responsive-table .item-price,
-  .responsive-table .item-tags,
-  .responsive-table .item-status {
-    font-size: 12px; /* フォントサイズを小さくする */
+  .tag-table {
+    width: 200%;
   }
-  .responsive-table th, .responsive-table td {
-    padding: 5px; /* セルのパディングを小さくする */
-  }
-  .responsive-iframe {
-    width: 100%; /* 画面幅に合わせて幅を調整 */
-    height: auto; /* 高さを自動調整 */
+  .item-image {
+    margin: 0px;
   }
 }

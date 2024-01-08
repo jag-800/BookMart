@@ -12,6 +12,8 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+import '../stylesheets/public/homes';
+import '../stylesheets/public/items';
 require("./slick")
 
 Rails.start()

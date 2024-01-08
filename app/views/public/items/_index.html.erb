@@ -16,7 +16,7 @@
           <%= image_tag item.get_item_image(100,100), class: 'img-fluid' %>
         <% end %>
       </td>
-      <td class="item-name">
+      <td class="small-text">
         <%= link_to item_path(item.id) do %>
           <%= item.name %>
         <% end %>
