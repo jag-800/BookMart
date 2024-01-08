@@ -1,10 +1,10 @@
 <% if flash[:alert] %>
   <p class=""><%= alert %></p>
 <% end %>
-  
+
 <div class="row">
   <div class="col-md-2 mb-3">
-    <table class="border border-dark content">
+    <table class="border border-dark content responsive-table">
       <thead>
         <th class="border border-dark py-2 px-4">タグ検索</th>
       </thead>
@@ -39,10 +39,10 @@
       <% @items.each do |item| %>
         <div class="col-md-3">
           <%= link_to item_path(item.id) do %>
-            <%= image_tag item.get_item_image(150,180) %>
+            <%= image_tag item.get_item_image(150,180), class: "item-image" %>
           <% end %>
-          <p><%= item.name %></p>
-          <p>￥<%= number_with_delimiter(item.price) %></p>
+          <p class="item-name"><%= item.name %></p>
+          <p class="item-price">￥<%= number_with_delimiter(item.price) %></p>
         </div>
       <% end %>
     </div>

@@ -16,4 +16,8 @@
   .responsive-table th, .responsive-table td {
     padding: 5px; /* セルのパディングを小さくする */
   }
+  .responsive-iframe {
+    width: 100%; /* 画面幅に合わせて幅を調整 */
+    height: auto; /* 高さを自動調整 */
+  }
 }
