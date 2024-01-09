@@ -45,9 +45,9 @@
               <%= f.submit '検索' %>
               <div>
               投稿日
-              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, checked: true %> 今週
-              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month %> 今月
-              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year %> 今年
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, id: 'created_at_this_week', checked: true %> 今週
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month, id: 'created_at_this_month' %> 今月
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year, id: 'created_at_this_year' %> 今年
               </div>
             <% end %>
           </div>

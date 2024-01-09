@@ -58,7 +58,7 @@ body {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1016px) {
   .except-small-screen {
     display: none
   }
