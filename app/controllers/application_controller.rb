@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
 
   def admin_notice
     @admin = Admin.find(1)
-    @unchecked_admin_notices = @admin.passive_notices.where(checked: false)
+    @unchecked_admin_notices = 
+    @admin.passive_notices.where(checked: false)
   end
 
   private

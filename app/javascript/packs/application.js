@@ -13,6 +13,15 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 
+import 'public/homes';
+import 'public/items';
+import 'public/customers';
+import 'public/chats';
+import 'public/orders';
+
+import 'admin/items';
+import 'admin/customers';
+
 require("./slick")
 
 Rails.start()
