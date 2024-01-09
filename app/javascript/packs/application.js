@@ -13,14 +13,14 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 
-import 'public/homes';
-import 'public/items';
-import 'public/customers';
-import 'public/chats';
-import 'public/orders';
+import '../stylesheets/public/homes';
+import '../stylesheets/public/items';
+import '../stylesheets/public/customers';
+import '../stylesheets/public/chats';
+import '../stylesheets/public/orders';
 
-import 'admin/items';
-import 'admin/customers';
+import '../stylesheets/admin/items';
+import '../stylesheets/admin/customers';
 
 require("./slick")
 
