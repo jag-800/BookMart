@@ -1,3 +1,9 @@
+@import 'public/homes';
+@import 'public/items';
+@import 'public/customers';
+@import 'public/chats';
+@import 'public/orders';
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,6 +19,7 @@
  *= require_tree .
  *= require_self
  */
+
  
 body {
   overflow-x: hidden;
