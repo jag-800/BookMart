@@ -1,9 +1,13 @@
 <% if flash[:alert] %>
   <p class=""><%= alert %></p>
 <% end %>
-  
+
+<div class="d-flex except-small-screen">
+  <%= link_to "全ての商品を見る >", items_path, class: "ml-auto" %>
+</div>
+
 <div class="row">
-  <div class="col-md-3 mb-3">
+  <div class="col-md-3 mb-3 except-small-screen">
     <table class="border border-dark content tag-table">
       <thead>
         <th class="border border-dark py-2 px-4">タグ検索</th>

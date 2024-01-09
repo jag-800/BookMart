@@ -4,7 +4,7 @@
       <h5 class="px-4 table-secondary mb-4">商品詳細</h5>
     </div>
     <div class="ml-3">
-      <%= link_to @item.customer.full_name + "さんのページ", show_information_path(@item.customer), class: "btn btn-info ml-3" %>
+      <%= link_to @item.customer.full_name + "さんのページ", show_information_path(@item.customer), class: "btn btn-sm btn-info ml-3" %>
     </div>
   </div>
 
@@ -16,7 +16,7 @@
   <p class="ml-5">基本的には近畿大学中央図書館での、本人同士の清算・受け渡しになります。</p>
   <div class="row mt-3">
     <div class="offset-md-1 col-md-3">
-      <%= image_tag @item.get_item_image(250,300) %>
+      <%= image_tag @item.get_item_image(250,300), class:"item-image" %>
     </div>
 
     <table class="offset-md-2 col-md-6 item-introduction">
@@ -51,7 +51,7 @@
   </div>
   </div>
 
-  <div class="row mt-5">
+  <div class="row buy-button">
     <% if current_customer && @item.customer_id == current_customer.id %>
       <div>
         <% if @item.is_active == true %>
@@ -64,7 +64,7 @@
       <h4>購入できません。</h4>
     <% end %>
 
-    <div class="m-5 mx-auto">
+    <div class="mx-auto">
 
       <% if @item.is_active == false %>
         <h4>この商品は既に購入されました。</h4>

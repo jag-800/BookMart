@@ -1,3 +1,44 @@
 // Place all the styles related to the public/chats controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+@media (max-width: 425px) {
+  .col-md-3 {
+    /* Bootstrapのcol-md-3スタイルを無効にする */
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    
+  }
+  .j-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .j-content .item-img {
+    /* 画像のサイズを調整 */
+    width: 50%; /* 例：幅を50%に設定 */
+    height: auto;
+  }
+
+  .j-content table {
+    /* テーブルの幅を調整 */
+    width: 45%; /* 例：幅を45%に設定 */
+    margin: 0; /* マージンを取り除く */
+  }
+  .item-img {
+    /* 画像のサイズを調整 */
+    width: 100px; /* 幅をコンテナに合わせて調整 */
+    height: 100px; /* 高さを自動調整 */
+  }
+
+  .small-text {
+    /* テキストのサイズを調整 */
+    font-size: 12px; /* フォントサイズを小さく */
+  }
+
+  /* 必要に応じて他のスタイリングを追加 */
+}

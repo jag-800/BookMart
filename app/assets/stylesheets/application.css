@@ -1,8 +1,8 @@
-@import 'public/homes';
-@import 'public/items';
-@import 'public/customers';
-@import 'public/chats';
-@import 'public/orders';
+/*@import 'public/homes';*/
+/*@import 'public/items';*/
+/*@import 'public/customers';*/
+/*@import 'public/chats';*/
+/*@import 'public/orders';*/
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
@@ -20,7 +20,7 @@
  *= require_self
  */
 
- 
+
 body {
   overflow-x: hidden;
 }
@@ -36,6 +36,10 @@ body {
 
 .content {
   background-color: #fff;
+}
+
+.except-small-screen {
+  display: block
 }
 
 @media (max-width: 768px) {
@@ -55,3 +59,8 @@ body {
   }
 }
 
+@media (max-width: 425px) {
+  .except-small-screen {
+    display: none;
+  }
+}

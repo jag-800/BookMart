@@ -42,10 +42,21 @@
     margin: 0;
     padding: 0;
 }
+.buy-button {
+  margin-top: 50px !important;
+}
 
 @media (max-width: 425px) {
+  .item-image {
+    width: 150px; /* 小さくなるサイズ */
+    height: auto; /* 高さを自動調整 */
+  }
   .small-text {
     font-size: 12px; /* または希望する小さいサイズに設定 */
+  }
+  .small-tag {
+    font-size: 10px; /* または希望する小さいサイズに設定 */
+    padding: 0px; /* 小さなボタンサイズ */
   }
   .item-price, .item-tags, .item-status {
     font-size: 12px; /* 同様に希望するサイズに設定 */
@@ -56,5 +67,9 @@
   .balloon2-right {
     max-width: 70px;
     margin-left: 130px;
+  }
+  .buy-button {
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
   }
 }
