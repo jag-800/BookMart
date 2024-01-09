@@ -60,10 +60,10 @@
         <tr>
           <td class="border-dark content"><%= image_tag @order.item.get_item_image(30, 30) %><%= @order.item.name %></td>
           <td class="border-dark content">近畿大学 - 図書館</td>
-          <td class="border-dark content"><%= link_to "商品ページ", item_path(@order.item), class: "btn btn-info" %></td>
+          <td class="border-dark content"><%= link_to "商品ページ", item_path(@order.item), class: "btn btn-sm btn-info" %></td>
           <!--<td class="border-dark"><%#= link_to "チャットへ", chat_path(@order.item.customer_room), class: "btn btn-success" %></td>-->
-          <td class="border-dark content"><%= link_to @order.item.customer.full_name + "さん", show_information_path(@order.item.customer), class: "btn btn-info" %></td>
-          <td class="border-dark content"><%= link_to @order.customer.full_name + "さん", show_information_path(@order.customer), class: "btn btn-info" %></td>
+          <td class="border-dark content"><%= link_to @order.item.customer.full_name + "さん", show_information_path(@order.item.customer), class: "btn btn-sm btn-info" %></td>
+          <td class="border-dark content"><%= link_to @order.customer.full_name + "さん", show_information_path(@order.customer), class: "btn btn-sm btn-info" %></td>
         </tr>
       </tbody>
     </table>

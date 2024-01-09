@@ -1,5 +1,5 @@
 <table class="table mt-3 content responsive-table">
-  <thead>
+  <thead class="table-secondary">
     <tr>
       <th>商品</th>
       <th>名前</th>
@@ -23,13 +23,11 @@
       </td>
       <td class="item-price"><%= number_with_delimiter(item.price) %></td>
       <td class="item-tags"><%= render 'tag_list', tag_list: item.tag_list %></td>
-      <td class="item-status">
-        <% if item.is_active == true %>
-          <span class="text-success font-weight-bold">販売中</span>
-        <% else %>
-          <span class="text-secondary font-weight-bold">購入済み</span>
-        <% end %>
-      </td>
+      <% if item.is_active == true %>
+        <td class="item-status text-success font-weight-bold">販売中</td>
+      <% else %>
+        <td class="item-status text-secondary font-weight-bold">購入済み</td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>

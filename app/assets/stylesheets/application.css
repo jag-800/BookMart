@@ -70,5 +70,8 @@ body {
   .only-small-screen {
     display: block
   }
+  .my-item {
+    margin-left: 15px;
+  }
 }
 
