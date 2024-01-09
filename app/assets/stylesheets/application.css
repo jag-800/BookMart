@@ -1,8 +1,8 @@
-/*@import 'public/homes';*/
-/*@import 'public/items';*/
-/*@import 'public/customers';*/
-/*@import 'public/chats';*/
-/*@import 'public/orders';*/
+@import 'public/homes';
+@import 'public/items';
+@import 'public/customers';
+@import 'public/chats';
+@import 'public/orders';
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
@@ -19,7 +19,8 @@
  *= require_tree .
  *= require_self
  */
-
+ 
+ /* ブラウザがそれぞれ持っているCSSをリセットするための記述 */
 
 body {
   overflow-x: hidden;
