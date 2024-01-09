@@ -42,6 +42,10 @@ body {
   display: block
 }
 
+.only-small-screen {
+  display: none
+}
+
 @media (max-width: 768px) {
   .xside {
     margin-left: 0px;
@@ -59,8 +63,12 @@ body {
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 767px) {
   .except-small-screen {
-    display: none;
+    display: none
+  }
+  .only-small-screen {
+    display: block
   }
 }
+

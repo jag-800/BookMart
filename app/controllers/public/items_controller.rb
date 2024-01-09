@@ -33,6 +33,12 @@ class Public::ItemsController < ApplicationController
 
   def edit
   end
+  
+  def tag
+    @items = Item.all
+    @tags = @items.flat_map(&:tag_list).uniq
+    @tag_counts = Item.joins(:tags).group('tags.name').count
+  end
 
   def update
     if @item.update(item_params)

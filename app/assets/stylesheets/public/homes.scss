@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+@media (max-width: 1016px) {
+  .col-md-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .item-image {
+    margin: 0px;
+  }
+}
 
 @media (max-width: 768px) {
   .small-text {
@@ -12,13 +22,10 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 767px) {
   .col-md-3 {
     flex: 0 0 50%;
     max-width: 50%;
-  }
-  .tag-table {
-    width: 216%;
   }
   .item-image {
     margin: 0px;
