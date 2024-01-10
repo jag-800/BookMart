@@ -23,6 +23,7 @@ class Customer < ApplicationRecord
   validates :post_code, presence: true, format: { with: /\A\d{7}\z/ }
   validates :address, presence: true
   validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/ }
+  validates :nick_name, length: { maximum: 20 }
   
   # chat機能
   has_many :selling_items, class_name: 'Item', foreign_key: 'customer_id'
@@ -37,6 +38,15 @@ class Customer < ApplicationRecord
     #上のコードだと元ん画像のサイズより大きくできない
     customer_image.variant(resize: "#{width}x#{height}!").processed
   end
+  
+  def nick_name
+    if read_attribute(:nick_name).present?
+      read_attribute(:nick_name)
+    else
+      "ニックネーム未設定"
+    end
+  end
+
   
   def full_name
     last_name + " " + first_name
