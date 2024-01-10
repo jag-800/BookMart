@@ -13,7 +13,9 @@
   <% end %>
 
   <div class="">
-  <p class="ml-5">基本的には近畿大学中央図書館での、本人同士の清算・受け渡しになります。</p>
+  <p class="ml-5">基本的には
+  <%= link_to "近畿大学中央図書館", homes_about_path %>
+  の、本人同士の清算・受け渡しになります。</p>
   <div class="row mt-3">
     <div class="offset-md-1 col-md-3">
       <%= image_tag @item.get_item_image(250,300), class:"item-image" %>
