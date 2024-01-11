@@ -18,24 +18,17 @@
     font-size: 12px; /* または希望する小さいサイズに設定 */
   }
   .item-image {
-    margin: 10px;
+    margin: 0px;
+  }
+  .col-md-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
   .item-image img {
     width: 100%; /* 画像の幅を調整 */
     height: auto; /* 高さを自動調整 */
   }
-
   .item-image .small-text {
     font-size: smaller; /* テキストのサイズを小さく */
-  }
-}
-
-@media (max-width: 767px) {
-  .col-md-3 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-  .item-image {
-    margin: 0px;
   }
 }

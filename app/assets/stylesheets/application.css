@@ -50,6 +50,12 @@ body {
     margin-left: 0px;
     margin-right: 0px;
   }
+  .middle-small-screen {
+    display: none
+  }
+}
+
+@media (max-width: 1016px) {
   .navbar ul {
     flex-direction: column;
     width: 100%;
@@ -60,20 +66,6 @@ body {
     margin-right: 0;
     margin-bottom: 10px;
   }
-  .navbar-nav .content {
-      display: inline-block; /* 横に並べるためにinline-blockを使用 */
-      margin-right: 15px; /* 右のマージンを設定 */
-  }
-
-  .navbar-nav .content:last-child {
-      margin-right: 0; /* 最後の要素のマージンは0にする */
-  }
-  .middle-small-screen {
-    display: none
-  }
-}
-
-@media (max-width: 1016px) {
   .except-small-screen {
     display: none
   }
