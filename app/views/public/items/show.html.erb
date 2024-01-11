@@ -4,7 +4,7 @@
       <h5 class="px-4 table-secondary mb-4">商品詳細</h5>
     </div>
     <div class="ml-3">
-      <%= link_to @item.customer.full_name + "さんのページ", show_information_path(@item.customer), class: "btn btn-sm btn-info ml-3" %>
+      <%= link_to @item.customer.nick_name + "さんのページ", show_information_path(@item.customer), class: "btn btn-sm btn-info ml-3" %>
     </div>
   </div>
 

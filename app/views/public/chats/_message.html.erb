@@ -5,7 +5,7 @@
         <div class="d-flex align-items-center justify-content-between">
           <%= image_tag current_customer.get_customer_image(50,50), class: "mr-1" %>
           <div class="flex-grow-1">
-            <%= current_customer.full_name %>(自分)
+            <%= current_customer.nick_name %>(自分)
           </div>
           <div class="align-self-end"> <!-- 削除ボタン -->
             <%= link_to "削除", chat_path(chat), data: {remote: true}, method: :delete, "data-confirm" => "このメッセージを削除しますか？", class:"" %>
@@ -14,7 +14,7 @@
       <% else %>
         <div>
           <%= image_tag chat.customer.get_customer_image(50,50), class:"mr-1" %>
-          <%= chat.customer.full_name %>さん
+          <%= chat.customer.nick_name %>さん
         </div>
       <% end %>
 

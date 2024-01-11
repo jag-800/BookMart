@@ -29,6 +29,36 @@ class Customer < ApplicationRecord
   has_many :selling_items, class_name: 'Item', foreign_key: 'customer_id'
   has_many :purchased_items, class_name: 'Item', foreign_key: 'buyer_id'
 
+  enum grade: {
+    freshman: 1,         # 1年生
+    sophomore: 2,        # 2年生
+    junior: 3,           # 3年生
+    senior: 4,           # 4年生
+    master: 5,           # 修士課程1年
+    master_senior: 6,    # 修士課程2年
+    doctoral: 7,         # 博士課程1年
+    doctoral_senior: 8   # 博士課程2年以上
+  }
+  enum department: {
+    information_science: 0,
+    law: 1,
+    economics: 2,
+    business_administration: 3,
+    science_and_engineering: 4,
+    architecture: 5,
+    pharmacy: 6,
+    literature: 7,
+    social_science: 8,
+    international_studies: 9,
+    agriculture: 10,
+    medicine: 11,
+    bioscience_and_bioengineering: 12,
+    engineering: 13,
+    industrial_science_and_engineering: 14,
+    junior_college: 15,
+    distance_education: 16,
+    teacher_education: 17
+  }
   def get_customer_image(width, height)
     unless customer_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')
@@ -40,6 +70,14 @@ class Customer < ApplicationRecord
   end
   
   def nick_name
+    if read_attribute(:nick_name).present?
+      read_attribute(:nick_name)
+    else
+      full_name
+    end
+  end
+  
+  def no_nick_name
     if read_attribute(:nick_name).present?
       read_attribute(:nick_name)
     else

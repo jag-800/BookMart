@@ -18,7 +18,7 @@
 <table class="table table-bordered border-dark col-md-6">
   <tr>
       <td class="table-secondary border-dark">表示名</td>
-      <td class="border-dark content"><%= @customer.nick_name %></td>
+      <td class="border-dark content"><%= @customer.no_nick_name %></td>
   </tr>
   <tr>
       <td class="table-secondary border-dark">氏名</td>
@@ -27,6 +27,13 @@
   <tr>
       <td class="table-secondary border-dark">カナ</td>
       <td class="border-dark content"><%= @customer.full_name_kana %></td>
+  </tr>
+  <tr>
+      <td class="table-secondary border-dark">所属</td>
+      <td class="border-dark content">
+        <%= I18n.t("enums.customer.departments.#{@customer.department}") %>
+        <%= I18n.t("enums.customer.grades.#{@customer.grade}") %>
+      </td>
   </tr>
   <tr>
       <td class="table-secondary border-dark">郵便番号</td>
@@ -51,12 +58,12 @@
     <h5 class="">自分の登録商品</h6>
     <%= link_to "一覧を見る", show_information_path(@customer), class:"btn btn-primary ml-3" %>
   </div>
-  
+
   <div class="d-flex align-items-center my-3 mt-4">
     <h5>購入履歴</h5>
     <%= link_to "一覧を見る", orders_path, class:"btn btn-primary ml-5" %>
   </div>
-  
+
   <div class="d-flex align-items-center my-3 mt-4">
     <h5>売却履歴</h5>
     <%= link_to "一覧を見る", buyer_path, class:"btn btn-primary ml-5" %>

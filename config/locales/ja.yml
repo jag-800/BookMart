@@ -11,6 +11,35 @@ ja:
         duaring_trading: "取引中"
         traded: "取引済み"
         suspended_trading: "取引中止"
+    customer:
+      grades:
+        freshman: "1年生"
+        sophomore: "2年生"
+        junior: "3年生"
+        senior: "4年生"
+        master: "修士課程1年"
+        master_senior: "修士課程2年"
+        doctoral: "博士課程1年"
+        doctoral_senior: "博士課程2年以上"
+      departments:
+        information_science: "情報学部"
+        law: "法学部"
+        economics: "経済学部"
+        business_administration: "経営学部"
+        science_and_engineering: "理工学部"
+        architecture: "建築学部"
+        pharmacy: "薬学部"
+        literature: "文芸学部"
+        social_science: "総合社会学部"
+        international_studies: "国際学部"
+        agriculture: "農学部"
+        medicine: "医学部"
+        bioscience_and_bioengineering: "生物理工学部"
+        engineering: "工学部"
+        industrial_science_and_engineering: "産業理工学部"
+        junior_college: "短期大学部"
+        distance_education: "通信教育部"
+        teacher_education: "教職教育部"
   activerecord:
     errors:
       messages:
@@ -28,7 +57,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -54,7 +83,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月

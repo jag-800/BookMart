@@ -1,6 +1,6 @@
 <div class="row">
   <div class="offset-md-1">
-    <h5 class="px-4 table-secondary"><%= @customer.full_name %>のページ</h5>
+    <h5 class="px-4 table-secondary"><%= @customer.nick_name %>のページ</h5>
   </div>
 </div>
 
@@ -10,12 +10,15 @@
 
 <table class="table table-bordered border-dark col-md-6">
   <tr>
-      <td class="table-secondary border-dark">氏名</td>
-      <td class="border-dark content"><%= @customer.full_name %></td>
+      <td class="table-secondary border-dark">表示名</td>
+      <td class="border-dark content"><%= @customer.nick_name %></td>
   </tr>
   <tr>
-      <td class="table-secondary border-dark">カナ</td>
-      <td class="border-dark content"><%= @customer.full_name_kana %></td>
+      <td class="table-secondary border-dark">所属</td>
+      <td class="border-dark content">
+        <%= I18n.t("enums.customer.departments.#{@customer.department}") %>
+        <%= I18n.t("enums.customer.grades.#{@customer.grade}") %>
+      </td>
   </tr>
 </table>
 
@@ -37,11 +40,11 @@
       </tbody>
     </table>
   </div>
-  
+
   <div class="col-md-12 mb-3 only-small-screen">
     <table class="border border-dark content">
       <thead>
-        <th class="border border-dark table-secondary py-2 px-4">タグ検索</th>
+        <th class="table-secondary py-2 px-4">タグ検索</th>
       </thead>
       <tbody>
         <td class="p-1">
