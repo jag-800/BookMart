@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :notice, :admin_notice
-  before_action :search
+  before_action :search,:notice,:admin_notice
   before_action :check_guest_customer, only: [:create, :update, :edit, :new]
 
   def search
@@ -11,15 +10,12 @@ class ApplicationController < ActionController::Base
   def notice
     if current_customer
       @unchecked_notices = current_customer ? current_customer.passive_notices.where(checked: false) : []
-    else
-      # @unchecked_notices = []
     end
   end
 
   def admin_notice
     @admin = Admin.find(1)
-    @unchecked_admin_notices = 
-    @admin.passive_notices.where(checked: false)
+    @unchecked_admin_notices = @admin.passive_notices.where(checked: false)
   end
 
   private

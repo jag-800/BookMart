@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="offset-md-1">
-    <h5 class="px-4 table-secondary"><%= @customer.full_name %>のページ</h5>
+    <h5 class="px-4 table-secondary"><%= @customer.nick_name %>のページ</h5>
   </div>
 </div>
 
@@ -14,6 +14,10 @@
 </div>
 
 <table class="table table-bordered border-dark col-md-6">
+  <tr>
+      <td class="table-secondary border-dark">表示名</td>
+      <td class="border-dark content"><%= @customer.nick_name %></td>
+  </tr>
   <tr>
       <td class="table-secondary border-dark">氏名</td>
       <td class="border-dark content"><%= @customer.full_name %></td>

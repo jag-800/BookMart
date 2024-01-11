@@ -3,7 +3,7 @@
     <div class="col-md-3">
       <div>
         <h5 class="px-4 table-secondary mb-3">商品詳細</h5>
-        <%= link_to @item.customer.full_name + "さん", show_information_path(@item.customer), class: "btn btn-sm btn-info ml-3 mb-2" %>
+        <%= link_to @item.customer.nick_name + "さん", show_information_path(@item.customer), class: "btn btn-sm btn-info ml-3 mb-2" %>
       </div>
       
       <div class="j-content">
@@ -26,11 +26,15 @@
 
     <div class="offset-md-1 col-md-8">
       <% if current_customer != @item.buyer %>
-        <h2><%= @item.buyer.full_name %> さんとのチャット</h2>
+        <h2><%= @item.buyer.nick_name %> さんとのチャット</h2>
       <% else %>
-        <h2><%= @item.customer.full_name %> さんとのチャット</h2>
+        <h2><%= @item.customer.nick_name %> さんとのチャット</h2>
       <% end %>
-      <p>基本的には近畿大学中央図書館での、本人同士の清算・受け渡しになります。</p>
+      <p>
+      基本的には
+      <%= link_to "近畿大学中央図書館", homes_about_path, 'data-turbolinks': false %>
+      での、本人同士の清算・受け渡しになります。
+      </p>
       <div class="message">
         <%= render "public/chats/message", chats: @chats, customer: @customer, my_name: @my_name %>
       </div>
