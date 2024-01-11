@@ -1,0 +1,34 @@
+// Place all the styles related to the public/homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+@media (max-width: 1016px) {
+  .col-md-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .item-image {
+    margin: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .small-text {
+    font-size: 12px; /* または希望する小さいサイズに設定 */
+  }
+  .item-image {
+    margin: 0px;
+  }
+  .col-md-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .item-image img {
+    width: 100%; /* 画像の幅を調整 */
+    height: auto; /* 高さを自動調整 */
+  }
+  .item-image .small-text {
+    font-size: smaller; /* テキストのサイズを小さく */
+  }
+}

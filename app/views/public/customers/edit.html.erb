@@ -14,6 +14,13 @@
   </div>
   
   <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">表示名</label>
+    <div class="col-sm-5">
+      (ニックネーム)<%= f.text_field :nick_name, autofocus: true, id:"inputNick_name", placeholder:"みっちー", class:"form-control" %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
     <label for="inputName" class="col-sm-2 col-form-label">名前</label>
     <div class="col-sm-5">
       <%= f.text_field :last_name, autofocus: true, id:"inputLast_name", class:"form-control" %>
@@ -29,6 +36,20 @@
     </div>
   </div>
 
+  <div class="form-group row">
+    <label for="inputGrade" class="col-sm-2 col-form-label">学年</label>
+    <div class="col-sm-5">
+      <%= f.select :grade, Customer.grades.keys.map { |s| [I18n.t("enums.customer.grades.#{s}"), s] }, {}, { class: "form-control", id: "inputGrade" } %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputDepartment" class="col-sm-2 col-form-label">学部</label>
+    <div class="col-sm-5">
+      <%= f.select :department, Customer.departments.keys.map { |s| [I18n.t("enums.customer.departments.#{s}"), s] }, {}, { class: "form-control", id: "inputDepartment" }  %>
+    </div>
+  </div>
+  
   <div class="form-group row">
     <label for="inputEmail" class="col-sm-2 col-form-label">メールアドレス</label>
     <div class="col-sm-5">
@@ -57,7 +78,7 @@
     </div>
   </div>
 
-  <div class="row ml-5 mb-3">
+  <div class="row ml-5 mb-3 edit-but">
     <div class="actions ml-5">
       <%= f.submit "変更内容を保存", class:"btn btn-success ml-5 mr-5" %>
     </div>

@@ -15,10 +15,13 @@ Admin.create!(email: 'a@a', password: 'aaaaaa')
 Customer.create!(
   [
     {
+      nick_name: "みっちー",
       first_name: "道子",
       last_name: "令和",
       first_name_kana: "ミチコ",
       last_name_kana: "レイワ",
+      department: 1,
+      grade: 4,
       email: "sample@example.com",
       post_code: "9995555",
       address: "東京都渋谷区神園町0-0",
@@ -27,10 +30,13 @@ Customer.create!(
       password: "password",
     },
     {
+      nick_name: "ナンバ",
       first_name: "専太",
       last_name: "難波",
       first_name_kana: "センタ",
       last_name_kana: "ナンバ",
+      department: 2,  # 例: 法学部
+      grade: 2,       # 例: 2年生
       email: "0@0",
       post_code: "5420076",
       address: "大阪府大阪市中央区難波4-4-4 難波御堂筋センタービル 8階",
@@ -39,10 +45,13 @@ Customer.create!(
       password: "000000",
     },
     {
+      nick_name: "にこにこ",
       first_name: "一",
       last_name: "六本木",
       first_name_kana: "ハジメ",
       last_name_kana: "ロッポンギ",
+      department: 8,
+      grade: 3,
       email: "1@1",
       post_code: "1066223",
       address: "東京都港区六本木3-2-1 住友不動産六本木グランドタワー 23F",
@@ -51,10 +60,13 @@ Customer.create!(
       password: "111111",
     },
     {
+      nick_name: "おがちゃん",
       first_name: "隆弘",
       last_name: "尾形",
       first_name_kana: "タカヒロ",
       last_name_kana: "オガタ",
+      department: 4,
+      grade: 1,
       email: "2@2",
       post_code: "1066223",
       address: "東京都港区六本木3-2-1 住友不動産六本木グランドタワー 24F",

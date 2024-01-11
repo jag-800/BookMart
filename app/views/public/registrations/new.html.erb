@@ -6,7 +6,14 @@
 
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
-
+  
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">表示名</label>
+    <div class="col-sm-5">
+      ニックネーム<%= f.text_field :nick_name, autofocus: true, id:"inputNick_name", placeholder:"みっちー", class:"form-control" %>
+    </div>
+  </div>
+  
   <div class="form-group row">
     <label for="inputName" class="col-sm-2 col-form-label">名前</label>
     <div class="col-sm-5">
@@ -14,7 +21,7 @@
       (名)<%= f.text_field :first_name, autofocus: true, id:"inputFirst_name", placeholder:"道子", class:"form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group row">
     <label for="inputName_kana" class="col-sm-2 col-form-label">フリガナ</label>
     <div class="col-sm-5">
@@ -22,42 +29,56 @@
       (メイ)<%= f.text_field :first_name_kana, autofocus: true, id:"inputFirst_name_kana", placeholder:"ミチコ", class:"form-control" %>
     </div>
   </div>
-  
+
+  <div class="form-group row">
+    <label for="inputGrade" class="col-sm-2 col-form-label">学年</label>
+    <div class="col-sm-5">
+      <%= f.select :grade, Customer.grades.keys.map { |s| [I18n.t("enums.customer.grades.#{s}"), s] }, {}, { class: "form-control", id: "inputGrade" } %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputDepartment" class="col-sm-2 col-form-label">学部</label>
+    <div class="col-sm-5">
+      <%= f.select :department, Customer.departments.keys.map { |s| [I18n.t("enums.customer.departments.#{s}"), s] }, {}, { class: "form-control", id: "inputDepartment" }  %>
+    </div>
+  </div>
+
   <div class="form-group row">
     <label for="inputEmail" class="col-sm-2 col-form-label">メールアドレス</label>
     <div class="col-sm-5">
       <%= f.email_field :email, autofocus: true, id:"inputEmail", placeholder:"sample@example.com", class:"form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group row">
     <label for="inputPost_code" class="col-sm-2 col-form-label">郵便番号(ハイフンなし)</label>
     <div class="col-sm-5">
       <%= f.text_field :post_code, autofocus: true, id:"inputPost_code", placeholder:"00000000", class:"form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group row">
     <label for="inputAddress" class="col-sm-2 col-form-label">住所</label>
     <div class="col-sm-5">
       <%= f.text_field :address, autofocus: true, id:"inputAddress", placeholder:"東京都渋谷区代々木神園町0-0", class:"form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group row">
     <label for="inputPhone_number" class="col-sm-2 col-form-label">電話番号(ハイフンなし)</label>
     <div class="col-sm-5">
       <%= f.text_field :phone_number, autofocus: true, id:"inputPhone_number", placeholder:"00000000000", class:"form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">パスワード(6文字以上)</label>
     <div class="col-sm-5">
       <%= f.password_field :password, autofocus: true, id:"inputPassword", autocomplete: "new-password", class:"form-control" %>
     </div>
   </div>
-  
+
   <div class="form-group row">
     <label for="inputPassword_confirmation" class="col-sm-2 col-form-label">パスワード(確認用)</label>
     <div class="col-sm-5">

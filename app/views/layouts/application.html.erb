@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BookMart</title>
+    <title>ブックマート - 大学内中古参考書取引サイト</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/7654f8b8fe.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
@@ -18,69 +18,20 @@
   <body class="d-flex flex-column min-vh-100">
     <header class="border border-dark">
       <nav class="navbar navbar-expand-lg navbar-light px-4">
-        <div class="content">
-          <%= link_to "LOGO", root_path, class:"btn btn-lg btn-outline-secondary px-5" %>
-        </div>
-        <div class="d-flex flex-column mt-3 ml-auto">
-          <ul class="row list-unstyled mr-auto">
+        <%= link_to "LOGO", root_path, class:"btn btn-lg btn-outline-secondary px-5" %>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mt-3 ml-auto">
             <% if admin_signed_in? %>
-              <li class="mr-5 content">
-                <%= link_to "商品一覧", admin_items_path, class:"btn btn-outline-secondary" %>
-              </li>
-              <li class="mr-5 content">
-                <%= link_to "会員一覧", admin_customers_path, class:"btn btn-outline-secondary" %>
-              </li>
-              <li class="mr-5 content">
-                <%= link_to "取引履歴一覧", admin_orders_path, class:"btn btn-outline-secondary" %>
-              </li>
-              <li class="mr-5 content">
-                <%= link_to admin_notices_path, class:"btn btn-outline-secondary" do %>
-                  通知
-                  <% if @unchecked_admin_notices.any? %>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
-                      <%= @unchecked_admin_notices.count %>
-                      <span class="visually-hidden">件の通知</span>
-                    </span>
-                  <% end %>
-                <% end %>
-              </li>
-              <li class="content">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-outline-secondary" %>
-              </li>
+              <%= render 'layouts/admin_nav_links' %>
             <% elsif customer_signed_in? %>
-              <li class="mr-5 content">
-                <%= link_to "マイページ", mypage_path, class:"btn btn-outline-secondary" %>
-              </li>
-              <li class="mr-5 content">
-                <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
-              </li>
-              <li class="mr-5 content">
-                <%= link_to notices_path, class:"btn btn-outline-secondary" do %>
-                  通知
-                  <% if @unchecked_notices.any? %>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
-                      <%= @unchecked_notices.count %>
-                      <span class="visually-hidden">件の通知</span>
-                    </span>
-                  <% end %>
-                <% end %>
-              </li>
-              <li class="content">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"btn btn-outline-secondary" %>
-              </li>
+              <%= render 'layouts/customer_nav_links' %>
             <% else %>
-              <li class="mr-5 content">
-                <%= link_to "About", homes_about_path, class:"btn btn-outline-secondary", 'data-turbolinks': false %>
-              </li>
-              <li class="mr-5 content">
-                <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
-              </li>
-              <li class="mr-5 content">
-                <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-outline-secondary" %>
-              </li>
-              <li class="content">
-                <%= link_to "ログイン", new_customer_session_path, class:"btn btn-outline-secondary" %>
-              </li>
+              <%= render 'layouts/guest_nav_links' %>
             <% end %>
           </ul>
         </div>
@@ -92,17 +43,19 @@
               <%= f.label :name_cont, '書籍検索' %>
               <%= f.search_field :name_cont %>
               <%= f.submit '検索' %>
-              <%= f.label :created_at_gteq, '作成日時' %>
-              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, checked: true %> 今週
-              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month %> 今月
-              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year %> 今年
+              <div>
+              投稿日
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, id: 'created_at_this_week', checked: true %> 今週
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month, id: 'created_at_this_month' %> 今月
+              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year, id: 'created_at_this_year' %> 今年
+              </div>
             <% end %>
           </div>
         </div>
         <% unless customer_signed_in? || admin_signed_in? %>
-          <div class="col">
+          <div class="col-md-3">
             <div>
-              <%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, method: :post %>
+              <%= link_to 'ゲストログイン(閲覧用)', guest_sign_in_path, method: :post %>
             </div>
           </div>
         <% end %>
@@ -110,14 +63,16 @@
     </header>
 
     <main class="container-fluid flex-grow-1 border border-dark background-wrapper">
-      <div class="mx-5 mt-5">
+      <div class="mt-5 xside">
         <%= yield %>
       </div>
     </main>
 
 
-    <footer class="container-fluid border border-dark p-5">
-      <div></div>
+    <footer class="container-fluid border border-dark p-4">
+      <div class="text-center">
+        <p>© 2024 jag-800</p>
+      </div>
     </footer>
   </body>
 </html>

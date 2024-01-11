@@ -1,5 +1,5 @@
-<table class="table mt-3 content">
-  <thead>
+<table class="table mt-3 content responsive-table">
+  <thead class="table-secondary">
     <tr>
       <th>商品</th>
       <th>名前</th>
@@ -9,24 +9,26 @@
     </tr>
   </thead>
   <tbody>
-    <% items.each do |item| %><tr>
-      <td>
+    <% items.each do |item| %>
+    <tr>
+      <td class="item-image">
         <%= link_to item_path(item.id) do %>
-          <%= image_tag item.get_item_image(100,100) %>
+          <%= image_tag item.get_item_image(100,100), class: 'img-fluid' %>
         <% end %>
       </td>
-      <td>
+      <td class="small-text">
         <%= link_to item_path(item.id) do %>
           <%= item.name %>
         <% end %>
       </td>
-      <td><%= number_with_delimiter(item.price) %></td>
-      <td><%= render 'tag_list', tag_list: item.tag_list %></td>
+      <td class="item-price"><%= number_with_delimiter(item.price) %></td>
+      <td class="item-tags"><%= render 'tag_list', tag_list: item.tag_list %></td>
       <% if item.is_active == true %>
-        <td class="text-success font-weight-bold">販売中</td>
+        <td class="item-status text-success font-weight-bold">販売中</td>
       <% else %>
-        <td class="text-secondary font-weight-bold">購入済み</td>
+        <td class="item-status text-secondary font-weight-bold">購入済み</td>
       <% end %>
-    </tr><% end %>
+    </tr>
+    <% end %>
   </tbody>
 </table>

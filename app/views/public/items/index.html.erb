@@ -4,11 +4,15 @@
   </div>
   <div class="offset-5"></div>
   <div class="col-md-2 balloon2-right">
-    <p>商品を登録しましょう！</p>
+    <p class="small-text">商品を登録しましょう！</p>
   </div>
-  <div class="col-md-1">
+  <div class="mt-2 ml-3">
     <%= link_to '+', new_item_path, class: 'btn btn-light border shadow rounded-circle d-flex justify-content-center align-items-center', style: 'width: 50px; height: 50px; font-size: 30px; color: gray;' %>
   </div>
+</div>
+
+<div>
+  <h4>(全 <%= @items.count %>件)</h4>
 </div>
 
 <% if @items.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
@@ -21,47 +25,3 @@
 <div class="row justify-content-center">
   <%= paginate @items %>
 </div>
-
-
-<style>
-.balloon2-right {
-    position: relative;
-    display: inline-block;
-    /*margin: 1.5em 15px 1.5em 0;*/
-    padding: 7px 10px;
-    min-width: 120px;
-    max-width: 100%;
-    color: #555;
-    font-size: 16px;
-    background: #FFF;
-    border: solid 3px #555;
-    box-sizing: border-box;
-}
-
-.balloon2-right:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -24px;
-    margin-top: -12px;
-    border: 12px solid transparent;
-    border-left: 12px solid #FFF;
-    z-index: 2;
-}
-
-.balloon2-right:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -30px;
-    margin-top: -14px;
-    border: 14px solid transparent;
-    border-left: 14px solid #555;
-    z-index: 1;
-}
-
-.balloon2-right p {
-    margin: 0;
-    padding: 0;
-}
-</style>

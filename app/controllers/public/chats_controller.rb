@@ -16,12 +16,12 @@ class Public::ChatsController < ApplicationController
 
     @item = @chat_room.item
   end
-  
+
   def create
     @chat = current_customer.chats.new(chat_params)
     @room = @chat.room
     @chats = @room.chats
-  
+
     if @chat.save
       # 関連する CustomerRoom を取得
       customer_room = CustomerRoom.find_by(room_id: @room.id)
@@ -62,7 +62,7 @@ class Public::ChatsController < ApplicationController
   def set_chat_room
     @chat_room = CustomerRoom.find(params[:id])
   end
-  
+
   def save_notification_chat!(current_customer, chat_id, other_customer_id)
     # チャット通知を作成
     notification = current_customer.active_notices.new(
@@ -71,10 +71,10 @@ class Public::ChatsController < ApplicationController
       visited_id: other_customer_id,
       action: 'chat'
     )
-  
+
     # 自分自身へのチャットの場合は、通知済みとする
     notification.checked = true if current_customer.id == other_customer_id
-  
+
     # 通知の保存
     if notification.valid?
       notification.save

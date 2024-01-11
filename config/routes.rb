@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     get 'orders/thanks' => 'orders#thanks', as: 'thanks'
     get 'orders/buyer' => 'orders#buyer', as: 'buyer'
     get 'orders/details/:id' => 'orders#details', as: 'order_details'
+    get 'items/tag' => 'items#tag'
 
     
     resources :items do

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="offset-md-1">
-    <h5 class="px-4 table-secondary"><%= @customer.full_name %>のページ</h5>
+    <h5 class="px-4 table-secondary"><%= @customer.nick_name %>のページ</h5>
   </div>
 </div>
 
@@ -10,18 +10,21 @@
 
 <table class="table table-bordered border-dark col-md-6">
   <tr>
-      <td class="table-secondary border-dark">氏名</td>
-      <td class="border-dark content"><%= @customer.full_name %></td>
+      <td class="table-secondary border-dark">表示名</td>
+      <td class="border-dark content"><%= @customer.nick_name %></td>
   </tr>
   <tr>
-      <td class="table-secondary border-dark">カナ</td>
-      <td class="border-dark content"><%= @customer.full_name_kana %></td>
+      <td class="table-secondary border-dark">所属</td>
+      <td class="border-dark content">
+        <%= I18n.t("enums.customer.departments.#{@customer.department}") %>
+        <%= I18n.t("enums.customer.grades.#{@customer.grade}") %>
+      </td>
   </tr>
 </table>
 
 <div class="row">
   <div class="col-md-2">
-    <table class="border border-dark content">
+    <table class="border border-dark except-small-screen content">
       <thead>
         <th class="table-secondary border border-dark py-2 px-4">タグ検索</th>
       </thead>
@@ -38,16 +41,32 @@
     </table>
   </div>
 
+  <div class="col-md-12 mb-3 only-small-screen">
+    <table class="border border-dark content">
+      <thead>
+        <th class="table-secondary py-2 px-4">タグ検索</th>
+      </thead>
+      <tbody>
+        <td class="p-1">
+          <% @tag_counts.each do |tag_name, count| %>
+          <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-primary text-white" %>
+          (<%= count %>),
+        <% end %>
+        </td>
+      </tbody>
+    </table>
+  </div>
+
   <div class="col-md-8">
-    <div class="mt-3">
+    <div class="mt-3 my-item">
       <h4>自分の登録商品</h4>
-      <div class="row">
+      <div class="row flex-container">
       <% @items.each do |item| %>
-        <div class="col-md-3 mr-3">
+        <div class="item-wi">
           <%= link_to item_path(item.id) do %>
-            <%= image_tag item.get_item_image(200,250) %>
+            <%= image_tag item.get_item_image(200,250), class: 'item-image' %>
           <% end %>
-          <p><%= item.name %></p>
+          <p class="small-text"><%= item.name %></p>
           <p>￥<%= number_with_delimiter(item.price) %></p>
         </div>
       <% end %>

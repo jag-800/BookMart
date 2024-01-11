@@ -1,10 +1,14 @@
 <% if flash[:alert] %>
   <p class=""><%= alert %></p>
 <% end %>
-  
+
+<div class="d-flex except-small-screen">
+  <%= link_to "全ての商品を見る >", items_path, class: "ml-auto" %>
+</div>
+
 <div class="row">
-  <div class="col-md-2 mb-3">
-    <table class="border border-dark content">
+  <div class="col-md-3 mb-3 except-small-screen">
+    <table class="border border-dark content tag-table">
       <thead>
         <th class="border border-dark py-2 px-4">タグ検索</th>
       </thead>
@@ -12,7 +16,7 @@
         <% @tag_counts.each do |tag_name, count| %>
         <tr>
           <td class="py-1 px-3">
-            <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-primary text-white" %>
+            <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-primary text-white" %>
             (<%= count %>)
           </td>
         </tr>
@@ -28,24 +32,46 @@
         BookMartは大学での参考書・資格本を取り扱います。<br>
         文理問わず、多くの学生が利用できるよう、<br>
         様々な学問に対応しております。<br>
-        また、商品購入後は<strong>近畿大学中央図書館</strong>で商品受け渡しをしてもらいます。<br>
+        また、商品購入後は
+        <strong><%= link_to "近畿大学中央図書館", homes_about_path, 'data-turbolinks': false %></strong>
+        で商品受け渡しをしてもらいます。<br>
         ぜひご購入下さい。
       </span>
       </div>
     </div>
-    <div class="mt-3">
-      <h4>新着商品</h4>
-      <div class="row">
-      <% @items.each do |item| %>
-        <div class="col-md-3">
-          <%= link_to item_path(item.id) do %>
-            <%= image_tag item.get_item_image(150,180) %>
+    <div class="row">
+      <div class="col-md-3 my-3 middle-small-screen">
+        <table class="border border-dark content tag-table">
+          <thead>
+            <th class="border border-dark py-2 px-4">タグ検索</th>
+          </thead>
+          <tbody>
+            <% @tag_counts.each do |tag_name, count| %>
+            <tr>
+              <td class="py-1 px-3">
+                <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-primary text-white" %>
+                (<%= count %>)
+              </td>
+            </tr>
           <% end %>
-          <p><%= item.name %></p>
-          <p>￥<%= number_with_delimiter(item.price) %></p>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-3 col">
+        <h4>新着商品</h4>
+        <div class="row">
+        <% @items.each do |item| %>
+          <div class="col-xs-6 col-sm-6 col-md-3 item-image">
+            <%= link_to item_path(item.id) do %>
+              <%= image_tag item.get_item_image(150,180) %>
+            <% end %>
+            <p class="small-text"><%= item.name %></p>
+            <p>￥<%= number_with_delimiter(item.price) %></p>
+          </div>
+        <% end %>
         </div>
-      <% end %>
-    </div>
+      </div>
     </div>
   </div>
 </div>
