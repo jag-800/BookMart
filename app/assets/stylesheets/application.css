@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- 
+
  /* ブラウザがそれぞれ持っているCSSをリセットするための記述 */
 
 body {
@@ -41,6 +41,10 @@ body {
   display: none
 }
 
+.middle-small-screen {
+    display: none
+}
+
 @media (max-width: 768px) {
   .xside {
     margin-left: 0px;
@@ -56,6 +60,17 @@ body {
     margin-right: 0;
     margin-bottom: 10px;
   }
+  .navbar-nav .content {
+      display: inline-block; /* 横に並べるためにinline-blockを使用 */
+      margin-right: 15px; /* 右のマージンを設定 */
+  }
+
+  .navbar-nav .content:last-child {
+      margin-right: 0; /* 最後の要素のマージンは0にする */
+  }
+  .middle-small-screen {
+    display: none
+  }
 }
 
 @media (max-width: 1016px) {
@@ -65,8 +80,16 @@ body {
   .only-small-screen {
     display: block
   }
+  .middle-small-screen {
+    display: block
+  }
   .my-item {
     margin-left: 15px;
   }
 }
 
+@media (max-width: 425px) {
+  .middle-small-screen {
+    display: none
+  }
+}

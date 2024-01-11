@@ -18,7 +18,15 @@
     font-size: 12px; /* または希望する小さいサイズに設定 */
   }
   .item-image {
-    margin: 25px;
+    margin: 10px;
+  }
+  .item-image img {
+    width: 100%; /* 画像の幅を調整 */
+    height: auto; /* 高さを自動調整 */
+  }
+
+  .item-image .small-text {
+    font-size: smaller; /* テキストのサイズを小さく */
   }
 }
 
