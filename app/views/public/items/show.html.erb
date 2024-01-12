@@ -8,10 +8,6 @@
     </div>
   </div>
 
-  <% if flash[:alert] %>
-    <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
-
   <div class="">
   <p class="ml-5">基本的には
   <%= link_to "近畿大学中央図書館", homes_about_path, 'data-turbolinks': false %>
@@ -51,6 +47,27 @@
     </table>
 
   </div>
+
+  <div>
+    <div class="item-comments-counter">
+      <%= render "public/item_comments/counter", item: @item %>
+    </div>
+    <% if @item.customer == current_customer %>
+      <div><%= link_to 'Edit', edit_item_path(@item), class: "btn btn-sm btn-success edit_item_#{@item.id}" %></div>
+      <div><%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_item_#{@item.id}" %></div>
+    <% end %>
+
+    <div class="item-comments-index mb-2">
+      <% if @item.item_comments.any? %>
+        <%= render "public/item_comments/index", item: @item %>
+      <% end %>
+    </div>
+
+    <% if customer_signed_in? %>
+      <%= render "public/item_comments/form", item: @item, item_comment: @item_comment %>
+    <% else %>
+    <p>コメントにはログインが必要です。</p>
+    <% end %>
   </div>
 
   <div class="row buy-button">

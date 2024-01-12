@@ -64,6 +64,9 @@
 
     <main class="container-fluid flex-grow-1 border border-dark background-wrapper">
       <div class="mt-5 xside">
+        <% if flash[:alert] %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
         <%= yield %>
       </div>
     </main>
@@ -76,3 +79,4 @@
     </footer>
   </body>
 </html>
+

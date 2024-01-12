@@ -1,0 +1,2 @@
+$('.item-comments-counter').html('<%= j(render "public/item_comments/counter", item: @item) %>')
+$('.item-comments-index').html("<%= j(render 'public/item_comments/index', item: @item, item_comment: @item_comment) %>")

@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :customer
   has_one :order
   has_many :notices, dependent: :destroy
+  has_many :item_comments, dependent: :destroy
   has_one_attached :item_image
   
   validates :name, presence: true
