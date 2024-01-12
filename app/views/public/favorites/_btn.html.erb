@@ -1,0 +1,21 @@
+<% if customer_signed_in? %>
+  <% if item.favorited_by?(current_customer) %>
+    <%= link_to item_favorite_path(item), method: :delete, remote: true do %>
+      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+      <%= item.favorites.count %>
+    <% end %>
+  <% else %>
+    <%= link_to item_favorite_path(item), method: :post, remote: true do %>
+      <i class="fas fa-heart" aria-hidden="true"></i>
+      <%= item.favorites.count %>
+    <% end %>
+  <% end %>
+<% else %>
+  <% if item.favorites_count != 0 %>
+      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+      <%= item.favorites.count %>
+  <% else %>
+      <i class="fa-regular fa-heart" aria-hidden="true"></i>
+      <%= item.favorites.count %>
+  <% end %>
+<% end %>

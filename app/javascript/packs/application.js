@@ -23,7 +23,6 @@ import '../stylesheets/admin/items';
 import '../stylesheets/admin/customers';
 
 require("./slick")
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

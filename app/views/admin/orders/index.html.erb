@@ -18,7 +18,7 @@
           <%= order.created_at.strftime("%Y/%m/%d　%H:%M:%S") %>
         <% end %>
       </td>
-      <td><%= order.customer.nick_name %></td>
+      <td><%= order.customer.no_nick_name %></td>
       <td><%= I18n.t("enums.order.status.#{order.status}") %></td>
     <% end %>
   </tbody>

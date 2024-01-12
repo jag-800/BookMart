@@ -1,15 +1,25 @@
 <li class="mr-5 content">
-  <%= link_to "About", homes_about_path, class:"btn btn-outline-secondary", 'data-turbolinks': false %>
+  <%= link_to homes_about_path, class:"btn btn-outline-secondary", 'data-turbolinks': false do %>
+    <i class="fas fa-link"></i> About 
+  <% end %>
 </li>
 <li class="mr-5 content">
-  <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
+  <%= link_to items_path, class:"btn btn-outline-secondary" do %>
+    <i class="fas fa-book"></i> 商品一覧
+  <% end %>
 </li>
 <li class="mr-5 content only-small-screen">
-  <%= link_to "タグ検索", items_tag_path, class:"btn btn-outline-secondary" %>
+  <%= link_to items_tag_path, class:"btn btn-outline-secondary" do %>
+    <i class="fas fa-tags"></i> タグ検索
+    <% end %>
 </li>
 <li class="mr-5 content">
-  <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-outline-secondary" %>
+  <%= link_to new_customer_registration_path, class:"btn btn-outline-secondary" do %>
+    <i class="fas fa-user-plus"></i> 新規登録
+  <% end %>
 </li>
 <li class="content">
-  <%= link_to "ログイン", new_customer_session_path, class:"btn btn-outline-secondary" %>
+  <%= link_to new_customer_session_path, class:"btn btn-outline-secondary" do %>
+    <i class="fas fa-sign-in-alt"></i> ログイン
+  <% end %>
 </li>
