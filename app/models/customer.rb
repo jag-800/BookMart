@@ -71,7 +71,7 @@ class Customer < ApplicationRecord
     customer_image.variant(resize: "#{width}x#{height}!").processed
   end
   
-  def nick_name
+  def no_nick_name
     if read_attribute(:nick_name).present?
       read_attribute(:nick_name)
     else
@@ -79,7 +79,7 @@ class Customer < ApplicationRecord
     end
   end
   
-  def no_nick_name
+  def my_nick_name
     if read_attribute(:nick_name).present?
       read_attribute(:nick_name)
     else

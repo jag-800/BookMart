@@ -5,7 +5,7 @@
     <span>
       <%= link_to show_information_path(visitor) do %>
         <%= image_tag visitor.get_customer_image(50, 50), class: "icon_mini" %>
-        <strong><%= visitor.nick_name %></strong>
+        <strong><%= visitor.no_nick_name %></strong>
       <% end %>
       <% if notice.action == 'item' %>
         さんが新しい商品を追加されました！
@@ -18,7 +18,7 @@
           (<%= link_to '注文詳細', admin_order_path(notice.order), style: "font-weight: bold;" %>)
         <% end %>
       <% elsif notice.action == 'order_status_update' %>
-        さんと<%= visited.nick_name %>さんの取引状況が更新されました!
+        さんと<%= visited.no_nick_name %>さんの取引状況が更新されました!
         (<%= link_to '注文詳細', admin_order_path(notice.order), style: "font-weight: bold;" %>)
       <% end %>
     </span>

@@ -5,14 +5,14 @@
         <%= image_tag item_comment.customer.get_customer_image(40,40), class: "mr-1" %>
         <% if item_comment.customer_id == current_customer.id %>
         <div class="flex-grow-1">
-          <%= item_comment.customer.nick_name %>(自分)
+          <%= item_comment.customer.no_nick_name %>(自分)
         </div>
         <div class="align-self-end"> <!-- 削除ボタン -->
           <%= link_to "削除", item_item_comment_path(item, item_comment), data: {remote: true}, method: :delete, "data-confirm" => "このコメントを削除しますか？", class:"" %>
         </div>
         <% else %>
           <div class="flex-grow-1">
-            <%= item_comment.customer.nick_name %>(自分)
+            <%= item_comment.customer.no_nick_name %>(自分)
           </div>
         <% end %>
       </div>
