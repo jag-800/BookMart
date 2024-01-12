@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="offset-1">
+    <h5 class="px-4 table-secondary mb-4"><i class="fa-solid fa-heart"></i>お気に入りリスト</h5>
+  </div>
+</div>
+<table class="table mt-3 responsive-table">
+  <thead class="table-secondary">
+    <tr>
+      <th class="text-center small-text">商品</th>
+      <th class="text-center small-text">名前</th>
+      <th class="text-center small-text"><%= sort_link(@q, :price, "価格") %></th>
+      <th class="text-center small-text">タグ</th>
+      <th class="text-center small-text"><%= sort_link(@q, :favorites_count, 'お気に入り数') %></th>
+      <th class="text-center small-text"><%= sort_link(@q, :is_active, "販売状況") %></th>
+    </tr>
+  </thead>
+  <tbody class="content">
+    <% @favorites.each do |favorite| %><tr>
+      <td class="item-image">
+        <%= link_to item_path(favorite.item.id) do %>
+          <%= image_tag favorite.item.get_item_image(100,100), class: 'img-fluid' %>
+        <% end %>
+      </td>
+      <td class="small-text">
+        <%= link_to item_path(favorite.item.id) do %>
+          <%= favorite.item.name %>
+        <% end %>
+      </td>
+      <td class="item-price"><%= number_with_delimiter(favorite.item.price) %></td>
+      <td class="item-tags"><%= render 'public/items/tag_list', tag_list: favorite.item.tag_list %></td>
+      <td class="pb-3 favorite-<%= favorite.item.id %>">
+        <%= render "public/favorites/btn", item: favorite.item %>
+      </td>
+      <% if favorite.item.is_active == true %>
+        <td class="item-status text-success font-weight-bold">販売中</td>
+      <% else %>
+        <td class="item-status text-secondary font-weight-bold">購入済み</td>
+      <% end %>
+    </tr><% end %>
+  </tbody>
+</table>
+
