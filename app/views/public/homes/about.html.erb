@@ -4,7 +4,9 @@
     BookMartは大学での参考書・資格本を取り扱います。<br>
     文理問わず、多くの学生が利用できるよう、<br>
     様々な学問に対応しております。<br>
-    また、商品購入後は<strong>近畿大学中央図書館</strong>でご本人同士での、<br>
+    また、商品購入後は
+    <strong> <i class="fas fa-map-marked-alt"></i> <%= link_to "近畿大学中央図書館", homes_about_path, 'data-turbolinks': false %></strong>
+    でご本人同士での、<br>
     商品の清算・受け渡しをしてもらいます。<br>
     ぜひご購入下さい。
   </span>
@@ -12,7 +14,7 @@
 <div class="row d-flex justify-content-center">
 
   <div class="col-md-5">
-    <p class="mb-1">近畿大学中央図書館</p>
+    <p class="mb-1"><i class="fas fa-map-marked-alt"></i> 近畿大学中央図書館</p>
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d975.7827830784177!2d135.5866460428141!3d34.65144552645307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000df7672bb60bd%3A0xcac53f00aaff890!2z44CSNTc3LTA4MTgg5aSn6Ziq5bqc5p2x5aSn6Ziq5biC5bCP6Iul5rGf77yT5LiB55uu77yUIOS4reWkruWbs-abuOmkqA!5e0!3m2!1sja!2sjp!4v1704033628555!5m2!1sja!2sjp"
       width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade",
@@ -21,7 +23,7 @@
   </div>
 
   <div class="offset-md-2 col-md-4 my-auto">
-    <p class="mb-1">商品一覧</p>
+    <p class="mb-1"><i class="fas fa-book"></i> 商品一覧</p>
     <div class="border border-dark p-3 mb-2 content">
       <div class="slider mx-auto mt-1">
         <% @boards.each do |item| %>

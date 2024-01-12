@@ -1,0 +1,30 @@
+<div style="width: 100%; height: 300px; overflow-y: scroll;">
+  <% item.item_comments.each do |item_comment| %>
+    <div class="<%= 'd-flex flex-column' if item_comment.customer_id == current_customer.id %>">
+      <div class="d-flex align-items-center justify-content-between">
+        <%= image_tag item_comment.customer.get_customer_image(40,40), class: "mr-1" %>
+        <% if item_comment.customer_id == current_customer.id %>
+        <div class="flex-grow-1">
+          <%= item_comment.customer.no_nick_name %>(自分)
+        </div>
+        <div class="align-self-end"> <!-- 削除ボタン -->
+          <%= link_to "削除", item_item_comment_path(item, item_comment), data: {remote: true}, method: :delete, "data-confirm" => "このコメントを削除しますか？", class:"" %>
+        </div>
+        <% else %>
+          <div class="flex-grow-1">
+            <%= item_comment.customer.no_nick_name %>(自分)
+          </div>
+        <% end %>
+      </div>
+
+      <div class="p-2">
+        <div class="rounded-lg p-2 rounded-lg content">
+          <%= item_comment.comment %><br>
+          <div class="pt-2">
+            <%= item_comment.created_at.strftime('%Y年%m月%d日 %H:%M') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

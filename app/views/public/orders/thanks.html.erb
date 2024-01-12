@@ -4,7 +4,9 @@
 
 <p class="text-center">以下のチャットから出品者と、受け取り日時を決めてください。</p>
 <div class="d-flex justify-content-center">
-  <%= link_to "チャットへ", chat_path(@customer_room), class:"btn btn-success mx-auto mb-5" %>
+  <%= link_to chat_path(@customer_room), class:"btn btn-success mx-auto mb-5" do %>
+    <i class="fas fa-comment-dots"></i> チャットへ
+  <% end %>
 </div>
 
 <div class="row">
@@ -12,7 +14,7 @@
     <h5 class="px-4 table-secondary mb-4">購入商品</h5>
   </div>
   <div class="ml-3">
-    <%= link_to @item.customer.nick_name + "さん", show_information_path(@item.customer), class: "btn btn-sm btn-info ml-3" %>
+    <%= link_to @item.customer.no_nick_name + "さん", show_information_path(@item.customer), class: "btn btn-sm btn-info ml-3" %>
   </div>
 </div>
 

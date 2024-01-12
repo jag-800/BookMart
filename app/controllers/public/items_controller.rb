@@ -29,6 +29,7 @@ class Public::ItemsController < ApplicationController
 
   def show
     @order = Order.new
+    @item_comment = ItemComment.new
   end
 
   def edit

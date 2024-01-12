@@ -13,6 +13,8 @@ class Customer < ApplicationRecord
   has_many :rooms, through: :customer_rooms
   has_many :active_notices, class_name: 'Notice', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notices, class_name: 'Notice', foreign_key: 'visited_id', dependent: :destroy
+  has_many :item_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_one_attached :customer_image
 
   validates :last_name, presence: true
@@ -69,7 +71,7 @@ class Customer < ApplicationRecord
     customer_image.variant(resize: "#{width}x#{height}!").processed
   end
   
-  def nick_name
+  def no_nick_name
     if read_attribute(:nick_name).present?
       read_attribute(:nick_name)
     else
@@ -77,7 +79,7 @@ class Customer < ApplicationRecord
     end
   end
   
-  def no_nick_name
+  def my_nick_name
     if read_attribute(:nick_name).present?
       read_attribute(:nick_name)
     else
