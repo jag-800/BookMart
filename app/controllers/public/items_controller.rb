@@ -1,5 +1,5 @@
 class Public::ItemsController < ApplicationController
-  before_action :authenticate_customer!, only: [:new, :create]
+  before_action :authenticate, only: [:new, :create]
   before_action :ensure_item, only: [:show, :edit, :update]
   include Notifiable
 
@@ -63,5 +63,11 @@ class Public::ItemsController < ApplicationController
 
   def ensure_item
     @item = Item.find(params[:id])
+  end
+  
+  def authenticate
+    unless customer_signed_in?
+      redirect_to request.referer, alert: "ログイン前にこの操作を実行できません。"
+    end
   end
 end

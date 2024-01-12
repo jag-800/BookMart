@@ -1,5 +1,5 @@
 class Public::FavoritesController < ApplicationController
-
+  before_action :authenticate
   def create
     if !Favorite.exists?(item_id: params[:item_id], customer_id: current_customer.id)
       @item = Item.find(params[:item_id])
@@ -17,5 +17,12 @@ class Public::FavoritesController < ApplicationController
       render 'replace_btn'
     end
   end
-
+  
+  private
+  
+  def authenticate
+    unless customer_signed_in?
+      redirect_to request.referer, alert: "ログイン前にこの操作を実行できません。"
+    end
+  end
 end
