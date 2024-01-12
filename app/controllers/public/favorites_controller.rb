@@ -1,5 +1,10 @@
 class Public::FavoritesController < ApplicationController
   before_action :authenticate
+  
+  def index
+    
+  end
+  
   def create
     if !Favorite.exists?(item_id: params[:item_id], customer_id: current_customer.id)
       @item = Item.find(params[:item_id])
