@@ -36,6 +36,12 @@
           <td class="pb-3"><%= number_with_delimiter(@item.price) %>円</td>
         </tr>
         <tr>
+          <td class="pb-3">いいね</td>
+          <td class="pb-3 favorite-<%= @item.id %>">
+            <%= render "public/favorites/btn", item: @item %>
+          </td>
+        </tr>
+        <tr>
           <td>販売状況</td>
           <% if @item.is_active == true %>
             <td class="text-success font-weight-bold">販売中</td>

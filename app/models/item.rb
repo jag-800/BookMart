@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   has_one :order
   has_many :notices, dependent: :destroy
   has_many :item_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_one_attached :item_image
   
   validates :name, presence: true
@@ -34,8 +35,11 @@ class Item < ApplicationRecord
   end
   
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "is_active", "name", "price"]
+    ["created_at", "is_active", "name", "price", "favorites_count"]
   end
 
-
+  def favorited_by?(customer)
+    customer.present? && favorites.exists?(customer_id: customer.id)
+  end
+  
 end

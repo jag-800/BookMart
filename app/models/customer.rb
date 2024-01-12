@@ -14,6 +14,7 @@ class Customer < ApplicationRecord
   has_many :active_notices, class_name: 'Notice', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notices, class_name: 'Notice', foreign_key: 'visited_id', dependent: :destroy
   has_many :item_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_one_attached :customer_image
 
   validates :last_name, presence: true

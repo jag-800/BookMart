@@ -50,6 +50,7 @@ Rails.application.routes.draw do
 
     
     resources :items do
+      resource :favorite, only: [:create, :destroy]
       resources :item_comments, only: [:create, :destroy]
       collection do
         get 'search'
