@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  before_action :authenticate_customer!, except: [:show]
+  before_action :authenticate, except: [:show]
   before_action :set_current_customer, except: [:show]
 
   def mypage
@@ -42,6 +42,12 @@ class Public::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:customer_image, :grade, :department, :last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :phone_number)
+  end
+  
+  def authenticate
+    unless customer_signed_in?
+      redirect_to request.referer, alert: "ログイン前にこの操作を実行できません。"
+    end
   end
 
 end

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :search,:notice,:admin_notice
-  before_action :check_guest_customer, only: [:create, :update, :edit, :new]
+  # before_action :check_guest_customer, only: [:create, :update, :edit, :new]
 
   def search
     @q = Item.ransack(params[:q])
@@ -21,10 +21,10 @@ class ApplicationController < ActionController::Base
   private
 
   # ゲストユーザーかどうかを確認
-  def check_guest_customer
-    if current_customer.try(:guest?)
-      redirect_to root_path, alert: "ゲストユーザーはこの操作を実行できません。"
-    end
-  end
+  # def check_guest_customer
+  #   if current_customer.try(:guest?)
+  #     redirect_to root_path, alert: "ゲストユーザーはこの操作を実行できません。"
+  #   end
+  # end
 
 end

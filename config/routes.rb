@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
-  
+
   # ゲストログイン用のパス
   devise_scope :customer do
     post '/guest_sign_in', to: 'public/sessions#guest_sign_in'
@@ -29,13 +29,13 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show, :update]
     resources :notices, only: :index
   end
-  
+
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about'
-    
+
     # customers/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
-    
+
     get 'customers/mypage' => 'customers#mypage', as: 'mypage'
     get 'customers/information/:id' => 'customers#show', as: 'show_information'
     get 'customers/mypage/edit' => 'customers#edit', as: 'edit_mypage'
@@ -47,8 +47,10 @@ Rails.application.routes.draw do
     get 'orders/buyer' => 'orders#buyer', as: 'buyer'
     get 'orders/details/:id' => 'orders#details', as: 'order_details'
     get 'items/tag' => 'items#tag'
+    get 'favorites/tag' => 'favorites#tag'
+    get 'favorites/index' => 'favorites#index' , as: "favorites"
 
-    
+
     resources :items do
       resource :favorite, only: [:create, :destroy]
       resources :item_comments, only: [:create, :destroy]
@@ -60,5 +62,5 @@ Rails.application.routes.draw do
     resources :chats, only: [:show, :create, :destroy]
     resources :notices, only: :index
   end
-  
+
 end

@@ -18,8 +18,8 @@
   </div>
 </div>
 
-<% if flash[:alert] %>
-  <p class="alert alert-danger"><%= alert %></p>
+<% if flash[:notice] %>
+  <p class="alert alert-danger"><%= flash[:notice] %></p>
 <% end %>
 
 <div class="row mb-5 mt-2">
@@ -44,6 +44,12 @@
       <tr>
         <td class="pb-3">価格</td>
         <td class="pb-3"><%= number_with_delimiter(@item.price) %>円</td>
+      </tr>
+      <tr>
+        <td class="pb-3">お気に入り</td>
+        <td class="pb-3 favorite-<%= @item.id %>">
+          <%= render "public/favorites/btn", item: @item %>
+        </td>
       </tr>
       <tr>
         <td>販売状況</td>

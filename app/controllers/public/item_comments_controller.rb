@@ -1,4 +1,6 @@
 class Public::ItemCommentsController < ApplicationController
+  before_action :authenticate
+  
   def create
     @item = Item.find(params[:item_id])
     @comment = current_customer.item_comments.new(item_comment_params)
@@ -19,5 +21,11 @@ class Public::ItemCommentsController < ApplicationController
   private
   def item_comment_params
     params.require(:item_comment).permit(:comment)
+  end
+  
+  def authenticate
+    unless customer_signed_in?
+      redirect_to request.referer, alert: "ログイン前にこの操作を実行できません。"
+    end
   end
 end

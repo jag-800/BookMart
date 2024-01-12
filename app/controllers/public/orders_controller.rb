@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate
   include Notifiable
   
   def new
@@ -49,7 +49,7 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.find_by(id: params[:id])
     # confirmでリロードした際の処理
     unless @order
-      flash[:alert] = "注文に失敗しました。再度操作を行ってください。"
+      flash[:notice] = "注文に失敗しました。再度操作を行ってください。"
       redirect_to request.referer and return
     end
     @item = @order.item # OrderDetailsがないので、直接Itemを取得
@@ -64,11 +64,11 @@ class Public::OrdersController < ApplicationController
     if @order.update(order_detail_params)
       # 注文ステータスが更新された場合、通知を作成
       create_order_status_update_notification(@order)
-      flash[:alert] = "取引ステータスが変更されました。"
+      flash[:notice] = "取引ステータスが変更されました。"
       redirect_to request.referer
     else
       # 更新が失敗した場合、エディットフォームを再表示
-      render :show, alert: '注文状態の更新に失敗しました。'
+      render :show, notice: '注文状態の更新に失敗しました。'
     end
   end
 
@@ -81,5 +81,10 @@ class Public::OrdersController < ApplicationController
   def order_detail_params
     params.require(:order).permit(:status)
   end
-
+  
+  def authenticate
+    unless customer_signed_in?
+      redirect_to request.referer, alert: "ログイン前にこの操作を実行できません。"
+    end
+  end
 end

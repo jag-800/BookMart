@@ -54,10 +54,25 @@
             <% end %>
           </div>
         </div>
-        <% unless customer_signed_in? || admin_signed_in? %>
+        <!-- ゲスト機能と未ログインとの差がないので凍結-->
+                <!--<%# unless customer_signed_in? || admin_signed_in? %>-->
+                <!--  <div class="col-md-3">-->
+                <!--    <div>-->
+                <!--      <%#= link_to 'ゲストログイン(閲覧用)', guest_sign_in_path, method: :post %>-->
+                <!--    </div>-->
+                <!--  </div>-->
+                <!--<%# end %>-->
+        <!--ここまで-->
+        <% if customer_signed_in? %>
           <div class="col-md-3">
             <div>
-              <%= link_to 'ゲストログイン(閲覧用)', guest_sign_in_path, method: :post %>
+              <%= current_customer.no_nick_name %>さん、おかえり！
+            </div>
+          </div>
+        <% elsif admin_signed_in? %>
+          <div class="col-md-3">
+            <div>
+              運営者さん、おかえり！
             </div>
           </div>
         <% end %>
@@ -67,7 +82,7 @@
     <main class="container-fluid flex-grow-1 border border-dark background-wrapper">
       <div class="mt-5 xside">
         <% if flash[:alert] %>
-          <p class="alert alert-danger"><%= alert %></p>
+          <p class="alert alert-danger"><%= alert %>新規登録のリンクは<%= link_to "こちら", new_customer_registration_path %></p>
         <% end %>
         <%= yield %>
       </div>
