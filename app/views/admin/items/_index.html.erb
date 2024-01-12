@@ -1,11 +1,12 @@
 <table class="table mt-3 responsive-table">
   <thead class="table-secondary">
     <tr>
-      <th>商品</th>
-      <th>名前</th>
-      <th><%= sort_link(@q, :price, "価格") %></th>
-      <th>タグ</th>
-      <th><%= sort_link(@q, :is_active, "販売状況") %></th>
+      <th class="text-center small-text">商品</th>
+      <th class="text-center small-text">名前</th>
+      <th class="text-center small-text"><%= sort_link(@q, :price, "価格") %></th>
+      <th class="text-center small-text">タグ</th>
+      <th class="text-center small-text"><%= sort_link(@q, :favorites_count, 'お気に入り数') %></th>
+      <th class="text-center small-text"><%= sort_link(@q, :is_active, "販売状況") %></th>
     </tr>
   </thead>
   <tbody class="content">
@@ -22,6 +23,9 @@
       </td>
       <td class="item-price"><%= number_with_delimiter(item.price) %></td>
       <td class="item-tags"><%= render 'tag_list', tag_list: item.tag_list %></td>
+      <td class="pb-3 favorite-<%= item.id %>">
+        <%= render "public/favorites/btn", item: item %>
+      </td>
       <% if item.is_active == true %>
         <td class="item-status text-success font-weight-bold">販売中</td>
       <% else %>

@@ -45,16 +45,6 @@ body {
     display: none
 }
 
-@media (max-width: 768px) {
-  .xside {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-  .middle-small-screen {
-    display: none
-  }
-}
-
 @media (max-width: 1016px) {
   .navbar ul {
     flex-direction: column;
@@ -77,6 +67,16 @@ body {
   }
   .my-item {
     margin-left: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .xside {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .middle-small-screen {
+    display: none
   }
 }
 
