@@ -1,4 +1,9 @@
 class Public::FavoritesController < ApplicationController
+  before_action :authenticate
+
+  def index
+    @favorites = Favorite.where(customer_id: current_customer.id).page(params[:page])
+  end
 
   def create
     if !Favorite.exists?(item_id: params[:item_id], customer_id: current_customer.id)
@@ -18,4 +23,11 @@ class Public::FavoritesController < ApplicationController
     end
   end
 
+  private
+
+  def authenticate
+    unless customer_signed_in?
+      redirect_to request.referer, alert: "ログイン前にこの操作を実行できません。"
+    end
+  end
 end

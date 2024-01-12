@@ -31,6 +31,12 @@
         <td class="pb-3"><%= number_with_delimiter(@item.price) %>円</td>
       </tr>
       <tr>
+        <td class="pb-3">お気に入り</td>
+        <td class="pb-3 favorite-<%= @item.id %>">
+          <%= render "public/favorites/btn", item: @item %>
+        </td>
+      </tr>
+      <tr>
         <td>販売ステータス</td>
         <% if @item.is_active == true %>
           <td class="text-success font-weight-bold">販売中</td>
@@ -43,3 +49,24 @@
 
 </div>
 
+<div>
+  <div class="item-comments-counter">
+    <%= render "public/item_comments/counter", item: @item %>
+  </div>
+  <% if @item.customer == current_customer %>
+    <div><%= link_to 'Edit', edit_item_path(@item), class: "btn btn-sm btn-success edit_item_#{@item.id}" %></div>
+    <div><%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_item_#{@item.id}" %></div>
+  <% end %>
+
+  <div class="item-comments-index mb-2">
+    <% if @item.item_comments.any? %>
+      <%= render "public/item_comments/index", item: @item %>
+    <% end %>
+  </div>
+
+  <% if customer_signed_in? %>
+    <%= render "public/item_comments/form", item: @item, item_comment: @item_comment %>
+  <% else %>
+  <p>コメントにはログインが必要です。</p>
+  <% end %>
+</div>
