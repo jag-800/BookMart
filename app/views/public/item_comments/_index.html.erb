@@ -1,4 +1,4 @@
-<div style="width: 100%; height: 300px; overflow-y: scroll;">
+<div style="width: 100%; max-height: 300px; overflow-y: scroll;">
   <% item.item_comments.each do |item_comment| %>
     <div class="<%= 'd-flex flex-column' if item_comment.customer_id == current_customer.id %>">
       <div class="d-flex align-items-center justify-content-between">
