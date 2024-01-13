@@ -19,7 +19,7 @@
       </td>
       <td class="small-text">
         <%= link_to item_path(item.id) do %>
-          <%= item.name %>
+          <%= truncate(item.name, length: 10) %>
         <% end %>
       </td>
       <td class="item-price"><%= number_with_delimiter(item.price) %></td>

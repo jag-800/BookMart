@@ -31,4 +31,9 @@
   .item-image .small-text {
     font-size: smaller; /* テキストのサイズを小さく */
   }
+  .responsive-iframe {
+    width: 100%;
+    height: auto;
+    border: 0;
+  }
 }
