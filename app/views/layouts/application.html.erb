@@ -41,17 +41,30 @@
       <div class="row">
         <div class="col">
           <div class="px-4">
-            <%= search_form_for @q, url: search_items_path do |f| %>
-              <%= f.label :name_cont, '書籍検索' %>
-              <%= f.search_field :name_cont %>
-              <%= f.submit '検索' %>
-              <div>
-              投稿日
-              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, id: 'created_at_this_week', checked: true %> 今週
-              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month, id: 'created_at_this_month' %> 今月
-              <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year, id: 'created_at_this_year' %> 今年
+            <p>
+              <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </p>
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                  <div class="">
+                    <%= search_form_for @q, url: search_items_path do |f| %>
+                      <%= f.label :name_cont, '書籍検索' %>
+                      <%= f.search_field :name_cont %>
+                      <%= f.submit '検索' %>
+                      <div>
+                      投稿日
+                      <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, id: 'created_at_this_week', checked: true %> 今週
+                      <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month, id: 'created_at_this_month' %> 今月
+                      <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year, id: 'created_at_this_year' %> 今年
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
               </div>
-            <% end %>
+            </div>
           </div>
         </div>
         <!-- ゲスト機能と未ログインとの差がないので凍結-->

@@ -1,12 +1,12 @@
 <table class="table mt-3 content responsive-table">
   <thead class="table-secondary">
     <tr>
-      <th class="text-center">商品</th>
-      <th class="text-center">名前</th>
-      <th class="text-center"><%= sort_link(@q, :price, "価格") %></th>
-      <th class="text-center">タグ</th>
-      <th class="text-center"><%= sort_link(@q, :favorites_count, 'お気に入り数') %></th>
-      <th class="text-center"><%= sort_link(@q, :is_active, "販売状況") %></th>
+      <th class="text-center small-tag ">商品</th>
+      <th class="text-center small-tag ">名前</th>
+      <th class="text-center small-tag "><%= sort_link(@q, :price, "価格") %></th>
+      <th class="text-center small-tag ">タグ</th>
+      <th class="text-center small-tag "><%= sort_link(@q, :favorites_count, 'お気に入り数') %></th>
+      <th class="text-center small-tag "><%= sort_link(@q, :is_active, "販売状況") %></th>
     </tr>
   </thead>
   <tbody>
@@ -22,7 +22,7 @@
           <%= truncate(item.name, length: 10) %>
         <% end %>
       </td>
-      <td class="item-price"><%= number_with_delimiter(item.price) %></td>
+      <td class="item-price"><%= number_with_delimiter(item.price) %>円</td>
       <td class="item-tags"><%= render 'tag_list', tag_list: item.tag_list %></td>
       <td class="favorite-<%= item.id %>">
         <%= render "public/favorites/btn", item: item %>
