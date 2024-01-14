@@ -17,16 +17,14 @@
   <div class="form-group row">
     <label for="inputName" class="col-sm-2 col-form-label">名前</label>
     <div class="col-sm-5">
-      (姓)<%= f.text_field :last_name, autofocus: true, id:"inputLast_name", placeholder:"令和", class:"form-control" %>
-      (名)<%= f.text_field :first_name, autofocus: true, id:"inputFirst_name", placeholder:"道子", class:"form-control" %>
+      (姓名)<%= f.text_field :full_name, autofocus: true, id:"inputLast_name", placeholder:"令和道子", class:"form-control" %>
     </div>
   </div>
 
   <div class="form-group row">
     <label for="inputName_kana" class="col-sm-2 col-form-label">フリガナ</label>
     <div class="col-sm-5">
-      (セイ)<%= f.text_field :last_name_kana, autofocus: true, id:"inputLast_name_kana", placeholder:"レイワ", class:"form-control" %>
-      (メイ)<%= f.text_field :first_name_kana, autofocus: true, id:"inputFirst_name_kana", placeholder:"ミチコ", class:"form-control" %>
+      (セイメイ)<%= f.text_field :full_name_kana, autofocus: true, id:"inputLast_name_kana", placeholder:"レイワミチコ", class:"form-control" %>
     </div>
   </div>
 
@@ -48,20 +46,6 @@
     <label for="inputEmail" class="col-sm-2 col-form-label">メールアドレス</label>
     <div class="col-sm-5">
       <%= f.email_field :email, autofocus: true, id:"inputEmail", placeholder:"sample@example.com", class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="inputPost_code" class="col-sm-2 col-form-label">郵便番号(ハイフンなし)</label>
-    <div class="col-sm-5">
-      <%= f.text_field :post_code, autofocus: true, id:"inputPost_code", placeholder:"00000000", class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="inputAddress" class="col-sm-2 col-form-label">住所</label>
-    <div class="col-sm-5">
-      <%= f.text_field :address, autofocus: true, id:"inputAddress", placeholder:"東京都渋谷区代々木神園町0-0", class:"form-control" %>
     </div>
   </div>
 

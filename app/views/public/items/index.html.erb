@@ -2,15 +2,14 @@
   <div class="offset-1">
     <h5 class="px-4 table-secondary mb-4">商品リスト</h5>
   </div>
-  <div class="offset-5"></div>
-  <div class="col-md-2 balloon2-right">
-    <p class="small-text">商品を出品しましょう！</p>
-  </div>
-  <div class="mt-2 ml-3">
-    <%= link_to '+', new_item_path, class: 'btn btn-light border shadow rounded-circle d-flex justify-content-center align-items-center', style: 'width: 50px; height: 50px; font-size: 30px; color: gray;' %>
+</div>
+<div class="row justify-content-end">
+  <div class="col-auto mt-2">
+    <%= link_to new_item_path, class: 'btn btn-warning border shadow rounded-circle d-flex justify-content-center align-items-center', style: 'width: 90px; height: 90px; font-size: 20px; color: white;' do %>
+      出品 <i class="fa-solid fa-camera"></i>
+    <% end %>
   </div>
 </div>
-
 <div>
   <h4>(全 <%= @items.count %>件)</h4>
 </div>

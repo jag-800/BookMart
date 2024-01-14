@@ -58,10 +58,6 @@
     <div class="item-comments-counter">
       <%= render "public/item_comments/counter", item: @item %>
     </div>
-    <% if @item.customer == current_customer %>
-      <div><%= link_to 'Edit', edit_item_path(@item), class: "btn btn-sm btn-success edit_item_#{@item.id}" %></div>
-      <div><%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_item_#{@item.id}" %></div>
-    <% end %>
 
     <div class="item-comments-index mb-2">
       <% if @item.item_comments.any? %>
@@ -72,21 +68,20 @@
     <% if customer_signed_in? %>
       <%= render "public/item_comments/form", item: @item, item_comment: @item_comment %>
     <% else %>
-    <p>コメントにはログインが必要です。</p>
+    <p>ログイン後、コメントが可能になります。</p>
     <% end %>
   </div>
 
   <div class="row buy-button">
     <% if current_customer && @item.customer_id == current_customer.id %>
       <div>
+        <h4>ご自身の登録商品です。購入できません。</h4>
         <% if @item.is_active == true %>
-        <%= link_to "編集する", edit_item_path(@item.id), class:"btn btn-success mx-auto" %>
+        <%= link_to "商品編集", edit_item_path(@item.id), class:"btn btn-sm btn-success mx-auto" %>
         <% end %>
-        <%= link_to "削除する", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？",  class:"btn btn-danger mx-auto" %>
+        <%= link_to "削除", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？",  class:"btn btn-sm btn-danger mx-auto" %>
       </div>
-
-      <h4>ご自身の登録商品です</h4>
-      <h4>購入できません。</h4>
+      
     <% end %>
 
     <div class="mx-auto">
