@@ -16,7 +16,7 @@
     <tbody>
       <td class="p-1">
         <% @tag_counts.each do |tag_name, count| %>
-        <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-primary text-white" %>
+        <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-warning text-white" %>
         (<%= count %>),
       <% end %>
       </td>

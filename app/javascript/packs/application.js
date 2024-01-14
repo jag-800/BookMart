@@ -23,6 +23,7 @@ import '../stylesheets/admin/items';
 import '../stylesheets/admin/customers';
 
 require("./slick")
+require("./tab")
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

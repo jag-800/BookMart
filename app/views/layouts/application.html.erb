@@ -22,11 +22,11 @@
           <i class="fas fa-home"></i> LOGO
         <% end %>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler except-small-screen" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse except-small-screen" id="navbarSupportedContent">
           <ul class="navbar-nav mt-3 ml-auto">
             <% if admin_signed_in? %>
               <%= render 'layouts/admin_nav_links' %>
@@ -90,6 +90,97 @@
           </div>
         <% end %>
       </div>
+
+      <div id="sp-menu" class="border border-dark p-3 text-secondary">
+        <h2 class="text-center mt-5">MENU</h2>
+        <ul class="list-unstyled">
+          <li>
+            <%= link_to homes_about_path, 'data-turbolinks': false, class:"text-dark" do %>
+              <i class="fas fa-link"></i> About
+            <% end %>
+          </li>
+          <li>
+            <%= link_to items_path, class:"text-dark" do %>
+              <i class="fas fa-book"></i> 商品リスト
+            <% end %>
+          </li>
+          <li>
+            <%= link_to items_tag_path, class:"text-dark" do %>
+              <i class="fas fa-tags"></i> タグ検索
+            <% end %>
+          </li>
+          <% if admin_signed_in? %>
+            <li>
+              <%= link_to admin_customers_path, class:"text-dark" do %>
+                <i class="fas fa-users"></i> 会員リスト
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_orders_path, class:"text-dark" do %>
+                <i class="far fa-address-book"></i> 取引履歴リスト
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to favorites_path, class:"text-dark" do %>
+                <i class="fa-solid fa-heart"></i> お気に入り
+              <% end %>
+            </li>
+            <li>
+              <%= link_to mypage_path, class:"text-dark" do %>
+                <i class="fas fa-user"></i> マイページ
+              <% end %>
+            </li>
+            <li>
+              <%= link_to notices_path, class:"text-dark" do %>
+                <i class="fas fa-envelope"></i> 通知
+                <% if customer_signed_in? && @unchecked_notices.any? %>
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
+                    <%= @unchecked_notices.count %>
+                  </span>
+                <% elsif admin_signed_in? && @unchecked_admin_notices.any? %>
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
+                    <%= @unchecked_admin_notices.count %>
+                  </span>
+                <% end %>
+              <% end %>
+            </li>
+          <% end %>
+          <% unless customer_signed_in? || admin_signed_in? %>
+            <li>
+              <%= link_to new_customer_registration_path, class:"text-dark" do %>
+                <i class="fas fa-user-plus"></i> 新規登録
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_customer_session_path, class:"text-dark" do %>
+                <i class="fas fa-sign-in-alt"></i> ログイン
+              <% end %>
+            </li>
+          <% end %>
+          <% if customer_signed_in? || admin_signed_in? %>
+            <li>
+              <%= link_to destroy_customer_session_path, method: :delete, class:"text-dark" do %>
+                <i class="fas fa-sign-out-alt"></i> ログアウト
+              <% end %>
+            </li>
+          <% end %>
+          <li>
+            <%= link_to new_item_path, class: "text-danger" do %>
+              <i class="fa-solid fa-camera"></i> 出品する
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <div id="hm-icon">
+        <a class="menu-trigger" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+
     </header>
 
     <main class="container-fluid flex-grow-1 border border-dark background-wrapper">

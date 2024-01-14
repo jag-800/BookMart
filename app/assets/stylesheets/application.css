@@ -45,6 +45,91 @@ body {
     display: none
 }
 
+.yellow-link {
+  color: #FFC107;
+}
+
+.yellow-back {
+  background-color: #FFC107;
+}
+
+/* ---------------------------- */
+/* ---- ハンバーガーアイコン ---- */
+/* ---------------------------- */
+#hm-icon {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 10;
+}
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+.menu-trigger {
+  position: relative;
+  width: 43px;
+  height: 43px;
+}
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: gray;
+  border-radius: 4px;
+}
+.menu-trigger span:nth-child(1) {
+  top: 0;
+}
+.menu-trigger span:nth-child(2) {
+  top: 20px;
+}
+.menu-trigger span:nth-child(3) {
+  bottom: 0;
+}
+.menu-trigger.active span:nth-child(1) {
+  -webkit-transform: translateY(20px) rotate(-45deg);
+  transform: translateY(20px) rotate(-45deg);
+  /*background-color: gray;*/
+}
+.menu-trigger.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-trigger.active span:nth-child(3) {
+  -webkit-transform: translateY(-20px) rotate(45deg);
+  transform: translateY(-20px) rotate(45deg);
+  background-color: gray;
+}
+/* ------------------------ */
+/* ------ spメニュー ------ */
+/* ------------------------ */
+/* スマートフォン用メニュー */
+#sp-menu {
+  position: fixed;
+  top: 0;
+  right: 0; /* 右端に配置 */
+  background: rgba(255, 255, 255, 0.9); /* 白背景に透明度を追加 */
+  color: gray;
+  width: 160px; /* 幅を300pxに設定 */
+  min-height: 100%;
+  display: none;
+  z-index: 9;
+}
+
+#sp-menu li {
+  /*text-align: center;*/
+  margin-bottom: 30px;
+}
+
+#sp-menu a {
+  /*color: gray;*/
+  text-decoration: none;
+  font-weight: bold;
+}
+
 @media (max-width: 1016px) {
   .navbar ul {
     flex-direction: column;
@@ -59,6 +144,9 @@ body {
   .except-small-screen {
     display: none
   }
+  .except-small-screen2 {
+    display: none
+  }
   .only-small-screen {
     display: block
   }
@@ -67,6 +155,12 @@ body {
   }
   .my-item {
     margin-left: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  #hm-icon {
+    display: none;
   }
 }
 

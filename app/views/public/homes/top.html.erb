@@ -16,7 +16,7 @@
         <% @tag_counts.each do |tag_name, count| %>
         <tr>
           <td class="py-1 px-3">
-            <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-primary text-white" %>
+            <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-warning text-white" %>
             (<%= count %>)
           </td>
         </tr>
@@ -49,7 +49,7 @@
             <% @tag_counts.each do |tag_name, count| %>
             <tr>
               <td class="py-1 px-3">
-                <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-primary text-white" %>
+                <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-warning text-white" %>
                 (<%= count %>)
               </td>
             </tr>
@@ -76,6 +76,11 @@
   </div>
 </div>
 
-<div class="d-flex">
-  <%= link_to "全ての商品を見る >", items_path, class: "ml-auto" %>
+<div class="row justify-content-end">
+  <div class="col-auto mt-2">
+    <%= link_to new_item_path, class: 'btn btn-warning border shadow rounded-circle d-flex justify-content-center align-items-center', style: 'width: 90px; height: 90px; font-size: 20px; color: white;' do %>
+      出品 <i class="fa-solid fa-camera"></i>
+    <% end %>
+  </div>
 </div>
+
