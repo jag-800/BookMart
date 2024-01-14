@@ -158,11 +158,11 @@ body {
   }
 }
 
-@media (min-width: 992px) {
-  #hm-icon {
-    display: none;
-  }
-}
+/*@media (min-width: 992px) {*/
+/*  #hm-icon {*/
+/*    display: none;*/
+/*  }*/
+/*}*/
 
 @media (max-width: 768px) {
   .xside {

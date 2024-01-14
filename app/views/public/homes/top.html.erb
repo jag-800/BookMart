@@ -35,7 +35,7 @@
         また、商品購入後は
         <strong> <i class="fas fa-map-marked-alt"></i> <%= link_to "近畿大学中央図書館", homes_about_path, 'data-turbolinks': false %></strong>
         で商品受け渡しをしてもらいます。<br>
-        ぜひご購入下さい。
+        ぜひ<strong>ご出品・購入</strong>下さい。
       </span>
       </div>
     </div>
@@ -76,11 +76,10 @@
   </div>
 </div>
 
-<div class="row justify-content-end">
-  <div class="col-auto mt-2">
+<div style="position: fixed; right: 20px; bottom: 20px; z-index: 1000;">
+  <div>
     <%= link_to new_item_path, class: 'btn btn-warning border shadow rounded-circle d-flex justify-content-center align-items-center', style: 'width: 90px; height: 90px; font-size: 20px; color: white;' do %>
       出品 <i class="fa-solid fa-camera"></i>
     <% end %>
   </div>
 </div>
-
