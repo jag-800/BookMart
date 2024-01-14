@@ -17,13 +17,9 @@ class Customer < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_one_attached :customer_image
 
-  validates :last_name, presence: true
-  validates :first_name, presence: true
-  validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :full_name, presence: true
+  validates :full_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :email, presence: true, uniqueness: true
-  validates :post_code, presence: true, format: { with: /\A\d{7}\z/ }
-  validates :address, presence: true
   validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/ }
   validates :nick_name, length: { maximum: 20 }
   
@@ -88,13 +84,13 @@ class Customer < ApplicationRecord
   end
 
   
-  def full_name
-    last_name + " " + first_name
-  end
+  # def full_name
+  #   last_name + " " + first_name
+  # end
 
-  def full_name_kana
-    last_name_kana + " " + first_name_kana
-  end
+  # def full_name_kana
+  #   last_name_kana + " " + first_name_kana
+  # end
 
   # def guest?
   #   email == 'guest@example.com'

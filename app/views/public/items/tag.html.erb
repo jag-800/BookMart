@@ -16,10 +16,18 @@
     <tbody>
       <td class="p-1">
         <% @tag_counts.each do |tag_name, count| %>
-        <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-primary text-white" %>
+        <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-warning text-white" %>
         (<%= count %>),
       <% end %>
       </td>
     </tbody>
   </table>
+</div>
+
+<div style="position: fixed; right: 20px; bottom: 20px; z-index: 1000;">
+  <div>
+    <%= link_to new_item_path, class: 'btn btn-warning border shadow rounded-circle d-flex justify-content-center align-items-center', style: 'width: 90px; height: 90px; font-size: 20px; color: white;' do %>
+      出品 <i class="fa-solid fa-camera"></i>
+    <% end %>
+  </div>
 </div>

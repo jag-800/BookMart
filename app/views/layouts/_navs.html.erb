@@ -1,0 +1,15 @@
+<button class="navbar-toggler except-small-screen" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse except-small-screen" id="navbarSupportedContent">
+  <ul class="navbar-nav mt-3 ml-auto">
+    <% if admin_signed_in? %>
+      <%= render 'layouts/admin_nav_links' %>
+    <% elsif customer_signed_in? %>
+      <%= render 'layouts/customer_nav_links' %>
+    <% else %>
+      <%= render 'layouts/guest_nav_links' %>
+    <% end %>
+  </ul>
+</div>
