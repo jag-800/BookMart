@@ -55,7 +55,7 @@
     font-size: 12px; /* または希望する小さいサイズに設定 */
   }
   .small-tag {
-    font-size: 10px; /* または希望する小さいサイズに設定 */
+    font-size: 12px; /* または希望する小さいサイズに設定 */
     padding: 0px; /* 小さなボタンサイズ */
   }
   .item-price, .item-tags, .item-status {
@@ -74,5 +74,11 @@
   }
   .tag-table {
     width: 216%;
+  }
+  .btn-smaller {
+    padding: 0.25rem 0.5rem; /* パディングを小さくする */
+    font-size: 0.7rem; /* フォントサイズを小さくする */
+    line-height: 1; /* 行の高さを調整する */
+    border-radius: 0.2rem; /* ボーダーの半径を調整する */
   }
 }
