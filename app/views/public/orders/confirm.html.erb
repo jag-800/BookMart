@@ -4,13 +4,9 @@
   </div>
 </div>
 
-<p id="notice">
-  <%= flash.now[:error] %>
-</p>
-
 <div class="row">
   <div class="col-md-8">
-    <table class="table table-bordered border-dark">
+    <table class="table table-bordered border-dark shadow p-3 mb-5 rounded">
       <thead>
         <tr>
           <td class="table-secondary border-dark">商品名</td>
@@ -20,26 +16,26 @@
       </thead>
       <tbody>
         <tr>
-          <td class="border-dark"><%= @order.item.name %></td>
-          <td class="border-dark"><%= number_with_delimiter(@order.item.price) %></td>
-          <td class="border-dark"><%= image_tag @order.item.get_item_image(30,30) %></td>
+          <td class="border-dark content"><%= @order.item.name %></td>
+          <td class="border-dark content"><%= number_with_delimiter(@order.item.price) %></td>
+          <td class="border-dark content"><%= image_tag @order.item.get_item_image(30,30) %></td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="col-md-3">
-    <table>
+    <table class=" shadow p-3 mb-5 rounded">
       <tbody class="table table-bordered border-dark">
         <tr>
           <td class="table-secondary border-dark">出品者</td>
-          <td class="border-dark">
+          <td class="border-dark content">
             <%= link_to @item.customer.no_nick_name + "さん", show_information_path(@item.customer), class: "btn btn-sm btn-info" %>
           </td>
         </tr>
         <tr>
           <td class="table-secondary border-dark">取引場所</td>
-          <td class="border-dark">近畿大学 - 図書館</td>
+          <td class="border-dark content">近畿大学 - 図書館</td>
         </tr>
       </tbody>
     </table>
@@ -47,11 +43,34 @@
 
 </div>
 
-<p class="mt-3">取引画面で、出品者とのDMで受け取り時間を決めてください。</p>
-<div class="d-flex align-items-center my-3 mt-4">
-  <%= form_with model: @order, url: orders_path do |f| %>
-    <%= f.hidden_field :item_id, value: @item.id %>
-    <%= f.hidden_field :name, value: @item.name %>
-    <%= f.submit "取引画面へ", "data-confirm" => "注文を確定しますか", class:"btn btn-success mx-auto" %>
-  <% end %>
+<!-- Button trigger modal -->
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
+  取引画面へ
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">購入確認</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="mt-3">取引画面で、出品者とのDMで受け取り時間を決めてください。</p>
+        <div class="d-flex align-items-center my-3 mt-4">
+        <%= form_with model: @order, url: orders_path do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.hidden_field :name, value: @item.name %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+          <%= f.submit "購入する", class:"btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -49,8 +49,7 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.find_by(id: params[:id])
     # confirmでリロードした際の処理
     unless @order
-      flash[:notice] = "注文に失敗しました。再度操作を行ってください。"
-      redirect_to request.referer and return
+      redirect_to request.referer, notice:"注文に失敗しました。再度操作を行ってください。" and return
     end
     @item = @order.item # OrderDetailsがないので、直接Itemを取得
   end

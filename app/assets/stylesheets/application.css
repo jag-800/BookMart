@@ -120,8 +120,13 @@ body {
 }
 
 #sp-menu li {
-  /*text-align: center;*/
-  margin-bottom: 30px;
+  border-bottom: 1px solid #ccc; /* 下線の色と太さを設定 */
+  padding-top: 15px;
+  padding-bottom: 15px; /* 下線とテキストの間隔 */
+}
+
+#sp-menu li:hover {
+  background-color: #f8f9fa; /* ホバー時の背景色を設定 */
 }
 
 #sp-menu a {
@@ -129,6 +134,10 @@ body {
   text-decoration: none;
   font-weight: bold;
 }
+
+
+
+
 
 @media (max-width: 1016px) {
   .navbar ul {

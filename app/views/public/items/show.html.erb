@@ -14,7 +14,7 @@
   の、本人同士の清算・受け渡しになります。</p>
   <div class="row mt-3">
     <div class="offset-md-1 col-md-3">
-      <%= image_tag @item.get_item_image(250,300), class:"item-image" %>
+      <%= image_tag @item.get_item_image(250,300), class:"item-image shadow p-3 mb-5 bg-white rounded" %>
     </div>
 
     <table class="offset-md-2 col-md-6 item-introduction">
@@ -96,11 +96,7 @@
               <%= f.hidden_field :item_id, value: @item.id %>
             </td>
             <td>
-              <% if customer_signed_in? %>
-                <%= f.submit "購入手続きに進む", class:"btn btn-success" %>
-              <% else %>
-                <%= link_to "購入手続きに進む", new_customer_session_path, class:"btn btn-success" %>
-              <% end %>
+              <%= f.submit "購入手続きに進む", class:"btn btn-success shadow mb-2 rounded" %>
             </td>
           </table>
           <% end %>

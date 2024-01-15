@@ -11,7 +11,7 @@
 
 <div class="row">
 
-  <table class="table table-bordered border-dark">
+  <table class="table table-hover table-bordered border-dark shadow p-3 mb-5 bg-white rounded">
     <thead>
         <tr>
           <td class="table-secondary border-dark">売却日</td>
@@ -27,7 +27,7 @@
         <td class="border-dark content"><%= order.item.name %></td>
         <td class="border-dark content"><%= number_with_delimiter(order.item.price) %>円</td>
         <td class="border-dark content"><%= I18n.t("enums.order.status.#{order.status}") %></td>
-        <td class="border-dark content"><%= link_to "表示する", order_details_path(order.id), class:"btn btn-primary" %></td>
+        <td class="border-dark content"><%= link_to "表示する", order_details_path(order.id), class:"btn btn-primary shadow rounded" %></td>
       </tr><% end %>
     </tbody>
   </table>
