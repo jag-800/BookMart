@@ -137,8 +137,6 @@ body {
 
 
 
-
-
 @media (max-width: 1016px) {
   .navbar ul {
     flex-direction: column;
@@ -167,11 +165,6 @@ body {
   }
 }
 
-/*@media (min-width: 992px) {*/
-/*  #hm-icon {*/
-/*    display: none;*/
-/*  }*/
-/*}*/
 
 @media (max-width: 768px) {
   .xside {
@@ -182,6 +175,8 @@ body {
     display: none
   }
 }
+
+
 
 @media (max-width: 425px) {
   .middle-small-screen {
