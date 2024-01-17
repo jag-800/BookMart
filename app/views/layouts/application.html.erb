@@ -17,48 +17,36 @@
 
   <body class="d-flex flex-column min-vh-100">
     <header class="shadow-lg mb-1 p-3 bg-white">
-      <nav class="navbar navbar-expand-lg navbar-light px-4">
-        <div class="row">
-        <%= link_to root_path, class:"btn btn-lg btn-outline-secondary justify-content-center pt-4 px-5" do %>
-          <i class="fas fa-home"></i> LOGO
-        <% end %>
-        
-        
-          <div class="col">
-            <div class="px-4">
-              <!-- コラプスボタン -->
-              <button class="btn btn-sm btn-outline-secondary d-lg-none" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </button>
-              <div class="row">
-                <div class="col">
-                  <!-- コラプスコンテンツ -->
-                  <div class="collapse multi-collapse d-lg-block" id="multiCollapseExample1">
-                    <div>
-                      <%= search_form_for @q, url: search_items_path do |f| %>
-                        <%= f.label :name_cont, '書籍検索' %>
-                        <%= f.search_field :name_cont %>
-                        <%= f.submit '検索' %>
-                        <div>
-                          出品日
-                          <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, id: 'created_at_this_week', checked: true %> 今週
-                          <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month, id: 'created_at_this_month' %> 今月
-                          <%= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year, id: 'created_at_this_year' %> 今年
-                        </div>
-                      <% end %>
-                    </div>
-                    
-                    
-                  </div>
+      <div class="row">
+        <div>
+          <%= link_to root_path, class:"btn btn-lg btn-outline-secondary px-5 mx-3" do %>
+            <i class="fas fa-home"></i> LOGO
+          <% end %>
+        </div>
+
+        <div>
+          <%= search_form_for @q, url: search_items_path do |f| %>
+            <div class="mb-2 mt-1 search">
+              <div class="input-group">
+                <%= f.search_field :name_cont, class: "form-control", placeholder: "書籍検索" %>
+                <div class="input-group-append">
+                  <%= f.button class: "btn btn-secondary", type: "submit" do %>
+                    <i class="fas fa-search"></i>
+                  <% end %>
                 </div>
               </div>
             </div>
-          </div>
-
+            <!--<div>-->
+            <!--  出品日-->
+            <!--  <%#= f.radio_button :created_at_gteq, Date.today.at_beginning_of_week, id: 'created_at_this_week' %> 今週-->
+            <!--  <%#= f.radio_button :created_at_gteq, Date.today.at_beginning_of_month, id: 'created_at_this_month' %> 今月-->
+            <!--  <%#= f.radio_button :created_at_gteq, Date.today.at_beginning_of_year, id: 'created_at_this_year', checked: true %> 今年-->
+            <!--</div>-->
+          <% end %>
         </div>
-        
-      </nav>
-      
+
+
+
         <!-- ゲスト機能と未ログインとの差がないので凍結-->
                 <!--<%# unless customer_signed_in? || admin_signed_in? %>-->
                 <!--  <div class="col-md-3">-->
@@ -68,26 +56,25 @@
                 <!--  </div>-->
                 <!--<%# end %>-->
         <!--ここまで-->
-        <% if customer_signed_in? %>
-          <div class="col-md-3">
-            <div>
-              <%= current_customer.no_nick_name %>さん、おかえり！
+        <div class="col ml-5 mt-2">
+          <% if customer_signed_in? %>
+            <div class="col-md-3">
+              <div class="btn btn-sm btn-success text-white">
+                <%= current_customer.no_nick_name %>
+              </div>
             </div>
-          </div>
-        <% elsif admin_signed_in? %>
-          <div class="col-md-3">
-            <div>
-              運営者さん、おかえり！
+          <% elsif admin_signed_in? %>
+            <div class="col-md-3">
+              <div>
+                運営者さん
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
+
       </div>
 
-      
       <%= render "layouts/side_bar" %>
-        
-
-      
 
     </header>
 
