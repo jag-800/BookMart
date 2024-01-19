@@ -12,16 +12,16 @@
         <table class="mb-3">
           <tbody>
             <tr>
-              <td class="pb-3 small-text">名前</td>
-              <td class="pb-3 small-text"><%= @item.name %></td>
+              <td class="small-text p-1 px-2 mr-3 item-im">名前</td>
+              <td class="small-text"><%= @item.name %></td>
             </tr>
             <tr>
-              <td class="pb-3 small-text">価格</td>
-              <td class="pb-3 small-text"><%= number_with_delimiter(@item.price) %>円</td>
+              <td class="small-text p-1 px-2 mr-3 item-im">価格</td>
+              <td class="small-text"><%= number_with_delimiter(@item.price) %>円</td>
             </tr>
             <tr>
-              <td class="pb-3">お気に入り</td>
-              <td class="pb-3 favorite-<%= @item.id %>">
+              <td class="small-text p-1 px-2 mr-3 item-im">お気に入り</td>
+              <td class="small-text favorite-<%= @item.id %>">
                 <%= render "public/favorites/btn", item: @item %>
               </td>
             </tr>
