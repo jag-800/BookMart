@@ -38,7 +38,9 @@ rails db:migrate
 rails db:seed
 ```
 ## 設計書
-後ほど記載予定
+- ER図　[こちら](https://drive.google.com/file/d/1QanI13OdNJKM92TqZ7l-SXq42rJMEVYm/view?usp=sharing).
+- テーブル定義書　未定.
+- アプリケーション詳細設計書　未定.
 
 ## 開発環境
 - OS：Linux（CentOS)
