@@ -16,7 +16,7 @@
   </head>
 
   <body class="d-flex flex-column min-vh-100">
-    <header class="shadow-lg mb-1 p-3 bg-white">
+    <header class="shadow-lg mb-1 p-3">
       <div class="row">
         <div>
           <%= link_to root_path, class:"btn btn-lg btn-outline-secondary px-5 mx-3" do %>
@@ -59,8 +59,8 @@
         <div class="col ml-5 mt-2">
           <% if customer_signed_in? %>
             <div class="col-md-3">
-              <div class="btn btn-sm btn-success text-white">
-                <%= current_customer.no_nick_name %>
+              <div class="btn btn-sm btn-success">
+                <%= link_to current_customer.no_nick_name, mypage_path, class:"text-white" %>
               </div>
             </div>
           <% elsif admin_signed_in? %>
