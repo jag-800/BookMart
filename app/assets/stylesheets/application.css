@@ -15,7 +15,9 @@
  */
 
  /* ブラウザがそれぞれ持っているCSSをリセットするための記述 */
-
+header {
+  background-color: white;
+}
 body {
   overflow-x: hidden;
 }
@@ -26,7 +28,7 @@ body {
 }
 
 .background-wrapper {
-  background-color: whitesmoke;
+  background-color: lemonchiffon;
 }
 
 .content {
@@ -106,14 +108,13 @@ body {
 /* ------------------------ */
 /* ------ spメニュー ------ */
 /* ------------------------ */
-/* スマートフォン用メニュー */
 #sp-menu {
   position: fixed;
   top: 0;
   right: 0; /* 右端に配置 */
-  background: rgba(255, 255, 255, 0.9); /* 白背景に透明度を追加 */
+  background: rgba(255, 222, 125, 0.9); /* 白背景に透明度を追加 */
   color: gray;
-  width: 160px; /* 幅を300pxに設定 */
+  width: 20%; /* 幅を300pxに設定 */
   min-height: 100%;
   display: none;
   z-index: 9;
@@ -123,10 +124,12 @@ body {
   border-bottom: 1px solid #ccc; /* 下線の色と太さを設定 */
   padding-top: 15px;
   padding-bottom: 15px; /* 下線とテキストの間隔 */
+  padding-left: 2px;
+  color: #F35A5A;
 }
 
 #sp-menu li:hover {
-  background-color: #f8f9fa; /* ホバー時の背景色を設定 */
+  background-color: #ffc107; /* ホバー時の背景色を設定 */
 }
 
 #sp-menu a {
@@ -163,6 +166,9 @@ body {
   .my-item {
     margin-left: 15px;
   }
+  #sp-menu {
+    width: 30%; /* 幅を300pxに設定 */
+  }
 }
 
 
@@ -174,9 +180,18 @@ body {
   .middle-small-screen {
     display: none
   }
+  #sp-menu {
+    width: 40%; /* 幅を300pxに設定 */
+  }
 }
 
 
+@media (max-width: 448px) {
+  .search {
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+}
 
 @media (max-width: 425px) {
   .middle-small-screen {

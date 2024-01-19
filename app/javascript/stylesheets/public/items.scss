@@ -46,6 +46,15 @@
   margin-top: 50px !important;
 }
 
+.item-im {
+  padding: 1rem 1rem;
+  color: #fff;
+  background-color: #3c91cc;
+  border-radius: 15px;
+  align-items: center;
+}
+
+
 @media (max-width: 767px) {
   .item-image {
     width: 150px; /* 小さくなるサイズ */

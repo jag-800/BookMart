@@ -17,40 +17,39 @@
       <%= image_tag @item.get_item_image(250,300), class:"item-image shadow p-3 mb-5 bg-white rounded" %>
     </div>
 
-    <table class="offset-md-2 col-md-6 item-introduction">
-      <tbody>
-        <tr>
-          <td class="pb-3">名前</td>
-          <td class="pb-3"><%= @item.name %></td>
-        </tr>
-        <tr>
-          <td class="pb-3">説明文</td>
-          <td class="pb-3"><%= @item.introduction %></td>
-        </tr>
-        <tr>
-          <td class="pb-3">タグ</td>
-          <td class="pb-3"><%= render 'tag_list', tag_list: @item.tag_list %></td>
-        </tr>
-        <tr>
-          <td class="pb-3">価格</td>
-          <td class="pb-3"><%= number_with_delimiter(@item.price) %>円</td>
-        </tr>
-        <tr>
-          <td class="pb-3">お気に入り</td>
-          <td class="pb-3 favorite-<%= @item.id %>">
-            <%= render "public/favorites/btn", item: @item %>
-          </td>
-        </tr>
-        <tr>
-          <td>販売状況</td>
-          <% if @item.is_active == true %>
-            <td class="text-success font-weight-bold">販売中</td>
-          <% else %>
-            <td class="text-secondary font-weight-bold">購入済み</td>
-          <% end %>
-        </tr>
-      </tbody>
-    </table>
+    <div class="offset-md-2 item-introduction">
+      <div class="row mb-3">
+        <div class="p-1 px-2 mr-3 item-im">名前</div>
+        <div class="col-md-9"><%= @item.name %></div>
+      </div>
+      <div class="row mb-3">
+        <div class="p-1 px-2 item-im">説明文</div>
+        <div class="col-md-9"><%= @item.introduction %></div>
+      </div>
+      <div class="row mb-3">
+        <div class="d-flex p-1 px-2 mr-3 item-im">タグ</div>
+        <div class="col-md-9"><%= render 'tag_list', tag_list: @item.tag_list %></div>
+      </div>
+      <div class="row mb-3">
+        <div class="p-1 px-2 mr-3 item-im">価格</div>
+        <div class="col-md-9"><%= number_with_delimiter(@item.price) %>円</div>
+      </div>
+      <div class="row mb-3">
+        <div class="p-1 px-2 item-im">お気に入り</div>
+        <div class="col-md-9 favorite-<%= @item.id %>">
+          <%= render "public/favorites/btn", item: @item %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="p-1 px-2 item-im">販売状況</div>
+        <% if @item.is_active == true %>
+          <div class="col-md-9 text-success font-weight-bold">販売中</div>
+        <% else %>
+          <div class="col-md-9 text-secondary font-weight-bold">購入済み</div>
+        <% end %>
+      </div>
+    </div>
+
 
   </div>
 
@@ -81,7 +80,7 @@
         <% end %>
         <%= link_to "削除", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？",  class:"btn btn-sm btn-danger mx-auto" %>
       </div>
-      
+
     <% end %>
 
     <div class="mx-auto">
