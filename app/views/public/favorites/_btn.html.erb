@@ -5,7 +5,7 @@
     <% end %>
   <% else %>
     <%= link_to item_favorite_path(item), method: :post, remote: true do %>
-      <i class="fas fa-heart" aria-hidden="true"></i>
+      <i class="fa-regular fa-heart" aria-hidden="true"></i>
       <%= item.favorites.count %>
     <% end %>
   <% end %>

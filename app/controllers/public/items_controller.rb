@@ -5,11 +5,13 @@ class Public::ItemsController < ApplicationController
 
   def index
     @q = Item.ransack(params[:q])
-    @items = @q.result.page(params[:page])
+    @items = @q.result.order(created_at: :desc).page(params[:page])
+  
     if params[:tag_name]
-      @items = Item.tagged_with("#{params[:tag_name]}").page(params[:page])
+      @items = Item.tagged_with("#{params[:tag_name]}").order(created_at: :desc).page(params[:page])
     end
   end
+
 
   def new
     @item = Item.new
@@ -34,7 +36,7 @@ class Public::ItemsController < ApplicationController
 
   def edit
   end
-  
+
   def tag
     @items = Item.all
     @tags = @items.flat_map(&:tag_list).uniq
@@ -64,7 +66,7 @@ class Public::ItemsController < ApplicationController
   def ensure_item
     @item = Item.find(params[:id])
   end
-  
+
   def authenticate
     unless customer_signed_in?
       redirect_to request.referer, alert: "ログイン前にこの操作を実行できません。"

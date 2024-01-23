@@ -20,10 +20,10 @@ Customer.create!(
       full_name_kana: "レイワミチコ",
       department: 1,
       grade: 4,
-      email: "sample@example.com",
+      email: "0@0",
       phone_number: "00022224353",
       is_active: true,
-      password: "password",
+      password: "000000",
     },
     {
       nick_name: "ナンバ",
@@ -31,10 +31,10 @@ Customer.create!(
       full_name_kana: "ナンバセンタ",
       department: 2,  # 例: 法学部
       grade: 2,       # 例: 2年生
-      email: "0@0",
+      email: "1@1",
       phone_number: "00088889999",
-      is_active: true,
-      password: "000000",
+      is_active: false,
+      password: "111111",
     },
     {
       nick_name: "にこにこ",
@@ -42,10 +42,10 @@ Customer.create!(
       full_name_kana: "ロッポンギハジメ",
       department: 8,
       grade: 3,
-      email: "1@1",
+      email: "2@2",
       phone_number: "09177772222",
-      is_active: false,
-      password: "111111",
+      is_active: true,
+      password: "222222",
     },
     {
       nick_name: "おがちゃん",
@@ -53,10 +53,10 @@ Customer.create!(
       full_name_kana: "オガタタカヒロ",
       department: 4,
       grade: 1,
-      email: "2@2",
+      email: "3@3",
       phone_number: "09177773333",
       is_active: true,
-      password: "222222",
+      password: "333333",
     }
   ]
 )
@@ -64,38 +64,59 @@ Customer.create!(
 items = Item.create!(
   [
     {
-      customer_id: "1",
-      name: "プロを目指す人のためのRuby入門",
-      introduction: "言語仕様からテスト駆動開発・デバッグ技法まで",
-      price: "2900",
+      customer_id: "3",
+      name: "実験ミクロ経済学",
+      introduction: "ミクロ経済学の講義で使用したモノ",
+      price: "300",
+      is_active: "true",
+    },
+    {
+      customer_id: "4",
+      name: "キタミ式基本情報技術者",
+      introduction: "イラストが多く、基本技情報技術者の資格に一番向いていると思われる",
+      price: "300",
       is_active: "true",
     },
     {
       customer_id: "1",
-      name: "	独習Python",
-      introduction: "手を動かしておぼえるPythonプログラミング ――独学に最適な“標準教科書”",
-      price: "1650",
+      name: "ロールプレイで学ぶ韓国語",
+      introduction: "韓国語コミュニケーションで使用、書き込み多数",
+      price: "300",
+      is_active: "true",
+    },
+    {
+      customer_id: "3",
+      name: "入門ミクロ経済学",
+      introduction: "ミクロ経済学の講義で使用したもの",
+      price: "300",
       is_active: "true",
     },
     {
       customer_id: "2",
-      name: "ONE PIECE モノクロ版 1",
-      introduction: "時は大海賊時代。いまや伝説の海賊王G・ロジャーの遺した『ひとつなぎの大秘宝』を巡って、幾人もの海賊達が戦っていた",
-      price: "460",
+      name: "世界一わかりやすい TOEICテストの英単語",
+      introduction: "TOEIC頻出の英単語を出る順で学べる、言葉の成り立ちもあるので覚えやすい！",
+      price: "300",
       is_active: "true",
     },
     {
       customer_id: "3",
-      name: "1冊ですべて身につくHTML & CSSとWebデザイン入門講座",
-      introduction: "ずっと、一番売れているHTML本!大反響! 32刷突破！",
-      price: "2486",
+      name: "簿記学",
+      introduction: "簿記３級の範囲",
+      price: "300",
       is_active: "true",
     },
     {
-      customer_id: "3",
-      name: "ゼロからわかる Ruby 超入門",
-      introduction: "かんたんIT基礎講座",
-      price: "2728",
+      customer_id: "4",
+      name: "ITパスポート",
+      introduction: "ITパスポートの資格におすすめ",
+      price: "300",
+      is_active: "true",
+    },
+    {
+      customer_id: "4",
+      name: "MOS Excel 365&2019 対策テキスト&問題集",
+      introduction: "MOS EXcelの資格勉強に使いました",
+      price: "300",
       is_active: "true",
     },
   ]
@@ -103,19 +124,25 @@ items = Item.create!(
 
 
 item_images = [
-  Rails.root.join("app/assets/images/ruby_.jpg"),
-  Rails.root.join("app/assets/images/python_.jpg"),
-  Rails.root.join("app/assets/images/onepiece_.jpg"),
-  Rails.root.join("app/assets/images/hml_css_.jpg"),
-  Rails.root.join("app/assets/images/0ruby.jpg"),
+  Rails.root.join("app/assets/images/economics_blue.jpg"),
+  Rails.root.join("app/assets/images/it_info.jpg"),
+  Rails.root.join("app/assets/images/korean.jpg"),
+  Rails.root.join("app/assets/images/economics_yellow.jpg"),
+  Rails.root.join("app/assets/images/english_seki.jpg"),
+  Rails.root.join("app/assets/images/accounting.jpg"),
+  Rails.root.join("app/assets/images/it_passport.jpg"),
+  Rails.root.join("app/assets/images/mos_excel.jpg"),
 ]
 
 item_tags = [
-  ["Ruby", "プログラミング", "入門"],
-  ["Python", "プログラミング", "入門"],
-  ["ジャンプ", "漫画", "ワンピース"],
-  ["HTML","CSS", "プログラミング", "入門"],
-  ["Ruby","情報", "プログラミング", "入門"],
+  ["経済学","ミクロ","入門"],
+  ["情報学","資格","入門"],
+  ["韓国語","初級","入門"],
+  ["経済学","ミクロ","入門"],
+  ["英語","単語"],
+  ["簿記","初級","会計学"],
+  ["情報学","資格","入門"],
+  ["情報学","MOS","問題集","入門","資格"],
 ]
 
 # 各アイテムに画像とタグを追加

@@ -66,7 +66,7 @@
         <% @items.each do |item| %>
           <div class="col-xs-6 col-sm-6 col-md-3 item-image">
             <%= link_to item_path(item.id) do %>
-              <%= image_tag item.get_item_image(150,180),class:"shadow p-3 mb-2 bg-white rounded" %>
+              <%= image_tag item.get_item_image(150,180),class:"shadow p-1 mb-2 bg-warning rounded" %>
             <% end %>
             <p class="small-text"><%= truncate(item.name, length: 20) %></p>
             <p>￥<%= number_with_delimiter(item.price) %></p>
