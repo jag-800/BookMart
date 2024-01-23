@@ -114,7 +114,7 @@ body {
   position: fixed;
   top: 0;
   right: 0; /* 右端に配置 */
-  background: rgba(255, 222, 125, 0.9); /* 白背景に透明度を追加 */
+  background: rgba(255, 222, 125, 0.9); /* 黄色背景に透明度を追加 */
   color: gray;
   width: 20%; /* 幅を300pxに設定 */
   min-height: 100%;
@@ -127,7 +127,7 @@ body {
   padding-top: 15px;
   padding-bottom: 15px; /* 下線とテキストの間隔 */
   padding-left: 2px;
-  color: #F35A5A;
+  color: dimgray;
 }
 
 #sp-menu li:hover {

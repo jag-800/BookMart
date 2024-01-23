@@ -2,7 +2,7 @@
   <% item.item_comments.each do |item_comment| %>
     <div class="<%= 'd-flex flex-column' if current_customer && item_comment.customer_id == current_customer.id %>">
       <div class="d-flex align-items-center justify-content-between">
-        <%= image_tag item_comment.customer.get_customer_image(40,40), class: "mr-1 shadow rounded" %>
+        <%= image_tag item_comment.customer.get_customer_image(40,40), class: "mr-1 shadow rounded-circle" %>
         <div class="flex-grow-1">
           <%= item_comment.customer.no_nick_name %>
           <% if current_customer && item_comment.customer_id == current_customer.id %>
