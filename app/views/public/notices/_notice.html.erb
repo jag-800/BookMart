@@ -4,7 +4,7 @@
   <div class="form-inline">
     <span>
       <%= link_to show_information_path(visitor) do %>
-        <%= image_tag visitor.get_customer_image(50, 50), class: "icon_mini" %>
+        <%= image_tag visitor.get_customer_image(50, 50), class: "icon_mini rounded-circle" %>
         <strong><%= visitor.no_nick_name %></strong>
       <% end %>
       さん

@@ -1,7 +1,8 @@
 <table class="table col-md-8 mx-auto mt-2 shadow p-3 mb-5 bg-white rounded">
   <thead class="bg-light">
     <th>会員ID</th>
-    <th>表示表示名</th>
+    <th>アイコン</th>
+    <th>表示名</th>
     <th>メールアドレス</th>
     <th>ステータス</th>
   </thead>
@@ -9,6 +10,7 @@
   <tbody class="content">
     <% customers.each do |customer| %><tr>
       <td><%= customer.id %></td>
+      <td><%= image_tag customer.get_customer_image(50,50), class:"rounded-circle" %></td>
       <td>
         <%= link_to admin_customer_path(customer.id) do %>
           <%= customer.no_nick_name %>
