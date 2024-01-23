@@ -8,14 +8,15 @@
 
 <div class="row">
   <div class="col-md-3 mb-3 except-small-screen">
-    <table class="border border-dark content shadow rounded">
+    <h5>タグで探す</h5>
+    <table class="content shadow rounded">
       <thead>
-        <th class="border border-dark py-2 px-4">タグ検索</th>
+        <th class="border border-dark py-2 px-4"><%= link_to "全商品を表示", items_path %></th>
       </thead>
       <tbody>
         <% @tag_counts.each do |tag_name, count| %>
         <tr>
-          <td class="py-1 px-3">
+          <td class="py-1 px-3 border">
             <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-warning text-white" %>
             (<%= count %>)
           </td>
@@ -41,9 +42,10 @@
     </div>
     <div class="row">
       <div class="col-md-3 my-3 middle-small-screen">
+        <h5>タグで探す</h5>
         <table class="border border-dark content tag-table shadow rounded">
           <thead>
-            <th class="border border-dark py-2 px-4">タグ検索</th>
+            <th class="border border-dark py-2 px-4"><%= link_to "全商品を表示", items_path %></th>
           </thead>
           <tbody>
             <% @tag_counts.each do |tag_name, count| %>

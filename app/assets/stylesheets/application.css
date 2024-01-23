@@ -14,12 +14,14 @@
  *= require_self
  */
 
- /* ブラウザがそれぞれ持っているCSSをリセットするための記述 */
+
+
 header {
   background-color: white;
 }
 body {
   overflow-x: hidden;
+  font-family: 'Noto Serif JP', serif !important;
 }
 
 .xside {
