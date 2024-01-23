@@ -5,7 +5,7 @@
 </div>
 
 <div class="d-flex align-items-center my-3 mt-4">
-  <%= image_tag @customer.get_customer_image(50,50),class:"rounded" %>
+  <%= image_tag @customer.get_customer_image(50,50),class:"rounded-circle" %>
 </div>
 
 <table class="table table-bordered border-dark col-md-6 shadow p-3 mb-5 bg-white rounded">
@@ -24,9 +24,10 @@
 
 <div class="row">
   <div class="col-md-2">
+    <h5>タグで探す</h5>
     <table class="border border-dark except-small-screen2 content shadow p-3 mb-5 bg-white rounded">
       <thead>
-        <th class="table-secondary border border-dark py-2 px-4">タグ検索</th>
+        <th class="border border-dark py-2 px-4"><%= link_to "全商品を表示", items_path %></th>
       </thead>
       <tbody>
         <% @tag_counts.each do |tag_name, count| %>
@@ -42,9 +43,10 @@
   </div>
 
   <div class="col-md-12 mb-3 only-small-screen">
+    <h5>タグで探す</h5>
     <table class="border border-dark content shadow p-3 mb-5 bg-white rounded">
       <thead>
-        <th class="table-secondary py-2 px-4">タグ検索</th>
+        <th class="py-2 px-4"><%= link_to "全商品を表示", items_path %></th>
       </thead>
       <tbody>
         <td class="p-1">

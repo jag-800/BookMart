@@ -8,14 +8,15 @@
 
 <div class="row">
   <div class="col-md-3 mb-3 except-small-screen">
-    <table class="border border-dark content shadow rounded">
+    <h5>タグで探す</h5>
+    <table class="content shadow rounded">
       <thead>
-        <th class="border border-dark py-2 px-4">タグ検索</th>
+        <th class="border border-dark py-2 px-4"><%= link_to "全商品を表示", items_path %></th>
       </thead>
       <tbody>
-        <% @tag_counts.each do |tag_name, count| %>
+        <% @tag_counts.sort_by { |tag_name, count| -count }.each do |tag_name, count| %>
         <tr>
-          <td class="py-1 px-3">
+          <td class="py-1 px-3 border">
             <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-warning text-white" %>
             (<%= count %>)
           </td>
@@ -29,27 +30,28 @@
     <div class="border border-dark p-2 content shadow p-3 mb-5 bg-white rounded">
       <div class="p-4">
         <span>
-        BookMartは大学での参考書・資格本を取り扱います。<br>
-        文理問わず、多くの学生が利用できるよう、<br>
-        様々な学問に対応しております。<br>
-        また、商品購入後は
-        <strong> <i class="fas fa-map-marked-alt"></i> <%= link_to "近畿大学中央図書館", homes_about_path, 'data-turbolinks': false %></strong>
-        で商品受け渡しをしてもらいます。<br>
-        ぜひ<strong>ご出品・購入</strong>下さい。
-      </span>
+          BookMartは大学での参考書・資格本を取り扱います。<br>
+          文理問わず、多くの学生が利用できるよう、<br>
+          様々な学問に対応しております。<br>
+          また、商品購入後は
+          <strong> <i class="fas fa-map-marked-alt"></i> <%= link_to "近畿大学中央図書館", homes_about_path, 'data-turbolinks': false %></strong>
+          で商品受け渡しをしてもらいます。<br>
+          ぜひ<strong>ご出品・購入</strong>下さい。
+        </span>
       </div>
     </div>
     <div class="row">
       <div class="col-md-3 my-3 middle-small-screen">
+        <h5>タグで探す</h5>
         <table class="border border-dark content tag-table shadow rounded">
           <thead>
-            <th class="border border-dark py-2 px-4">タグ検索</th>
+            <th class="border border-dark py-2 px-4"><%= link_to "全商品を表示", items_path %></th>
           </thead>
           <tbody>
-            <% @tag_counts.each do |tag_name, count| %>
+            <% @tag_counts.sort_by { |tag_name, count| -count }.each do |tag_name, count| %>
             <tr>
               <td class="py-1 px-3">
-                <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm  btn-warning text-white" %>
+                <%= link_to tag_name, items_path(tag_name: tag_name), class: "btn btn-sm btn-warning text-white" %>
                 (<%= count %>)
               </td>
             </tr>
@@ -64,7 +66,7 @@
         <% @items.each do |item| %>
           <div class="col-xs-6 col-sm-6 col-md-3 item-image">
             <%= link_to item_path(item.id) do %>
-              <%= image_tag item.get_item_image(150,180),class:"shadow p-3 mb-2 bg-white rounded" %>
+              <%= image_tag item.get_item_image(150,180),class:"shadow p-2 mb-2 bg-white rounded" %>
             <% end %>
             <p class="small-text"><%= truncate(item.name, length: 20) %></p>
             <p>￥<%= number_with_delimiter(item.price) %></p>

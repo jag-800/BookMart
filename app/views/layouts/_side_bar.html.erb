@@ -6,39 +6,39 @@
         <i class="fas fa-link"></i> About
       </li>
     <% end %>
-    <%= link_to items_path, class:"" do %>
+    <%= link_to items_path do %>
       <li>
         <i class="fas fa-book"></i> 商品リスト
       </li>
     <% end %>
-    <%= link_to items_tag_path, class:"text-dark" do %>
+    <%= link_to items_tag_path do %>
       <li>
         <i class="fas fa-tags"></i> タグ検索
       </li>
     <% end %>
     <% if admin_signed_in? %>
-      <%= link_to admin_customers_path, class:"text-dark" do %>
+      <%= link_to admin_customers_path do %>
         <li>
           <i class="fas fa-users"></i> 会員リスト
         </li>
       <% end %>
-      <%= link_to admin_orders_path, class:"text-dark" do %>
+      <%= link_to admin_orders_path do %>
         <li>
           <i class="far fa-address-book"></i> 取引履歴リスト
         </li>
       <% end %>
     <% else %>
-      <%= link_to favorites_path, class:"text-dark" do %>
+      <%= link_to favorites_path do %>
         <li>
           <i class="fa-solid fa-heart"></i> お気に入り
         </li>
       <% end %>
-      <%= link_to mypage_path, class:"text-dark" do %>
+      <%= link_to mypage_path do %>
         <li>
           <i class="fas fa-user"></i> マイページ
         </li>
       <% end %>
-      <%= link_to notices_path, class:"text-dark" do %>
+      <%= link_to notices_path do %>
         <li>
           <i class="fas fa-envelope"></i> 通知
           <% if customer_signed_in? && @unchecked_notices.any? %>
@@ -54,25 +54,25 @@
       <% end %>
     <% end %>
     <% unless customer_signed_in? || admin_signed_in? %>
-      <%= link_to new_customer_registration_path, class:"text-dark" do %>
+      <%= link_to new_customer_registration_path do %>
         <li>
           <i class="fas fa-user-plus"></i> 新規登録
         </li>
       <% end %>
-      <%= link_to new_customer_session_path, class:"text-dark" do %>
+      <%= link_to new_customer_session_path do %>
         <li>
           <i class="fas fa-sign-in-alt"></i> ログイン
         </li>
       <% end %>
     <% end %>
     <% if customer_signed_in? || admin_signed_in? %>
-      <%= link_to destroy_customer_session_path, method: :delete, class:"text-dark" do %>
+      <%= link_to destroy_customer_session_path, method: :delete do %>
         <li>
           <i class="fas fa-sign-out-alt"></i> ログアウト
         </li>
       <% end %>
     <% end %>
-    <%= link_to new_item_path, class: "text-danger" do %>
+    <%= link_to new_item_path do %>
       <li>
         <i class="fa-solid fa-camera"></i> 出品する
       </li>

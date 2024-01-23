@@ -57,10 +57,11 @@ class Customer < ApplicationRecord
     distance_education: 16,
     teacher_education: 17
   }
+  
   def get_customer_image(width, height)
     unless customer_image.attached?
-      file_path = Rails.root.join('app/assets/images/default-image.jpg')
-      customer_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      file_path = Rails.root.join('app/assets/images/no_customer.jpg')
+      customer_image.attach(io: File.open(file_path), filename: 'no_customer.jpg', content_type: 'image/jpeg')
     end
     # item_image.variant(resize_to_limit: [width, height]).processed
     #上のコードだと元ん画像のサイズより大きくできない
