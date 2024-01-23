@@ -1,5 +1,7 @@
 # 大学内中古参考書取引アプリ - BookMart
 
+## トップページ画面
+![image](https://github.com/jag-800/BookMart/assets/104123071/f316133a-3f7c-467a-9dab-d20a033a534c)
 ## サイト概要
 このアプリは大学生向けの中古参考書取引プラットフォームです。大学内での手軽な清算と受け渡しを実現し、学生同士で効率的に参考書を売買できるフリマサイトになります。  
 
@@ -44,8 +46,8 @@ rails db:seed
 
 ## 開発環境
 - OS：Linux（CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
+- 言語：HTML, CSS, JavaScript, Ruby3系, PostgreSQL
+- フレームワーク：Ruby on Rails6系
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
