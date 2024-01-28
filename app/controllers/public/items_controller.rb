@@ -5,12 +5,15 @@ class Public::ItemsController < ApplicationController
 
   def index
     @q = Item.ransack(params[:q])
-    @items = @q.result.order(created_at: :desc).page(params[:page])
+    @items = @q.result.includes(:tags, item_image_attachment: :blob).order(created_at: :desc)
   
     if params[:tag_name]
-      @items = Item.tagged_with("#{params[:tag_name]}").order(created_at: :desc).page(params[:page])
+      @items = @items.tagged_with(params[:tag_name])
     end
+  
+    @items = @items.page(params[:page])
   end
+
 
 
   def new
